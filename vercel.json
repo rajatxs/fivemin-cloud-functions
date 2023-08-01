@@ -1,0 +1,14 @@
+{
+   "public": true,
+   "functions": {
+      "api/*.ts": {
+         "includeFiles": "templates/**"
+      }
+   },
+   "rewrites": [
+      {
+         "source": "/hello",
+         "destination": "/api/hello"
+      }
+   ]
+}

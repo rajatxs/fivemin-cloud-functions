@@ -1,0 +1,18 @@
+{
+  "name": "@rxpm/fivemin-server",
+  "version": "1.0.0",
+  "description": "Official server of Fivemin",
+  "keywords": [
+    "fivemin",
+    "fivemin-server"
+  ],
+  "author": {
+    "name": "Rajat Sharma",
+    "email": "rxx256+npm@outlook.com",
+    "url": "https://github.com/rajatxs"
+  },
+  "license": "ISC",
+  "devDependencies": {
+    "@vercel/node": "^2.15.7"
+  }
+}
