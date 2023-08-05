@@ -7,8 +7,12 @@
    },
    "rewrites": [
       {
-         "source": "/hello",
-         "destination": "/api/hello"
+         "source": "/",
+         "destination": "/api/index"
+      },
+      {
+         "source": "/post",
+         "destination": "/api/post"
       }
    ]
 }

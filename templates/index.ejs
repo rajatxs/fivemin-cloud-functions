@@ -1,0 +1,152 @@
+<style>
+   main .page-hero {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+      height: 400px;
+   }
+
+   main .page-hero-text,
+   main .page-hero-image {
+      display: inline-flex;
+      flex-direction: column;
+      justify-content: center;
+      height: inherit;
+   }
+
+   main .page-hero .page-hero-desc {
+      font-size: 1.3rem;
+      font-weight: 500;
+   }
+
+   main .page-posts-collection {
+      display: grid;
+      gap: 2rem;
+      padding-top: 12px;
+      padding-bottom: 12px;
+      grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+   }
+
+   main .page-post-item {
+      text-decoration: none;
+      color: inherit;
+   }
+
+   main .page-post-item:hover .page-post-item-thumb-image {
+      box-shadow: rgba(100, 100, 111, 0.5) 0px 7px 29px 0px;
+   }
+
+   main .page-post-item-thumb {
+      margin: 0;
+      width: 100%;
+      height: 300px;
+      position: relative;
+      border-radius: 12px;
+   }
+
+   main .page-post-item-thumb-image {
+      width: inherit;
+      height: inherit;
+      background-image: url('https://fastly.picsum.photos/id/369/800/600.jpg?hmac=7gC124Zrg0IvAtsygZHbkHkNGq5eX86PkNVwnPSIJMc');
+      background-position: center;
+      background-size: cover;
+      background-repeat: no-repeat;
+      border-radius: inherit;
+   }
+
+   main .page-post-item-thumb-text {
+      position: absolute;
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+      align-items: center;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      height: 50px;
+      padding-left: 1rem;
+      padding-right: 1rem;
+      border-bottom-left-radius: inherit;
+      border-bottom-right-radius: inherit;
+      background-color: rgba(255, 255, 255, 0.9);
+   }
+
+   main .page-post-item-title {
+      padding-top: 1rem;
+      line-height: 1.8rem;
+   }
+
+   @media (max-width: 767px) {
+      main .page-hero {
+         height: 350px;
+      }
+
+      main .page-hero .page-hero-title {
+         font-size: 3rem;
+         line-height: 4rem;
+      }
+
+      main .page-hero .page-hero-desc {
+         font-size: 1.2rem;
+      }
+
+      main .page-hero .page-hero-image {
+         display: none;
+      }
+   }
+</style>
+
+<main>
+   <section class="page-hero">
+      <div class="page-hero-text">
+         <h1 class="page-hero-title">Unveiling Ideas</h1>
+         <p class="page-hero-desc">
+            Explore Inspiring Stories, In-Depth Insights, and<br />Expert Perspectives on
+            Our Blogging Journey.
+         </p>
+      </div>
+      <div class="page-hero-image">
+         <img src="/images/hero.svg" alt="Explore" width="400" />
+      </div>
+   </section>
+
+   <br />
+
+   <section class="page-recent-posts">
+      <h3>Recently Posts</h3>
+
+      <div class="page-posts-collection">
+         <a href="#" class="page-post-item">
+            <figure class="page-post-item-thumb">
+               <div class="page-post-item-thumb-image"></div>
+               <figcaption class="page-post-item-thumb-text">
+                  <strong>Travel and Adventure</strong>
+                  <small>25 min ago</small>
+               </figcaption>
+            </figure>
+
+            <h3 class="page-post-item-title">Lorem ipsum dolor sit amet consectetur.</h3>
+            <p>
+               Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quia in suscipit
+               numquam iure. Harum sequi officiis temporibus fuga, quod esse.
+            </p>
+         </a>
+
+         <a href="#" class="page-post-item">
+            <figure class="page-post-item-thumb">
+               <div class="page-post-item-thumb-image"></div>
+               <figcaption class="page-post-item-thumb-text">
+                  <strong>Travel and Adventure</strong>
+                  <small>25 min ago</small>
+               </figcaption>
+            </figure>
+
+            <h3 class="page-post-item-title">Lorem ipsum dolor sit amet consectetur.</h3>
+            <p>
+               Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quia in suscipit
+               numquam iure. Harum sequi officiis temporibus fuga, quod esse.
+            </p>
+         </a>
+      </div>
+   </section>
+</main>
