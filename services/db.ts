@@ -1,13 +1,20 @@
 import { MongoClient } from 'mongodb'
 import { DB_URL, DB_NAME } from '../config/env'
 import log from '../utils/log'
-import type { Db } from 'mongodb'
+import type { Db, Collection } from 'mongodb'
 
 var _client: MongoClient | null
 
+/** Returns reference of active database instance */
 export function db(): Db {
    // @ts-ignore
    return _client.db(DB_NAME)
+}
+
+/** Returns reference of `posts` collection */
+export function postCollection(): Collection {
+   // @ts-ignore
+   return _client.db(DB_NAME).collection('posts')
 }
 
 /** Establish database connection */
@@ -17,13 +24,7 @@ export async function connect(): Promise<void> {
    }
 
    _client = new MongoClient(DB_URL)
-
-   try {
-      await _client.connect()
-   } catch (error) {
-      log.error("Failed to establish database connection", error)
-      return
-   }
+   await _client.connect()
 }
 
 /** Closes active database connection */
@@ -36,7 +37,7 @@ export async function disconnect() {
       await _client.close(false)
       _client = null
    } catch (error) {
-      log.error("Failed to close database connection", error)
+      log.error('Failed to close database connection', error)
       return
    }
 }
