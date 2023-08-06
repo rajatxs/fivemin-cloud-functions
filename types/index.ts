@@ -1,9 +1,18 @@
+export interface PageTemplateMetaData {
+   title: string
+}
+
 export interface IndexPageTemplateData {
    title: string
 }
 
 export interface PostPageTemplateData {
-   title: string
+   postTitle: string
+   postTopic: string
+   postTopicUrl: string
+   postDesc: string
+   postPublishTime: string
+   postCoverImageUrl: string
 }
 
 export interface StatusPageTemplateData {

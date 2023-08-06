@@ -20,19 +20,16 @@
       background-position: center;
       background-size: cover;
       background-repeat: no-repeat;
-      background-image: url('https://fastly.picsum.photos/id/368/1080/600.jpg?hmac=5VInPAL39eax1Q5HroQ2SIc3iKeoNfty7fqVal6A0YI');
+      background-image: url('<%= postCoverImageUrl %>');
    }
 </style>
 
 <main class="post-content">
-   <h1 class="post-title">Using Golang for your AWS Lambda Functions</h1>
+   <h1 class="post-title"><%= postTitle %></h1>
    <p class="post-meta">
-      <a href="#" class="post-topic">Technology</a>&nbsp;•&nbsp;<small>25 min ago</small>
+      <a href="<%= postTopicUrl %>" class="post-topic"><%= postTopic %></a>&nbsp;•&nbsp;<small><%= postPublishTime %></small>
    </p>
-   <p class="post-desc">
-      I was sparked on a XKE to do a short experiment with using Golang for my AWS Lambda
-      Functions. The trigger for this was something my colleague Mark van Holsteijn said.
-   </p>
+   <p class="post-desc"><%= postDesc %></p>
    <div class="post-cover-image"></div>
    <section class="post-body">
       <p>
