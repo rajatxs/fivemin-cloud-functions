@@ -1,7 +1,11 @@
 import { join } from 'path'
 import { renderFile } from 'ejs'
 import { PAGE_DIR, VIEW_PARTIAL_DIR, LAYOUT_DIR } from '../config'
-import type { IndexPageTemplateData, PostPageTemplateData } from '../types'
+import type {
+   IndexPageTemplateData,
+   PostPageTemplateData,
+   StatusPageTemplateData,
+} from '../types'
 
 /**
  * Returns computed index page content
@@ -32,9 +36,27 @@ export async function renderPostPage(data: PostPageTemplateData) {
 /** Returns computed 404 error page content */
 export async function render404Page() {
    return await renderFile(join(LAYOUT_DIR, 'default-layout.ejs'), {
-      pageTitle: "Page not found - Fivemin",
+      pageTitle: 'Page not found - Fivemin',
       partialHeader: await renderFile(join(VIEW_PARTIAL_DIR, 'header.ejs'), {}),
-      partialMain: await renderFile(join(PAGE_DIR, '404.ejs'), {}),
+      partialMain: await renderFile(join(PAGE_DIR, '_status.ejs'), {
+         imageUrl: 'images/404.svg',
+         message: 'Page not found',
+         desc: "Oops! The page you're looking for can't be found.",
+      } as StatusPageTemplateData),
+      partialFooter: '',
+   })
+}
+
+/** Returns computed 500 error page content */
+export async function render500Page() {
+   return await renderFile(join(LAYOUT_DIR, 'default-layout.ejs'), {
+      pageTitle: 'Internal Server Error - Fivemin',
+      partialHeader: await renderFile(join(VIEW_PARTIAL_DIR, 'header.ejs'), {}),
+      partialMain: await renderFile(join(PAGE_DIR, '_status.ejs'), {
+         imageUrl: 'images/500.svg',
+         message: 'Something went wrong',
+         desc: 'Oops! Something went wrong on our end. Please try again later',
+      } as StatusPageTemplateData),
       partialFooter: '',
    })
 }
