@@ -2,7 +2,8 @@
    "public": true,
    "functions": {
       "api/*.ts": {
-         "includeFiles": "templates/**"
+         "includeFiles": "templates/**",
+         "maxDuration": 5
       }
    },
    "rewrites": [
@@ -11,7 +12,7 @@
          "destination": "/api/index"
       },
       {
-         "source": "/post",
+         "source": "/:slug",
          "destination": "/api/post"
       }
    ]
