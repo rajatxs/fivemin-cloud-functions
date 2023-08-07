@@ -10,6 +10,7 @@ import {
    formatTime,
    renderMarkdown,
 } from '../utils'
+import { getPostCoverImageURL } from '../utils/post'
 import log from '../utils/log'
 import type { PostDocument } from '../types/post'
 import type { VercelRequest, VercelResponse } from '@vercel/node'
@@ -50,7 +51,7 @@ async function handler(req: VercelRequest, res: VercelResponse) {
          postTopicUrl: `/t/${doc.topic}`,
          postDesc: doc.desc,
          postPublishTime: formatTime(doc.createdAt),
-         postCoverImageUrl: doc.coverImageUrl,
+         postCoverImageUrl: getPostCoverImageURL(doc.coverImagePath),
          postBody,
       })
    )

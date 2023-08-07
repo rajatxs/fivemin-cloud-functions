@@ -7,7 +7,8 @@ export interface PostDocument {
    desc: string
    tags: string[]
    topic: string
-   coverImageUrl: string
+   coverImageId: string
+   coverImagePath: string
    body: Binary
    stars: number
    authorId: ObjectId
