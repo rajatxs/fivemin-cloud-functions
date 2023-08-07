@@ -1,10 +1,15 @@
 <style>
-   .post-title {
-      font-weight: 600;
-   }
    .post-content {
-      padding-top: 5rem;
-      padding-bottom: 5rem;
+      padding-top: 3rem;
+      padding-bottom: 3rem;
+   }
+   .post-cover-image {
+      border-radius: 12px;
+      height: 400px;
+      background-position: center;
+      background-size: cover;
+      background-repeat: no-repeat;
+      background-image: url('<%= postCoverImageUrl %>');
    }
    .post-body h1,
    .post-body h2,
@@ -14,13 +19,8 @@
    .post-body h6 {
       padding: 8px 0;
    }
-   .post-cover-image {
-      border-radius: 12px;
-      height: 400px;
-      background-position: center;
-      background-size: cover;
-      background-repeat: no-repeat;
-      background-image: url('<%= postCoverImageUrl %>');
+   .post-body pre {
+      white-space: break-spaces;
    }
 </style>
 
