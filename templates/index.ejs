@@ -35,6 +35,10 @@
    main .page-post-item:hover .page-post-item-thumb-image {
       box-shadow: rgba(100, 100, 111, 0.5) 0px 7px 29px 0px;
    }
+   
+   main .page-post-item:focus .page-post-item-title {
+      text-decoration: underline;
+   }
 
    main .page-post-item-thumb {
       margin: 0;
@@ -47,7 +51,6 @@
    main .page-post-item-thumb-image {
       width: inherit;
       height: inherit;
-      background-image: url('https://fastly.picsum.photos/id/369/800/600.jpg?hmac=7gC124Zrg0IvAtsygZHbkHkNGq5eX86PkNVwnPSIJMc');
       background-position: center;
       background-size: cover;
       background-repeat: no-repeat;
@@ -113,40 +116,40 @@
    <br />
 
    <section class="page-recent-posts">
-      <h3>Recently Posts</h3>
+      <h3>Recent Posts</h3>
 
+      <% if (posts.length === 0) { %> 
+         <div>
+            <br />
+            <p>No Posts</p>
+            <br />
+            <br />
+            <br />
+         </div>
+      <% } else { %>
       <div class="page-posts-collection">
-         <a href="#" class="page-post-item">
+         <% for(let post of posts) { %>
+         <a 
+            href="<%= post.postUrl %>" 
+            title="<%= post.postTitle %>" 
+            class="page-post-item"
+            tabindex="<%= post.postIndex + 1 %>">
             <figure class="page-post-item-thumb">
-               <div class="page-post-item-thumb-image"></div>
+               <div 
+                  class="page-post-item-thumb-image" 
+                  style="background-image: url('<%= post.postCoverImageUrl %>');">
+               </div>
                <figcaption class="page-post-item-thumb-text">
-                  <strong>Travel and Adventure</strong>
-                  <small>25 min ago</small>
+                  <strong><%= post.postTopic %></strong>
+                  <small><%= post.postPublishTime %></small>
                </figcaption>
             </figure>
 
-            <h3 class="page-post-item-title">Lorem ipsum dolor sit amet consectetur.</h3>
-            <p>
-               Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quia in suscipit
-               numquam iure. Harum sequi officiis temporibus fuga, quod esse.
-            </p>
+            <h3 class="page-post-item-title"><%= post.postTitle %></h3>
+            <p class="page-post-item-desc"><%= post.postDesc %></p>
          </a>
-
-         <a href="#" class="page-post-item">
-            <figure class="page-post-item-thumb">
-               <div class="page-post-item-thumb-image"></div>
-               <figcaption class="page-post-item-thumb-text">
-                  <strong>Travel and Adventure</strong>
-                  <small>25 min ago</small>
-               </figcaption>
-            </figure>
-
-            <h3 class="page-post-item-title">Lorem ipsum dolor sit amet consectetur.</h3>
-            <p>
-               Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quia in suscipit
-               numquam iure. Harum sequi officiis temporibus fuga, quod esse.
-            </p>
-         </a>
+         <% } %>
       </div>
+      <% } %>
    </section>
 </main>

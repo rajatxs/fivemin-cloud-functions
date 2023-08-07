@@ -15,7 +15,7 @@ export async function renderIndexPage(data: IndexPageTemplateData): Promise<stri
    return await renderFile(join(LAYOUT_DIR, 'default-layout.ejs'), {
       pageTitle: data.title,
       partialHeader: await renderFile(join(VIEW_PARTIAL_DIR, 'header.ejs'), {}),
-      partialMain: await renderFile(join(PAGE_DIR, 'index.ejs'), {}),
+      partialMain: await renderFile(join(PAGE_DIR, 'index.ejs'), { posts: data.posts }),
       partialFooter: await renderFile(join(VIEW_PARTIAL_DIR, 'footer.ejs'), {}),
    })
 }
