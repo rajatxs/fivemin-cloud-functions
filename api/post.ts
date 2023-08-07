@@ -1,9 +1,9 @@
 import { compose } from '@rxpm/vsfm'
 import { connectDatabase } from '../middlewares'
 import { renderPostPage } from '../services/render'
-import { getPostBySlug } from '../services/post'
+import { getPostBySlug, getPostTopicName } from '../services/post'
 import { disconnect } from '../services/db'
-import { servePageContent, serve404Page, formatTime, createSlug } from '../utils'
+import { servePageContent, serve404Page, formatTime } from '../utils'
 import type { VercelRequest, VercelResponse } from '@vercel/node'
 
 /**
@@ -24,8 +24,8 @@ async function handler(req: VercelRequest, res: VercelResponse) {
       res,
       await renderPostPage({
          postTitle: doc.title,
-         postTopic: doc.topic,
-         postTopicUrl: `/t/${createSlug(doc.topic)}`,
+         postTopic: getPostTopicName(doc.topic),
+         postTopicUrl: `/t/${doc.topic}`,
          postDesc: doc.desc,
          postPublishTime: formatTime(doc.createdAt),
          postCoverImageUrl: doc.coverImageUrl,

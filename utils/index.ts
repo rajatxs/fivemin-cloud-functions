@@ -42,12 +42,3 @@ export function formatTime(time: Date) {
       return `${month} ${time.getDate()}, ${time.getFullYear()}`
    }
 }
-
-export function createSlug(text: string): string {
-   return text
-      .toLowerCase()
-      .replace(/\s+/g, '-') // Replace spaces with hyphens
-      .replace(/[^\w\-]+/g, '') // Remove non-word characters
-      .replace(/\-\-+/g, '-') // Replace multiple hyphens with a single hyphen
-      .replace(/^-+|-+$/g, '') // Trim hyphens from the beginning and end
-}
