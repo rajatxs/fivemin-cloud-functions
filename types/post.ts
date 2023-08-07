@@ -16,3 +16,5 @@ export interface PostDocument {
    createdAt: Date
    updatedAt: Date
 }
+
+export type PostDocumentMetadata = Omit<PostDocument, 'body'>
