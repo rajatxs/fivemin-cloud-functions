@@ -47,3 +47,10 @@ export function formatTime(time: Date) {
 export function renderMarkdown(mdContent: string): string {
    return new MarkdownIt('default').render(mdContent, {})
 }
+
+export function truncateText(text: string, len: number) {
+   if (text.length > len) {
+      return text.substring(0, len - 3) + '...'
+   }
+   return text
+}
