@@ -3,7 +3,15 @@ import { connectDatabase } from '../middlewares'
 import { renderPostPage } from '../services/render'
 import { getPostBySlug, getPostTopicName } from '../services/post'
 import { disconnect } from '../services/db'
-import { servePageContent, serve404Page, formatTime } from '../utils'
+import {
+   servePageContent,
+   serve404Page,
+   serve500Page,
+   formatTime,
+   renderMarkdown,
+} from '../utils'
+import log from '../utils/log'
+import type { PostDocument } from '../types/post'
 import type { VercelRequest, VercelResponse } from '@vercel/node'
 
 /**
@@ -14,10 +22,24 @@ import type { VercelRequest, VercelResponse } from '@vercel/node'
  */
 async function handler(req: VercelRequest, res: VercelResponse) {
    const slug = String(req.query.slug)
-   const doc = await getPostBySlug(slug)
+   let doc: PostDocument, postBody: string
+
+   try {
+      doc = await getPostBySlug(slug)
+   } catch (error) {
+      log.error('Failed to get post document', error)
+      return serve500Page(res)
+   }
 
    if (!doc) {
       return serve404Page(res)
+   }
+
+   try {
+      postBody = renderMarkdown(doc.body.toString('utf8'))
+   } catch (error) {
+      log.error('Failed to render post body', error)
+      return serve500Page(res)
    }
 
    servePageContent(
@@ -29,6 +51,7 @@ async function handler(req: VercelRequest, res: VercelResponse) {
          postDesc: doc.desc,
          postPublishTime: formatTime(doc.createdAt),
          postCoverImageUrl: doc.coverImageUrl,
+         postBody,
       })
    )
 

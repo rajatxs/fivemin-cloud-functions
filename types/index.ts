@@ -13,6 +13,7 @@ export interface PostPageTemplateData {
    postDesc: string
    postPublishTime: string
    postCoverImageUrl: string
+   postBody: string
 }
 
 export interface StatusPageTemplateData {

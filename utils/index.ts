@@ -1,3 +1,4 @@
+import MarkdownIt from 'markdown-it'
 import { render404Page, render500Page } from '../services/render'
 import type { VercelResponse } from '@vercel/node'
 
@@ -41,4 +42,8 @@ export function formatTime(time: Date) {
    } else {
       return `${month} ${time.getDate()}, ${time.getFullYear()}`
    }
+}
+
+export function renderMarkdown(mdContent: string): string {
+   return new MarkdownIt('default').render(mdContent, {})
 }
