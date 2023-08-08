@@ -21,6 +21,7 @@
       />
       <link rel="stylesheet" href="/default.css" />
       <link rel="stylesheet" href="/utils.css" />
+      <!-- TODO: Use "Fivemin" suffix -->
       <title><%= pageTitle %></title>
       <style>
          main {
@@ -55,8 +56,8 @@
    </head>
 
    <body>
-      <%- partialHeader %>
-      <%- partialMain %>
-      <%- partialFooter %>
+      <%- include('partials/header') %>
+      <%- include(pageContent) %>
+      <%- include('partials/footer') %>
    </body>
 </html>

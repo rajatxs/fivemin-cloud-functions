@@ -3,12 +3,13 @@ import { getTopicName } from '../services/topic'
 import { disconnect } from '../services/db'
 import { connectDatabase } from '../middlewares'
 import { compose } from '@rxpm/vsfm'
-import { renderIndexPage } from '../services/render'
 import { servePageContent, serve500Page, formatTime, truncateText } from '../utils'
+import { renderDefaultLayout } from '../utils/template'
 import { getPostCoverImageURL } from '../utils/post'
 import log from '../utils/log'
 import type { VercelRequest, VercelResponse } from '@vercel/node'
 import type { PostDocumentMetadata } from '../types/post'
+import type { IndexPageData } from '../types/template'
 
 /**
  * Serves index page
@@ -28,8 +29,9 @@ async function handler(req: VercelRequest, res: VercelResponse) {
 
    servePageContent(
       res,
-      await renderIndexPage({
-         title: 'Fivemin - Empowering Ideas',
+      await renderDefaultLayout<IndexPageData>({
+         pageTitle: 'Fivemin - Empowering Ideas',
+         pageContent: 'index',
          posts: posts.map((_post, _index) => {
             return {
                postUrl: `/${_post.slug}`,

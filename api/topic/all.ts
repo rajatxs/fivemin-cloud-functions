@@ -1,12 +1,13 @@
 import { compose } from '@rxpm/vsfm'
 import { connectDatabase } from '../../middlewares'
 import { disconnect } from '../../services/db'
-import { renderTopicsPage } from '../../services/render'
 import { getPostCount } from '../../services/post'
 import { getAllTopics } from '../../services/topic'
 import { servePageContent, serve500Page } from '../../utils'
+import { renderDefaultLayout } from '../../utils/template'
 import log from '../../utils/log'
 import type { VercelRequest, VercelResponse } from '@vercel/node'
+import type { TopicsPageData } from '../../types/template'
 
 async function handler(req: VercelRequest, res: VercelResponse) {
    const topics = getAllTopics()
@@ -19,7 +20,9 @@ async function handler(req: VercelRequest, res: VercelResponse) {
       return serve500Page(res)
    }
 
-   servePageContent(res, await renderTopicsPage({
+   servePageContent(res, await renderDefaultLayout<TopicsPageData>({
+      pageTitle: 'Topics - Fivemin',
+      pageContent: 'topics',
       postCount,
       topics: topics.map((_topic, _index) => {
          return {

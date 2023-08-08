@@ -1,6 +1,5 @@
 import { compose } from '@rxpm/vsfm'
 import { connectDatabase } from '../middlewares'
-import { renderPostPage } from '../services/render'
 import { getPostBySlug } from '../services/post'
 import { getTopicName } from '../services/topic'
 import { disconnect } from '../services/db'
@@ -12,9 +11,11 @@ import {
    renderMarkdown,
 } from '../utils'
 import { getPostCoverImageURL } from '../utils/post'
+import { renderDefaultLayout } from '../utils/template'
 import log from '../utils/log'
 import type { PostDocument } from '../types/post'
 import type { VercelRequest, VercelResponse } from '@vercel/node'
+import type { PostPageData } from '../types/template'
 
 /**
  * Serves post page
@@ -46,8 +47,10 @@ async function handler(req: VercelRequest, res: VercelResponse) {
 
    servePageContent(
       res,
-      await renderPostPage({
+      await renderDefaultLayout<PostPageData>({
+         pageTitle: doc.title,
          postTitle: doc.title,
+         pageContent: 'post',
          postTopic: getTopicName(doc.topic),
          postTopicUrl: `/t/${doc.topic}`,
          postDesc: doc.desc,
