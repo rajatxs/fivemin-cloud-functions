@@ -6,6 +6,7 @@ import type {
    PostPageTemplateData,
    StatusPageTemplateData,
    TopicsPageTemplateData,
+   TopicPageTemplateData,
 } from '../types'
 
 /**
@@ -34,11 +35,28 @@ export async function renderPostPage(data: PostPageTemplateData) {
    })
 }
 
+/**
+ * Returns computed topics page content
+ * @param data - Page template data
+ */
 export async function renderTopicsPage(data: TopicsPageTemplateData): Promise<string> {
    return renderFile(join(LAYOUT_DIR, 'default-layout.ejs'), {
       pageTitle: "Topics - Fivemin",
       partialHeader: await renderFile(join(VIEW_PARTIAL_DIR, 'header.ejs'), {}),
       partialMain: await renderFile(join(PAGE_DIR, 'topics.ejs'), data),
+      partialFooter: await renderFile(join(VIEW_PARTIAL_DIR, 'footer.ejs'), {}),
+   })
+}
+
+/**
+ * Returns computed topic page content
+ * @param data - Page template data
+ */
+export async function renderTopicPage(data: TopicPageTemplateData): Promise<string> {
+   return renderFile(join(LAYOUT_DIR, 'default-layout.ejs'), {
+      pageTitle: `${data.topicName} - Fivemin`,
+      partialHeader: await renderFile(join(VIEW_PARTIAL_DIR, 'header.ejs'), {}),
+      partialMain: await renderFile(join(PAGE_DIR, 'topic.ejs'), data),
       partialFooter: await renderFile(join(VIEW_PARTIAL_DIR, 'footer.ejs'), {}),
    })
 }

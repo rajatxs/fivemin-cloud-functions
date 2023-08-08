@@ -13,7 +13,11 @@
       },
       {
          "source": "/t",
-         "destination": "/api/topics"
+         "destination": "/api/topic/all"
+      },
+      {
+         "source": "/t/:id",
+         "destination": "/api/topic/single"
       },
       {
          "source": "/:slug",

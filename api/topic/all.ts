@@ -1,11 +1,11 @@
 import { compose } from '@rxpm/vsfm'
-import { connectDatabase } from '../middlewares'
-import { disconnect } from '../services/db'
-import { renderTopicsPage } from '../services/render'
-import { getPostCount } from '../services/post'
-import { getAllTopics } from '../services/topic'
-import { servePageContent, serve500Page } from '../utils'
-import log from '../utils/log'
+import { connectDatabase } from '../../middlewares'
+import { disconnect } from '../../services/db'
+import { renderTopicsPage } from '../../services/render'
+import { getPostCount } from '../../services/post'
+import { getAllTopics } from '../../services/topic'
+import { servePageContent, serve500Page } from '../../utils'
+import log from '../../utils/log'
 import type { VercelRequest, VercelResponse } from '@vercel/node'
 
 async function handler(req: VercelRequest, res: VercelResponse) {

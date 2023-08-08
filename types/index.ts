@@ -39,6 +39,12 @@ export interface TopicsPageTemplateData {
    topics: TopicTemplateData[]
 }
 
+export interface TopicPageTemplateData {
+   topicName: string
+   postCount: number
+   posts: IndexPagePostTemplateData[]
+}
+
 export interface StatusPageTemplateData {
    message: string
    imageUrl: string
