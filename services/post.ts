@@ -37,5 +37,6 @@ export function getRecentPosts(limit: number = 6) {
  * @param id - Topic Id
  */
 export function getPostTopicName(id: string): string {
-   return Reflect.get(topics, id) || 'Other'
+   const _topic = Reflect.get(topics, id)
+   return _topic? _topic.name: 'Other'
 }
