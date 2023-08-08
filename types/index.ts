@@ -28,12 +28,14 @@ export interface PostPageTemplateData {
 
 export interface TopicTemplateData {
    topicId: string
+   topicIndex: number
    topicUrl: string
    topicName: string
    topicThumbUrl: string
 }
 
 export interface TopicsPageTemplateData {
+   postCount: number
    topics: TopicTemplateData[]
 }
 
