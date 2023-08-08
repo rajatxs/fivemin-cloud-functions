@@ -12,6 +12,10 @@
          "destination": "/api/index"
       },
       {
+         "source": "/t",
+         "destination": "/api/topics"
+      },
+      {
          "source": "/:slug",
          "destination": "/api/post"
       }
