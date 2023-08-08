@@ -30,3 +30,8 @@ export function getRecentPosts(limit: number = 6) {
       .sort({ createdAt: -1 })
       .toArray()
 }
+
+/** Returns number of public posts */
+export function getPostCount(): Promise<number> {
+   return postCollection().countDocuments({ public: true })
+}
