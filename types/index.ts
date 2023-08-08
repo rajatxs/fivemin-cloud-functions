@@ -26,6 +26,17 @@ export interface PostPageTemplateData {
    postBody: string
 }
 
+export interface TopicTemplateData {
+   topicId: string
+   topicUrl: string
+   topicName: string
+   topicThumbUrl: string
+}
+
+export interface TopicsPageTemplateData {
+   topics: TopicTemplateData[]
+}
+
 export interface StatusPageTemplateData {
    message: string
    imageUrl: string
