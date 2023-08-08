@@ -1,6 +1,5 @@
 import { postCollection } from './db'
 import { PostDocument } from '../types/post'
-import topics from '../data/topics.json'
 import type { PostDocumentMetadata } from '../types/post'
 
 /**
@@ -30,13 +29,4 @@ export function getRecentPosts(limit: number = 6) {
       )
       .sort({ createdAt: -1 })
       .toArray()
-}
-
-/**
- * Returns topic name by given topic `id`
- * @param id - Topic Id
- */
-export function getPostTopicName(id: string): string {
-   const _topic = Reflect.get(topics, id)
-   return _topic? _topic.name: 'Other'
 }

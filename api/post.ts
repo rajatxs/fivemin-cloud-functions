@@ -1,7 +1,8 @@
 import { compose } from '@rxpm/vsfm'
 import { connectDatabase } from '../middlewares'
 import { renderPostPage } from '../services/render'
-import { getPostBySlug, getPostTopicName } from '../services/post'
+import { getPostBySlug } from '../services/post'
+import { getTopicName } from '../services/topic'
 import { disconnect } from '../services/db'
 import {
    servePageContent,
@@ -47,7 +48,7 @@ async function handler(req: VercelRequest, res: VercelResponse) {
       res,
       await renderPostPage({
          postTitle: doc.title,
-         postTopic: getPostTopicName(doc.topic),
+         postTopic: getTopicName(doc.topic),
          postTopicUrl: `/t/${doc.topic}`,
          postDesc: doc.desc,
          postPublishTime: formatTime(doc.createdAt),

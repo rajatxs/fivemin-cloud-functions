@@ -1,4 +1,5 @@
-import { getRecentPosts, getPostTopicName } from '../services/post'
+import { getRecentPosts } from '../services/post'
+import { getTopicName } from '../services/topic'
 import { disconnect } from '../services/db'
 import { connectDatabase } from '../middlewares'
 import { compose } from '@rxpm/vsfm'
@@ -35,7 +36,7 @@ async function handler(req: VercelRequest, res: VercelResponse) {
                postIndex: _index + 1,
                postTitle: _post.title,
                postDesc: truncateText(_post.desc, 90),
-               postTopic: getPostTopicName(_post.topic),
+               postTopic: getTopicName(_post.topic),
                postPublishTime: formatTime(_post.createdAt),
                postCoverImageUrl: getPostCoverImageURL(_post.coverImagePath),
             }
