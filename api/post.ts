@@ -3,13 +3,8 @@ import { connectDatabase } from '../middlewares'
 import { getPostBySlug } from '../services/post'
 import { getTopicName } from '../services/topic'
 import { disconnect } from '../services/db'
-import {
-   servePageContent,
-   serve404Page,
-   serve500Page,
-   formatTime,
-   renderMarkdown,
-} from '../utils'
+import { formatTime, renderMarkdown } from '../utils'
+import { servePageContent, serve404Page, serve500Page } from '../utils/http'
 import { getPostCoverImageURL } from '../utils/post'
 import { renderDefaultLayout } from '../utils/template'
 import log from '../utils/log'

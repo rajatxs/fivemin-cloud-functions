@@ -1,13 +1,14 @@
 import { compose } from '@rxpm/vsfm'
 import { connectDatabase } from '../../middlewares'
 import { disconnect } from '../../services/db'
-import { renderTopicPage } from '../../services/render'
 import { getPostCountByTopic, getRecentPostsByTopic } from '../../services/post'
 import { getTopicName } from '../../services/topic'
-import { servePageContent, serve500Page } from '../../utils'
+import { renderDefaultLayout } from '../../utils/template'
+import { servePageContent, serve500Page } from '../../utils/http'
 import log from '../../utils/log'
 import type { VercelRequest, VercelResponse } from '@vercel/node'
 import type { PostDocumentMetadata } from '../../types/post'
+import type { TopicPageData } from '../../types/template'
 
 async function handler(req: VercelRequest, res: VercelResponse) {
    const id = String(req.query.id)
@@ -29,11 +30,14 @@ async function handler(req: VercelRequest, res: VercelResponse) {
       return serve500Page(res)
    }
 
-   servePageContent(res, await renderTopicPage({
+   servePageContent(res, await renderDefaultLayout<TopicPageData>({
+      pageTitle: topicName,
+      pageContent: 'topic',
       topicName,
       postCount,
       posts: [],
    }))
+
    await disconnect()
 }
 

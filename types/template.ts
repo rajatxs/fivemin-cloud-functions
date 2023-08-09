@@ -40,3 +40,15 @@ export interface TopicsPageData extends PageData {
    postCount: number
    topics: PartialTopicViewData[]
 }
+
+export interface TopicPageData extends PageData {
+   topicName: string
+   postCount: number
+   posts: PartialPostViewData[]
+}
+
+export interface StatusPageData extends PageData {
+   statusImageUrl: string
+   statusMessage: string
+   statusDesc: string
+}
