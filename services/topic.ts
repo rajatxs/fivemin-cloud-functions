@@ -24,11 +24,13 @@ export function getTopic(id: string): Topic | null {
    }
 }
 
-export function getAllTopics(): Topic[] {
+export function getAllTopics(includePublic: boolean = true): Topic[] {
    let _topics = new Array<Topic>()
 
    for (const _topic in topics) {
-      _topics.push(Topic.fromObject(_topic, topics[_topic]))
+      if (topics[_topic].public && includePublic) {
+         _topics.push(Topic.fromObject(_topic, topics[_topic]))
+      }
    }
 
    return _topics
