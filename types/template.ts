@@ -1,6 +1,11 @@
 export interface PageData {
    pageTitle: string
    pageContent: string
+   pageDesc?: string
+   pageKeywords?: string[]
+   pageType?: string
+   pageUrl?: string
+   pageCoverImage?: string
 }
 
 export interface PartialPostViewData {

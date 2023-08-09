@@ -1,4 +1,5 @@
 import MarkdownIt from 'markdown-it'
+import { CLOUDINARY_CLOUD_NAME } from '../config/env'
 
 export function formatTime(time: Date) {
    const currentTime = new Date()
@@ -35,4 +36,8 @@ export function truncateText(text: string, len: number) {
       return text.substring(0, len - 3) + '...'
    }
    return text
+}
+
+export function getOpenGraphImageURL(imagePath: string): string {
+   return `https://res.cloudinary.com/${CLOUDINARY_CLOUD_NAME}/image/upload/c_scale,w_1200,h_600/${imagePath}`
 }

@@ -3,7 +3,7 @@ import { connectDatabase } from '../middlewares'
 import { getPostBySlug } from '../services/post'
 import { getTopicName } from '../services/topic'
 import { disconnect } from '../services/db'
-import { formatTime, renderMarkdown } from '../utils'
+import { formatTime, renderMarkdown, getOpenGraphImageURL } from '../utils'
 import { servePageContent, serve404Page, serve500Page } from '../utils/http'
 import { getPostCoverImageURL } from '../utils/post'
 import { renderDefaultLayout } from '../utils/template'
@@ -45,6 +45,10 @@ async function handler(req: VercelRequest, res: VercelResponse) {
       await renderDefaultLayout<PostPageData>({
          pageTitle: doc.title,
          postTitle: doc.title,
+         pageKeywords: doc.tags,
+         pageCoverImage: getOpenGraphImageURL(doc.coverImagePath),
+         pageDesc: doc.desc,
+         pageType: 'article',
          pageContent: 'post',
          postTopic: getTopicName(doc.topic),
          postTopicUrl: `/t/${doc.topic}`,
