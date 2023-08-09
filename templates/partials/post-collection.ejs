@@ -20,9 +20,11 @@
                style="background-image: url('<%= post.postCoverImageUrl %>')">
             </div>
             <figcaption class="partial-post-view__item-thumb-text">
+               <% if (showTopic) { %>
                <strong>
-                  <%= post.postTopic %>
+               <%= post.postTopic %>
                </strong>
+               <% } %>
                <small>
                   <%= post.postPublishTime %>
                </small>
