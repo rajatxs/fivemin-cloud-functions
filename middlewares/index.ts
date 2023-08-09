@@ -1,5 +1,5 @@
 import { connect } from '../services/db'
-import { serve500Page } from '../utils'
+import { serve500Page } from '../utils/http'
 import log from '../utils/log'
 import type { VercelRequest, VercelResponse } from '@vercel/node'
 import type { AppNextFunction } from '@rxpm/vsfm'
