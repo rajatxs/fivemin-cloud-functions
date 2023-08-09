@@ -1,0 +1,41 @@
+<% if (posts.length === 0) { %>
+<div class="partial-post-collection__empty-block">
+   <br />
+   <p>No Posts</p>
+   <br />
+   <br />
+   <br />
+</div>
+<% } else { %>
+<div class="partial-post-collection">
+   <% for(let post of posts) { %>
+      <a 
+         href="<%= post.postUrl %>" 
+         title="<%= post.postTitle %>" 
+         class="partial-post-view__item" 
+         tabindex="<%= post.postIndex + 1 %>">
+         <figure class="partial-post-view__item-thumb">
+            <div 
+               class="partial-post-view__item-thumb-image" 
+               style="background-image: url('<%= post.postCoverImageUrl %>')">
+            </div>
+            <figcaption class="partial-post-view__item-thumb-text">
+               <strong>
+                  <%= post.postTopic %>
+               </strong>
+               <small>
+                  <%= post.postPublishTime %>
+               </small>
+            </figcaption>
+         </figure>
+
+         <h3 class="partial-post-view__item-title">
+            <%= post.postTitle %>
+         </h3>
+         <p class="partial-post-view__item-desc">
+            <%= post.postDesc %>
+         </p>
+      </a>
+   <% } %>
+</div>
+<% } %>

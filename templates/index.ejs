@@ -66,20 +66,6 @@
    <section class="page-recent-posts">
       <h3>Recent Posts</h3>
 
-      <% if (posts.length === 0) { %> 
-         <div>
-            <br />
-            <p>No Posts</p>
-            <br />
-            <br />
-            <br />
-         </div>
-      <% } else { %>
-      <div class="page-posts-collection">
-         <% for(let post of posts) { %>
-         <%- include(`partials/_post-view`, post) %>
-         <% } %>
-      </div>
-      <% } %>
+      <%- include(`partials/post-collection`) %>
    </section>
 </main>
