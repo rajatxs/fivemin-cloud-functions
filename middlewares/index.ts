@@ -8,7 +8,7 @@ export async function connectDatabase(req: VercelRequest, res: VercelResponse, n
    try {
       await connect()
    } catch (error) {
-      log.error('Failed to establish database connection', error)
+      log.error('middleware:connectDatabase', error)
       return serve500Page(res)
    }
 
