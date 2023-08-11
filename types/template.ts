@@ -4,7 +4,7 @@ export interface PageData {
    pageDesc?: string
    pageKeywords?: string[]
    pageType?: string
-   pageUrl?: string
+   pageUrlEndpoint?: string
    pageCoverImage?: string
 }
 
@@ -25,7 +25,6 @@ export interface PartialTopicViewData {
    topicName: string
    topicThumbUrl: string
 }
-
 
 export interface IndexPageData extends PageData {
    posts: PartialPostViewData[]
