@@ -46,6 +46,7 @@ async function handler(req: VercelRequest, res: VercelResponse) {
          pageTitle: doc.title,
          postTitle: doc.title,
          pageKeywords: doc.tags,
+         pageUrlEndpoint: `/${doc.slug}`,
          pageCoverImage: getOpenGraphImageURL(doc.coverImagePath),
          pageDesc: doc.desc,
          pageType: 'article',

@@ -35,6 +35,7 @@ async function handler(req: VercelRequest, res: VercelResponse) {
    servePageContent(res, await renderDefaultLayout<TopicPageData>({
       pageTitle: topicName,
       pageContent: 'topic',
+      pageUrlEndpoint: `/t/${id}`,
       topicName,
       postCount,
       posts: posts.map((_post, _index) => {

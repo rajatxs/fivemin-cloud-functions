@@ -33,6 +33,7 @@ async function handler(req: VercelRequest, res: VercelResponse) {
       await renderDefaultLayout<IndexPageData>({
          pageTitle: 'Fivemin - Empowering Ideas',
          pageContent: 'index',
+         pageUrlEndpoint: '',
          posts: posts.map((_post, _index) => {
             return {
                postUrl: `/${_post.slug}`,
