@@ -1,11 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
    <head>
-      <% if (pageTitle.startsWith('Fivemin')) { %>
       <title><%= pageTitle %></title>
-      <% } else { %>
-      <title><%= pageTitle %> - Fivemin</title>
-      <% } %>
       <meta name="keywords" content="<%= pageKeywords.join(', ') %>" />
       <meta name="description" content="<%= pageDesc %>" />
       <meta charset="UTF-8" />
@@ -18,11 +14,11 @@
       <meta name="application-name" content="Fivemin" />
       <meta name="theme-color" content="#181818" />
 
-      <meta property="og:title" content="<%= pageTitle %>" />
       <meta property="og:site_name" content="Fivemin" />
+      <meta property="og:title" content="<%= pageTitle %>" />
       <meta property="og:description" content="<%= pageDesc %>" />
       <meta property="og:type" content="<%= pageType %>" />
-      <meta property="og:url" content="https://fivemin.in" />
+      <meta property="og:url" content="<%= pageUrl %>" />
       <meta property="og:image" content="<%= pageCoverImage %>" />
 
       <link rel="manifest" href="/manifest.webmanifest" crossorigin="use-credentials" />
