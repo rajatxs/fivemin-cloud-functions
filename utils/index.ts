@@ -1,5 +1,6 @@
 import MarkdownIt from 'markdown-it'
 import { CLOUDINARY_CLOUD_NAME } from '../config/env'
+import { getPostEmbeddedImageUrl } from './post'
 
 export function formatTime(time: Date) {
    const currentTime = new Date()
@@ -28,7 +29,17 @@ export function formatTime(time: Date) {
 }
 
 export function renderMarkdown(mdContent: string): string {
-   return new MarkdownIt('default').render(mdContent, {})
+   const md = new MarkdownIt('default')
+
+   md.renderer.rules.image = (tokens, idx, options, env, self) => {
+      const token = tokens[idx]
+      const src = token.attrs[token.attrIndex('src')][1]
+      const url = getPostEmbeddedImageUrl(src)
+
+      token.attrSet('src', url)
+      return self.renderToken(tokens, idx, options)
+   }
+   return md.render(mdContent, {})
 }
 
 export function truncateText(text: string, len: number) {
