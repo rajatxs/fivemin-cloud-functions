@@ -4,7 +4,7 @@ import { renderFile, Options } from 'ejs'
 import { HOST_URL } from '../config/env'
 import { LAYOUT_DIR, PAGE_DIR } from '../config'
 import { PageData } from '../types/template'
-import meta from '../data/meta.json'
+import meta from '../public/data/meta.json'
 
 const defaultOptions: Options = {
    includer: (_file) => {
