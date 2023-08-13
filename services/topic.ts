@@ -1,5 +1,5 @@
 import { Topic } from '../models/Topic'
-import topics from '../data/topics.json'
+import topics from '../public/data/topics.json'
 
 /**
  * Returns topic name by given topic `id`
