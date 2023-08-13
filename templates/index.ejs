@@ -1,0 +1,71 @@
+<style>
+   main .page-hero {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+      height: 400px;
+   }
+
+   main .page-hero-text,
+   main .page-hero-image {
+      display: inline-flex;
+      flex-direction: column;
+      justify-content: center;
+      height: inherit;
+   }
+
+   main .page-hero .page-hero-desc {
+      font-size: 1.3rem;
+      font-weight: 500;
+   }
+
+   main .page-posts-collection {
+      display: grid;
+      gap: 2rem;
+      padding-top: 12px;
+      padding-bottom: 12px;
+      grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+   }
+
+   @media (max-width: 767px) {
+      main .page-hero {
+         height: 350px;
+      }
+
+      main .page-hero .page-hero-title {
+         font-size: 2.3rem;
+         line-height: 4rem;
+      }
+
+      main .page-hero .page-hero-desc {
+         font-size: 1rem;
+      }
+
+      main .page-hero .page-hero-image {
+         display: none;
+      }
+   }
+</style>
+
+<main>
+   <section class="page-hero">
+      <div class="page-hero-text">
+         <h1 class="page-hero-title">Unveiling Ideas</h1>
+         <p class="page-hero-desc">
+            Explore Inspiring Stories, In-Depth Insights, and Expert Perspectives on
+            Our Blogging Journey.
+         </p>
+      </div>
+      <div class="page-hero-image">
+         <img src="/images/hero.svg" alt="Explore" width="400" />
+      </div>
+   </section>
+
+   <br />
+
+   <section class="page-recent-posts">
+      <h3>Recent Posts</h3>
+
+      <%- include(`partials/post-collection`, { showTopic: true }) %>
+   </section>
+</main>

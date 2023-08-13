@@ -2,13 +2,26 @@
    "public": true,
    "functions": {
       "api/*.ts": {
-         "includeFiles": "templates/**"
+         "includeFiles": "templates/**",
+         "maxDuration": 5
       }
    },
    "rewrites": [
       {
-         "source": "/hello",
-         "destination": "/api/hello"
+         "source": "/",
+         "destination": "/api/index"
+      },
+      {
+         "source": "/t",
+         "destination": "/api/topic/all"
+      },
+      {
+         "source": "/t/:id",
+         "destination": "/api/topic/single"
+      },
+      {
+         "source": "/:slug",
+         "destination": "/api/post"
       }
    ]
 }

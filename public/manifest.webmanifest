@@ -1,0 +1,22 @@
+{
+   "name": "Fivemin",
+   "short_name": "Fivemin",
+   "description": "The best resource for comprehensive information on a wide range of topics.",
+   "orientation": "portrait-primary",
+   "display": "minimal-ui",
+   "start_url": "/",
+   "background_color": "#FFFFFF",
+   "theme_color": "#181818",
+   "icons": [
+       {
+           "src": "/android-chrome-192x192.png",
+           "type": "image/png",
+           "sizes": "192x192"
+       },
+       {
+           "src": "/android-chrome-512x512.png",
+           "type": "image/png",
+           "sizes": "512x512"
+       }
+   ]
+}

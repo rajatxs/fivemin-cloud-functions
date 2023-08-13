@@ -1,0 +1,35 @@
+<style>
+   .post-cover-image {
+      border-radius: 12px;
+      height: 400px;
+      background-position: center;
+      background-size: cover;
+      background-repeat: no-repeat;
+      background-image: url('<%= postCoverImageUrl %>');
+   }
+   .post-body h1,
+   .post-body h2,
+   .post-body h3,
+   .post-body h4,
+   .post-body h5,
+   .post-body h6 {
+      padding: 8px 0;
+   }
+   .post-body pre {
+      line-break: anywhere;
+      white-space: break-spaces;
+   }
+</style>
+
+<main class="post-content page-content-y-padding">
+   <h1 class="post-title"><%= postTitle %></h1>
+   <p class="post-meta">
+      <a href="<%= postTopicUrl %>" class="post-topic"><%= postTopic %></a>&nbsp;•&nbsp;<small><%= postPublishTime %></small>
+   </p>
+   <p class="post-desc"><%= postDesc %></p>
+   <div class="post-cover-image"></div>
+   <br />
+   <section class="post-body">
+      <%- postBody %>
+   </section>
+</main>

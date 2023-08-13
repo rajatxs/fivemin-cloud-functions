@@ -1,0 +1,102 @@
+<style>
+   header {
+      position: fixed;
+      display: flex;
+      left: 0;
+      right: 0;
+      top: 0;
+      flex-direction: row;
+      align-items: center;
+      justify-content: center;
+      width: 100%;
+      height: 100px;
+      z-index: 100;
+      border-bottom: 1px solid var(--accents-2);
+      background-color: var(--background);
+   }
+
+   header .app-title {
+      display: flex;
+      align-items: center;
+      margin: 0;
+      font-size: 3rem;
+      font-weight: 500;
+   }
+
+   header .app-title .app-title__prefix {
+      color: var(--foreground);
+   }
+
+   header .app-title .app-title__suffix {
+      color: var(--accents-4);
+   }
+
+   header .app-nav {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      gap: 8px;
+      height: inherit;
+   }
+
+   header .app-nav .app-nav-link {
+      display: inline-flex;
+      width: 110px;
+      height: 40px;
+      justify-content: center;
+      align-items: center;
+      text-decoration: none;
+      background-color: transparent;
+      border-width: 1px;
+      border-style: solid;
+      border-color: transparent;
+      border-radius: 25px;
+      color: inherit;
+      transition: border-color 200ms ease;
+   }
+
+   header .app-nav .app-nav-link:hover {
+      border-color: var(--foreground);
+   }
+
+   header .app-nav .app-nav-link:focus {
+      border-color: var(--foreground);
+      background-color: var(--foreground);
+      color: var(--background);
+   }
+
+   header .page-header-container {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+      width: 65vw;
+      height: inherit;
+   }
+
+   @media (max-width: 767px) {
+      header {
+         height: 70px;
+      }
+      header .page-header-container {
+         width: 90vw;
+      }
+      header .app-title {
+         font-size: 2rem;
+      }
+      header .app-nav .app-nav-link {
+         width: 100px;
+         height: 35px;
+      }
+   }
+</style>
+
+<header>
+   <div class="page-header-container">
+      <h1 class="app-title">
+         <a href="/" title="Fivemin"><span class="app-title__prefix">five</span><span class="app-title__suffix">min</span></a>
+      </h1>
+      <nav class="app-nav">
+         <a href="/t" class="app-nav-link" tabindex="1">Topics</a>
+      </nav>
+   </div>
+</header>

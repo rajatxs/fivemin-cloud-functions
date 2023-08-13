@@ -1,0 +1,28 @@
+<style>
+   .site-status-page {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: 800px;
+   }
+   .site-status-page .site-status-page-image {
+      height: 280px;
+   }
+   .site-status-page .site-status-page-desc {
+      text-align: center;
+   }
+</style>
+
+<main>
+   <section class="site-status-page">
+      <img class="site-status-page-image" src="<%= statusImageUrl %>" alt="<%= statusMessage %>" />
+      <br />
+      <br />
+      <br />
+      <h2 class="site-status-page-message"><%= statusMessage %></h2>
+      <p class="site-status-page-desc"><%= statusDesc %></p>
+      <br />
+      <p><a href="/" title="Fivemin Homepage">Explore Fivemin &gt;&gt;&gt;</a></p>
+   </section>
+</main>
