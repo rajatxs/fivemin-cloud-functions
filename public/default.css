@@ -36,8 +36,8 @@
    --background: #fff;
    --foreground: #000;
 
-   --font-sans: "Inter", "Roboto", Arial;
-   --font-mono: "Menlo", "Monaco", "Lucida Console", Monospace;
+   --font-sans: 'Inter', 'Roboto', Arial;
+   --font-mono: 'Menlo', 'Monaco', 'Lucida Console', Monospace;
 
    --gap: 16pt;
    --gap-half: 8pt;
@@ -273,4 +273,57 @@ blockquote *:last-child {
    h2 {
       font-size: 1.8rem;
    }
+}
+
+table {
+   border-collapse: separate;
+   border-spacing: 0;
+   width: 100%;
+   margin-top: var(--gap);
+   margin-bottom: var(--gap);
+}
+table thead th td {
+   height: 2.5rem;
+}
+table tbody tr td {
+   height: 3.125rem;
+}
+table td,
+table th {
+   padding: 0 0.625rem;
+   text-align: left;
+}
+table th {
+   height: 2.5rem;
+   color: var(--accents-5);
+   font-size: 1rem;
+   font-weight: 400;
+   letter-spacing: 0;
+   background: var(--accents-1);
+}
+table th,
+table th:first-child {
+   border-bottom: 1px solid var(--accents-2);
+   border-top: 1px solid var(--accents-2);
+}
+table th:first-child {
+   border-left: 1px solid var(--accents-2);
+   border-radius: 4px 0 0 4px;
+}
+table th:last-child {
+   border-radius: 0 4px 4px 0;
+   border-right: 1px solid var(--accents-2);
+   border-top: 1px solid var(--accents-2);
+}
+table th:last-child,
+table tr td {
+   border-bottom: 1px solid var(--accents-2);
+}
+table tr td {
+   color: var(--accents-6);
+   font-size: 1rem;
+   height: 2.5rem;
+}
+table td:first-child {
+   border-left: 1px solid transparent;
 }
