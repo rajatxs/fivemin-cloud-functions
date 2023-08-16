@@ -5,7 +5,7 @@ import { CLOUDINARY_CLOUD_NAME } from '../config/env'
  * @param imagePath - Post cover image path
  */
 export function getPostCoverImageURL(imagePath: string): string {
-   return `https://res.cloudinary.com/${CLOUDINARY_CLOUD_NAME}/image/upload/c_scale,h_600/${imagePath}`
+   return `https://res.cloudinary.com/${CLOUDINARY_CLOUD_NAME}/image/upload/c_scale,h_600/${imagePath}.webp`
 }
 
 /**
