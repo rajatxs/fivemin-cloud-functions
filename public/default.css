@@ -327,3 +327,8 @@ table tr td {
 table td:first-child {
    border-left: 1px solid transparent;
 }
+
+.page-content-y-padding {
+   padding-top: 3rem;
+   padding-bottom: 3rem;
+}

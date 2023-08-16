@@ -7,7 +7,7 @@ export class Topic {
    public thumbPath: string
 
    public getThumbUrl(): string {
-      return `https://res.cloudinary.com/${CLOUDINARY_CLOUD_NAME}/image/upload/c_scale,h_600/${this.thumbPath}`
+      return `https://res.cloudinary.com/${CLOUDINARY_CLOUD_NAME}/image/upload/c_scale,h_400/${this.thumbPath}.webp`
    }
 
    public getRelativeUrl(): string {
