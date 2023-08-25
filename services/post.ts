@@ -7,7 +7,7 @@ import type { PostDocumentMetadata } from '../types/post'
  * @param slug - Post slug
  */
 export function getPostBySlug(slug: string): Promise<PostDocument | null> {
-   return postCollection().findOne<PostDocument>({ slug, public: true })
+   return postCollection().findOne<PostDocument>({ slug, public: true, deleted: false })
 }
 
 /**
@@ -19,6 +19,7 @@ export function getRecentPosts(limit: number = 6) {
       .find<PostDocumentMetadata>(
          {
             public: true,
+            deleted: false,
          },
          {
             projection: {
@@ -42,7 +43,7 @@ export function getRecentPostsByTopic(
 ): Promise<PostDocumentMetadata[]> {
    return postCollection()
       .find<PostDocumentMetadata>(
-         { public: true, topic },
+         { public: true, deleted: false, topic },
          { projection: { body: false }, limit }
       )
       .sort({ createdAt: -1 })
@@ -51,7 +52,7 @@ export function getRecentPostsByTopic(
 
 /** Returns number of public posts */
 export function getPostCount(): Promise<number> {
-   return postCollection().countDocuments({ public: true })
+   return postCollection().countDocuments({ public: true, deleted: false })
 }
 
 /**
@@ -59,5 +60,5 @@ export function getPostCount(): Promise<number> {
  * @param topic - Topic Id
  */
 export function getPostCountByTopic(topic: string): Promise<number> {
-   return postCollection().countDocuments({ public: true, topic })
+   return postCollection().countDocuments({ public: true, deleted: false, topic })
 }
