@@ -20,6 +20,10 @@
          "destination": "/api/topic/single"
       },
       {
+         "source": "/privacy",
+         "destination": "/api/privacy"
+      },
+      {
          "source": "/:slug",
          "destination": "/api/post"
       }
