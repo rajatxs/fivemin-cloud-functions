@@ -8,17 +8,13 @@
    --accents-7: #333;
    --accents-8: #111;
 
-   --blue: #0070f3;
-   --red: #ee0000;
-   --yellow: #f5a623;
-
-   --primary: var(--blue);
+   --primary: #0070f3;
    --primary-fr: #fff;
 
-   --error: var(--red);
+   --error: #ee0000;
    --error-fr: #fff;
 
-   --warn: var(--yellow);
+   --warn: #f5a623;
    --warn-fr: #000;
 
    --light: #eaeaea;
@@ -35,6 +31,7 @@
 
    --background: #fff;
    --foreground: #000;
+   --overlay: rgba(255, 255, 255, 0.9);
 
    --font-sans: 'Inter', 'Roboto', Arial;
    --font-mono: 'Menlo', 'Monaco', 'Lucida Console', Monospace;
@@ -43,11 +40,53 @@
    --gap-half: 8pt;
    --gap-quarter: 4pt;
 
-   --shadow-small: 0 5px 10px rgba(0, 0, 0, 0.12);
-   --shadow-medium: 0 8px 30px rgba(0, 0, 0, 0.12);
-   --shadow-large: 0 30px 60px rgba(0, 0, 0, 0.12);
+   --shadow-small: 0 5px 10px rgba(100, 100, 100, 0.5);
+   --shadow-medium: 0 8px 30px rgba(100, 100, 100, 0.5);
+   --shadow-large: 0 30px 60px rgba(100, 100, 100, 0.5);
 
    --radius: 8px;
+}
+
+@media (prefers-color-scheme: dark) {
+   :root {
+      --accents-8: #fafafa;
+      --accents-7: #eaeaea;
+      --accents-6: #999;
+      --accents-5: #888;
+      --accents-4: #666;
+      --accents-3: #444;
+      --accents-2: #333;
+      --accents-1: #111;
+
+      --primary: #3291ff;
+      --primary-fr: #fff;
+
+      --error: #ff1a1a;
+      --error-fr: #fff;
+
+      --warn: #f7b955;
+      --warn-fr: #000;
+
+      --light: #eaeaea;
+      --light-fr: #000;
+
+      --cyan: #79ffe1;
+      --cyan-fr: #fff;
+
+      --purple: #f81ce5;
+      --purple-fr: #fff;
+
+      --violet: #7928ca;
+      --violet-fr: #fff;
+
+      --background: #000;
+      --foreground: #FFF;
+      --overlay: rgba(50, 50, 50, 0.8);
+
+      --shadow-small: 0 5px 10px rgba(0, 0, 0, 0.5);
+      --shadow-medium: 0 8px 30px rgba(0, 0, 0, 0.5);
+      --shadow-large: 0 30px 60px rgba(0, 0, 0, 0.5);
+   }
 }
 
 html {
@@ -109,7 +148,6 @@ p {
    margin-bottom: 1rem;
    font-size: 18px;
    line-height: 1.825em;
-   color: var(--accents-6);
 }
 small {
    margin: 0;
@@ -331,4 +369,8 @@ table td:first-child {
 .page-content-y-padding {
    padding-top: 3rem;
    padding-bottom: 3rem;
+}
+
+.text-muted {
+   color: var(--accents-6);
 }
