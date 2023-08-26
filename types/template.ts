@@ -60,3 +60,5 @@ export interface StatusPageData extends PageData {
 export interface PrivacyPageData extends PageData {
    contactEmail: string
 }
+
+export type TermsPageData = PrivacyPageData
