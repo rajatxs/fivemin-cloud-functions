@@ -6,4 +6,6 @@ build/
 .vercel/
 
 .env
+dev.bat
+prod.bat
 *.local
