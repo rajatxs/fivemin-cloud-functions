@@ -24,6 +24,10 @@
          "destination": "/api/privacy"
       },
       {
+         "source": "/terms",
+         "destination": "/api/terms"
+      },
+      {
          "source": "/:slug",
          "destination": "/api/post"
       }
