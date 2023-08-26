@@ -1,7 +1,7 @@
 import { join } from 'path'
 import { URL } from 'url'
 import { renderFile, Options } from 'ejs'
-import { HOST_URL } from '../config/env'
+import { HOST_URL, CONTACT_EMAIL } from '../config/env'
 import { LAYOUT_DIR, PAGE_DIR } from '../config'
 import { PageData } from '../types/template'
 import meta from '../public/data/meta.json'
@@ -36,6 +36,7 @@ export function renderLayout<T extends PageData>(name: string, data: T): Promise
    payload.pageType = data.pageType || meta.openGraphType
    payload.pageCoverImage = data.pageCoverImage || new URL(meta.openGraphImage, HOST_URL).href
    payload.pageUrl = new URL(data.pageUrlEndpoint || '', HOST_URL).href
+   payload.contactEmail = CONTACT_EMAIL
 
    if (data.pageTitle.startsWith('Fivemin')) {
       payload.pageTitle = data.pageTitle
