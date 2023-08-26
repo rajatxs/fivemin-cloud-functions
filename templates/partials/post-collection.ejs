@@ -39,14 +39,14 @@
       padding-right: 1rem;
       border-bottom-left-radius: inherit;
       border-bottom-right-radius: inherit;
-      background-color: rgba(255, 255, 255, 0.9);
+      background-color: var(--overlay);
    }
    .partial-post-view__item-title {
       padding-top: 1rem;
       line-height: 1.8rem;
    }
    .partial-post-view__item:hover .partial-post-view__item-thumb {
-      box-shadow: rgba(100, 100, 111, 0.5) 0px 7px 29px 0px;
+      box-shadow: var(--shadow-medium);
    }
    .partial-post-view__item:focus .partial-post-view__item-title {
       text-decoration: underline;
@@ -94,7 +94,7 @@
          <h3 class="partial-post-view__item-title">
             <%= post.postTitle %>
          </h3>
-         <p class="partial-post-view__item-desc">
+         <p class="partial-post-view__item-desc text-muted">
             <%= post.postDesc %>
          </p>
       </a>
