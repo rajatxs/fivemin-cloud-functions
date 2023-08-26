@@ -56,3 +56,7 @@ export interface StatusPageData extends PageData {
    statusMessage: string
    statusDesc: string
 }
+
+export interface PrivacyPageData extends PageData {
+   contactEmail: string
+}
