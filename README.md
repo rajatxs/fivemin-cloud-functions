@@ -35,6 +35,7 @@ npm install
 | ```FIVEMIN_MONGODB_CONN_URL``` | [MongoDB Connection URL](https://www.mongodb.com) | Yes | - |
 | ```FIVEMIN_MONGODB_DB_NAME``` | [MongoDB Database Name](https://www.mongodb.com) | Yes | - |
 | ```FIVEMIN_CLOUDINARY_ID``` | [Cloudinary Public ID](https://cloudinary.com) | Yes | - |
+| ```FIVEMIN_CONTACT_EMAIL``` | Contact email address | Yes | - |
 
 ## Usage
 
