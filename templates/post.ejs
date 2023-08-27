@@ -1,4 +1,7 @@
 <style>
+   .post-content {
+      width: 700px;
+   }
    .post-cover-image {
       border-radius: 12px;
       height: 400px;
@@ -20,7 +23,43 @@
       white-space: break-spaces;
    }
 
+   .post-content-image-parent {
+      position: relative;
+   }
+   .post-content-image-caption {
+      text-align: center;
+      font-size: 90%;
+      color: var(--accents-4);
+   }
+   .post-content-image-ref-badge {
+      display: inline-flex;
+      position: absolute;
+      min-width: 60px;
+      text-align: center;
+      top: var(--gap-half);
+      right: var(--gap-half);
+      padding: var(--gap-quarter) var(--gap-half);
+      background-color: var(--overlay);
+      color: var(--foreground);
+      border-radius: 25px;
+      opacity: 0.7;
+      transition: opacity 120ms ease, background-color 40ms linear;
+   }
+   .post-content-image-ref-badge:focus {
+      background-color: var(--background);
+   }
+   .post-content-image-ref-badge small {
+      margin-left: auto;
+      margin-right: auto;
+   }
+   .post-content-image-parent:hover .post-content-image-ref-badge {
+      opacity: 1;
+   }
+
    @media (max-width: 767px) {
+      .post-content {
+         width: 90vw;
+      }
       .post-cover-image {
          height: 200px;
       }
@@ -39,3 +78,46 @@
       <%- postBody %>
    </section>
 </main>
+
+<script>
+   ;(function renderImageCaptions() {
+      const postImages = document.querySelectorAll('.post-body img');
+
+      for (let _postImage of postImages) {
+         const alt = _postImage.getAttribute('alt');
+         const refName = _postImage.getAttribute('data-img-ref-name');
+         const refUrl = _postImage.getAttribute('data-img-ref-url');
+         const caption = document.createElement('p');
+
+         caption.textContent = alt;
+         caption.classList.add('post-content-image-caption');
+
+         _postImage.parentElement.classList.add('post-content-image-parent');
+         _postImage.parentNode.insertBefore(caption, _postImage.nextSibling);
+
+         if (refName || refUrl) {
+            const refBadge = document.createElement('a');
+            const refBadgeText = document.createElement('small');
+            let label;
+
+            refBadge.classList.add('post-content-image-ref-badge');
+            refBadge.setAttribute('target', '_blank');
+
+            if (refName) {
+               label = refName;
+            } else {
+               const _url = new URL(refUrl);
+               label = _url.hostname;
+            }
+
+            if (refUrl) {
+               refBadge.href = refUrl;
+            }
+
+            refBadgeText.textContent = label;
+            refBadge.appendChild(refBadgeText);
+            _postImage.parentNode.insertBefore(refBadge, caption.nextSibling);
+         }
+      }
+   }())
+</script>
