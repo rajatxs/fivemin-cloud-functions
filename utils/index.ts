@@ -34,15 +34,22 @@ export function renderMarkdown(mdContent: string): string {
    md.renderer.rules.image = (tokens, idx, options, env, self) => {
       const token = tokens[idx]
       const src = token.attrs[token.attrIndex('src')][1]
-      let alt = token.attrs[token.attrIndex('alt')][1]
+      const [alt, refName, refUrl] = (token.content || '').split(';');
       const url = getPostEmbeddedImageUrl(src)
 
-      if (!alt) {
-         const title = token.attrs[token.attrIndex('title')][1] || ''
-         token.attrSet('alt', title)
+      token.attrSet('src', url)
+
+      if (alt) {
+         token.attrSet('alt', alt)
       }
 
-      token.attrSet('src', url)
+      if (refName) {
+         token.attrSet('data-img-ref-name', refName)
+      }
+
+      if (refUrl) {
+         token.attrSet('data-img-ref-url', refUrl)
+      }
       return self.renderToken(tokens, idx, options)
    }
    return md.render(mdContent, {})
