@@ -19,10 +19,13 @@ import type { IndexPageData } from '../types/template'
  * @param res - Response
  */
 async function handler(req: VercelRequest, res: VercelResponse) {
+   const limit = 6
+
    let posts: PostDocumentMetadata[]
+   let pageIndex = Number(req.query.i || 0)
 
    try {
-      posts = await getRecentPosts()
+      posts = await getRecentPosts(limit, pageIndex * limit)
    } catch (error) {
       log.error('Failed to get recent posts', error)
       return serve500Page(res)
@@ -45,6 +48,7 @@ async function handler(req: VercelRequest, res: VercelResponse) {
                postCoverImageUrl: getPostCoverImageURL(_post.coverImagePath),
             }
          }),
+         pageIndex,
       })
    )
 

@@ -67,5 +67,9 @@
       <h2 class="page-recent-posts-title">Recent Posts</h2>
 
       <%- include(`partials/post-collection`, { showTopic: true }) %>
+
+      <% if (posts.length > 0) { %>
+         <%- include(`partials/pagination-control`, { size: posts.length, maxSize: 6 }) %>
+      <% } %>
    </section>
 </main>
