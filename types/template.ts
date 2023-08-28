@@ -28,6 +28,7 @@ export interface PartialTopicViewData {
 
 export interface IndexPageData extends PageData {
    posts: PartialPostViewData[]
+   pageIndex: number
 }
 
 export interface PostPageData extends PageData {
@@ -49,6 +50,7 @@ export interface TopicPageData extends PageData {
    topicName: string
    postCount: number
    posts: PartialPostViewData[]
+   pageIndex: number
 }
 
 export interface StatusPageData extends PageData {
