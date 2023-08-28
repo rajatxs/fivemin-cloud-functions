@@ -13,10 +13,12 @@ import type { PostDocumentMetadata } from '../../types/post'
 import type { TopicPageData } from '../../types/template'
 
 async function handler(req: VercelRequest, res: VercelResponse) {
+   const limit = 6
    const id = String(req.query.id)
    const topicName = getTopicName(id)
    let postCount: number
    let posts: PostDocumentMetadata[]
+   let pageIndex = Number(req.query.i || 0)
 
    try {
       postCount = await getPostCountByTopic(id)
@@ -26,7 +28,7 @@ async function handler(req: VercelRequest, res: VercelResponse) {
    }
 
    try {
-      posts = await getRecentPostsByTopic(id)
+      posts = await getRecentPostsByTopic(id, limit, pageIndex * limit)
    } catch (error) {
       log.error('service:topic:single', error)
       return serve500Page(res)
@@ -49,6 +51,7 @@ async function handler(req: VercelRequest, res: VercelResponse) {
             postCoverImageUrl: getPostCoverImageURL(_post.coverImagePath),
          }
       }),
+      pageIndex,
    }))
 
    await disconnect()

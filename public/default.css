@@ -366,6 +366,77 @@ table td:first-child {
    border-left: 1px solid transparent;
 }
 
+button, .app-button {
+   display: inline-flex;
+   justify-content: center;
+   align-items: center;
+   gap: var(--gap-quarter);
+   min-width: 80px;
+   height: 42px;
+   font-size: 1rem;
+   border: 0;
+   padding-left: var(--gap-half);
+   padding-right: var(--gap-half);
+   cursor: pointer;
+   transition: transform 140ms ease, box-shadow 160ms ease, background-color 60ms linear, color 60ms linear;
+   background-color: var(--foreground);
+   color: var(--background);
+   border-radius: var(--radius);
+   transform: translateY(0);
+   user-select: none;
+   -webkit-user-select: none;
+   -webkit-tap-highlight-color: transparent;
+}
+button svg, .app-button svg {
+   width: 1rem;
+   height: 1rem;
+   fill: var(--background);
+}
+button:hover, .app-button:hover {
+   box-shadow: var(--shadow-medium);
+}
+button:active, .app-button:active {
+   transform: translateY(-5px);
+}
+button:disabled, .app-button[aria-disabled='true'] {
+   background-color: var(--accents-2);
+   color: var(--accents-4);
+   pointer-events: none;
+}
+button:disabled svg, .app-button[aria-disabled='true'] svg {
+   fill: var(--accents-4);
+}
+
+button.outlined, .app-button.outlined {
+   background-color: transparent;
+   color: var(--foreground);
+   border-width: 1px;
+   border-style: solid;
+   border-color: var(--foreground);
+}
+button.outlined svg, .app-button.outlined svg {
+   fill: var(--foreground);
+}
+button.outlined:disabled, .app-button.outlined[aria-disabled='true'] {
+   border-color: var(--accents-2);
+   color: var(--accents-4);
+   pointer-events: none;
+}
+button.outlined:disabled svg, .app-button.outlined[aria-disabled='true'] svg {
+   fill: var(--accents-4);
+}
+button.outlined:hover, .app-button.outlined:hover {
+   background-color: var(--foreground);
+   color: var(--background);
+   box-shadow: none;
+}
+button.outlined:active, .app-button.outlined:active {
+   transform: none;
+}
+button.outlined:hover svg, .app-button.outlined:hover svg {
+   fill: var(--background);
+}
+
 .page-content-y-padding {
    padding-top: 3rem;
    padding-bottom: 3rem;
@@ -373,4 +444,11 @@ table td:first-child {
 
 .text-muted {
    color: var(--accents-6);
+}
+
+.pagination-controls {
+   display: flex;
+   padding-top: var(--gap);
+   padding-bottom: var(--gap);
+   justify-content: space-between;
 }

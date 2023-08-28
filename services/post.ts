@@ -13,8 +13,9 @@ export function getPostBySlug(slug: string): Promise<PostDocument | null> {
 /**
  * Returns list of recent post metadata
  * @param limit - Number of posts
+ * @param skip - Skip number of posts
  */
-export function getRecentPosts(limit: number = 6) {
+export function getRecentPosts(limit: number = 6, skip: number = 0) {
    return postCollection()
       .find<PostDocumentMetadata>(
          {
@@ -26,6 +27,7 @@ export function getRecentPosts(limit: number = 6) {
                body: false,
             },
             limit,
+            skip,
          }
       )
       .sort({ createdAt: -1 })
@@ -39,12 +41,13 @@ export function getRecentPosts(limit: number = 6) {
  */
 export function getRecentPostsByTopic(
    topic: string,
-   limit: number = 6
+   limit: number = 6,
+   skip: number = 0
 ): Promise<PostDocumentMetadata[]> {
    return postCollection()
       .find<PostDocumentMetadata>(
          { public: true, deleted: false, topic },
-         { projection: { body: false }, limit }
+         { projection: { body: false }, limit, skip }
       )
       .sort({ createdAt: -1 })
       .toArray()

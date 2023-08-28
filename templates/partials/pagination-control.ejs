@@ -1,0 +1,31 @@
+<div class="pagination-controls">
+   <a 
+      href="?i=<%= pageIndex - 1 %>" 
+      class="app-button outlined" 
+      aria-disabled="<%= pageIndex > 0? 'false': 'true' %>">
+      <svg 
+         xmlns="http://www.w3.org/2000/svg" 
+         class="app-icon" 
+         viewBox="0 0 16 16">
+         <path 
+            fill-rule="evenodd" 
+            d="M11.354 1.646a.5.5 0 0 1 0 .708L5.707 8l5.647 5.646a.5.5 0 0 1-.708.708l-6-6a.5.5 0 0 1 0-.708l6-6a.5.5 0 0 1 .708 0z" />
+      </svg>
+      <span>Previous</span>
+   </a>
+
+   <a 
+      href="?i=<%= pageIndex + 1 %>" 
+      class="app-button" 
+      aria-disabled="<%= size === maxSize? 'false': 'true' %>">
+      <span>Next</span>
+      <svg 
+         xmlns="http://www.w3.org/2000/svg" 
+         class="app-icon" 
+         viewBox="0 0 16 16">
+         <path 
+            fill-rule="evenodd" 
+            d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z" />
+      </svg>
+   </a>
+</div>
