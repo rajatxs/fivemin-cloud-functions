@@ -5,4 +5,8 @@
    </div>
 
    <%- include(`partials/post-collection`, { showTopic: false }) %>
+
+   <% if (posts.length > 0) { %>
+      <%- include(`partials/pagination-control`, { size: posts.length, maxSize: 6 }) %>
+   <% } %>
 </main>
