@@ -11,6 +11,7 @@ import log from '../utils/log'
 import type { VercelRequest, VercelResponse } from '@vercel/node'
 import type { PostDocumentMetadata } from '../types/post'
 import type { IndexPageData } from '../types/template'
+import meta from '../public/data/meta.json'
 
 /**
  * Serves index page
@@ -37,6 +38,7 @@ async function handler(req: VercelRequest, res: VercelResponse) {
          pageTitle: 'Fivemin - Empowering Ideas',
          pageContent: 'index',
          pageUrlEndpoint: '',
+         openGraphDesc: meta.openGraphDescription,
          posts: posts.map((_post, _index) => {
             return {
                postUrl: `/${_post.slug}`,

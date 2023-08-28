@@ -6,6 +6,7 @@ export interface PageData {
    pageType?: string
    pageUrlEndpoint?: string
    pageCoverImage?: string
+   openGraphDesc?: string
 }
 
 export interface PartialPostViewData {

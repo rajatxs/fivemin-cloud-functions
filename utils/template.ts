@@ -37,6 +37,7 @@ export function renderLayout<T extends PageData>(name: string, data: T): Promise
    payload.pageCoverImage = data.pageCoverImage || new URL(meta.openGraphImage, HOST_URL).href
    payload.pageUrl = new URL(data.pageUrlEndpoint || '', HOST_URL).href
    payload.contactEmail = CONTACT_EMAIL
+   payload.openGraphDesc = data.openGraphDesc || payload.pageDesc
 
    if (data.pageTitle.startsWith('Fivemin')) {
       payload.pageTitle = data.pageTitle
