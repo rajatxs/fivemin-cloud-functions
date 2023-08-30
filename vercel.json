@@ -28,6 +28,10 @@
          "destination": "/api/terms"
       },
       {
+         "source": "/search",
+         "destination": "/api/search"
+      },
+      {
          "source": "/:slug",
          "destination": "/api/post"
       }
