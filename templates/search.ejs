@@ -54,7 +54,23 @@
       flex-direction: column;
       justify-content: center;
       align-items: center;
-      min-height: 60vh;
+      min-height: 55vh;
+   }
+
+   .algolia-brand-image {
+      width: auto;
+      height: 260px;
+   }
+
+   @media (max-width: 767px) {
+      #search-preview {
+         min-height: 45vh;
+      }
+
+      .algolia-brand-image {
+         width: auto;
+         height: 150px;
+      }
    }
 </style>
 
@@ -101,9 +117,7 @@
             <img 
                class="algolia-brand-image" 
                src="/images/algolia-search.svg" 
-               alt="Algolia" 
-               width="auto" 
-               height="260" />
+               alt="Algolia" />
          </a>
       </div>
    <% } else { %>
