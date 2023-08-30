@@ -42,7 +42,7 @@
 
    header .app-nav .app-nav-link {
       display: inline-flex;
-      width: 110px;
+      width: 100px;
       height: 40px;
       justify-content: center;
       align-items: center;
@@ -56,6 +56,16 @@
       transition: border-color 200ms ease;
    }
 
+   header .app-nav .app-nav-link.app-nav-link-rounded {
+      width: 40px;
+   }
+
+   header .app-nav .app-nav-link > .app-icon {
+      width: 24px;
+      height: 24px;
+      fill: var(--foreground);
+   }
+
    header .app-nav .app-nav-link:hover {
       border-color: var(--foreground);
    }
@@ -64,6 +74,10 @@
       border-color: var(--foreground);
       background-color: var(--foreground);
       color: var(--background);
+   }
+
+   header .app-nav .app-nav-link:focus > .app-icon {
+      fill: var(--background);
    }
 
    header .page-header-container {
@@ -97,7 +111,20 @@
          <a href="/" title="Fivemin"><span class="app-title__prefix">five</span><span class="app-title__suffix">min</span></a>
       </h3>
       <nav class="app-nav">
-         <a href="/t" class="app-nav-link">Topics</a>
+         <% if (pageUrlEndpoint !== '/search') { %>
+            <a href="/search" class="app-nav-link app-nav-link-rounded">
+               <svg 
+                  xmlns="http://www.w3.org/2000/svg" 
+                  class="app-icon search-icon"
+                  viewBox="0 0 24 24">
+                  <path d="M10 18a7.952 7.952 0 0 0 4.897-1.688l4.396 4.396 1.414-1.414-4.396-4.396A7.952 7.952 0 0 0 18 10c0-4.411-3.589-8-8-8s-8 3.589-8 8 3.589 8 8 8zm0-14c3.309 0 6 2.691 6 6s-2.691 6-6 6-6-2.691-6-6 2.691-6 6-6z"></path>
+               </svg>
+            </a>
+         <% } %>
+
+         <% if (pageUrlEndpoint !== '/t') { %>
+            <a href="/t" class="app-nav-link">Topics</a>
+         <% } %>
       </nav>
    </div>
 </header>

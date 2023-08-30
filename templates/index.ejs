@@ -27,6 +27,45 @@
       grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
    }
 
+   #quick-search-form {
+      display: flex;
+      width: 360px;
+      padding: var(--gap-quarter);
+      flex-direction: row;
+      justify-content: space-between;
+      align-items: center;
+      border-width: 2px;
+      border-style: solid;
+      border-color: var(--accents-2);
+      border-radius: 50px;
+      transition: border-color 120ms ease;
+   }
+
+   #quick-search-form.focused {
+      border-color: var(--foreground);
+   }
+
+   #quick-search-input {
+      height: 100%;
+      width: 100%;
+      border-radius: inherit;
+      border: none;
+      font-family: inherit;
+      font-size: 16px;
+      font-weight: 500;
+      background-color: transparent;
+      padding-left: var(--gap-half);
+      padding-right: var(--gap-half);
+      -webkit-tap-highlight-color: transparent;
+   }
+   #quick-search-input::placeholder {
+      color: var(--accents-5);
+   }
+
+   #quick-search-button {
+      border-radius: 50px;
+   }
+
    @media (max-width: 767px) {
       main .page-hero {
          height: 350px;
@@ -44,6 +83,10 @@
       main .page-hero .page-hero-image {
          display: none;
       }
+
+      #quick-search-form {
+         width: calc(100% - var(--gap-half));
+      }
    }
 </style>
 
@@ -55,6 +98,19 @@
             Explore Inspiring Stories, In-Depth Insights, and Expert Perspectives on Our
             Blogging Journey.
          </p>
+         <form 
+            id="quick-search-form" 
+            name="search" 
+            method="get" 
+            action="/search" 
+            onsubmit="return quickSearch(event);">
+            <input type="text" name="q" id="quick-search-input-encoded" readonly hidden />
+            <input
+               id="quick-search-input" 
+               type="text" 
+               placeholder="Search Fivemin..." />
+            <button id="quick-search-button" type="submit">Search</button>
+         </form>
       </div>
       <div class="page-hero-image">
          <img src="/images/hero.svg" alt="Explore" width="100%" height="100%" />
@@ -73,3 +129,24 @@
       <% } %>
    </section>
 </main>
+
+<script>
+   function quickSearch(event) {
+      let query = document.getElementById('quick-search-input').value;
+      query = query.trim();
+      event.target.q.value = encodeURI(query);
+      return true;
+   }
+
+   window.onload = function() {
+      const qsi = document.getElementById('quick-search-input');
+      const qsf = document.getElementById('quick-search-form');
+
+      qsi.onfocus = function() {
+         qsf.classList.add('focused');
+      }
+      qsi.onblur = function() {
+         qsf.classList.remove('focused');
+      }
+   }
+</script>

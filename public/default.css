@@ -437,6 +437,10 @@ button.outlined:hover svg, .app-button.outlined:hover svg {
    fill: var(--background);
 }
 
+[hidden] {
+   display: none !important;
+}
+
 .page-content-y-padding {
    padding-top: 3rem;
    padding-bottom: 3rem;

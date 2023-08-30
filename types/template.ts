@@ -65,3 +65,9 @@ export interface PrivacyPageData extends PageData {
 }
 
 export type TermsPageData = PrivacyPageData
+
+export interface SearchPageData extends PageData {
+   searchQuery: string
+   totalResults: number
+   posts: PartialPostViewData[]
+}

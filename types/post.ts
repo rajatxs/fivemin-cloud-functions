@@ -18,3 +18,15 @@ export interface PostDocument {
 }
 
 export type PostDocumentMetadata = Omit<PostDocument, 'body'>
+
+export interface PostSearchRecord {
+   objectID: string
+   name: string
+   topic: string
+   description: string
+   tags: string[]
+   url: string
+   image: string
+   createdAt: string
+   updatedAt: string
+}
