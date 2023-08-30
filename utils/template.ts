@@ -35,6 +35,7 @@ export function renderLayout<T extends PageData>(name: string, data: T): Promise
    payload.pageDesc = data.pageDesc || meta.defaultDescription
    payload.pageType = data.pageType || meta.openGraphType
    payload.pageCoverImage = data.pageCoverImage || new URL(meta.openGraphImage, HOST_URL).href
+   payload.pageUrlEndpoint = data.pageUrlEndpoint
    payload.pageUrl = new URL(data.pageUrlEndpoint || '', HOST_URL).href
    payload.contactEmail = CONTACT_EMAIL
    payload.openGraphDesc = data.openGraphDesc || payload.pageDesc
