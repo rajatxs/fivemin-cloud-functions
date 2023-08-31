@@ -39,21 +39,22 @@
       top: var(--gap-half);
       right: var(--gap-half);
       padding: var(--gap-quarter) var(--gap-half);
-      background-color: var(--overlay);
-      color: var(--foreground);
+      background-color: var(--overlay-dark);
+      color: var(--light);
       border-radius: 25px;
       opacity: 0.7;
       transition: opacity 120ms ease, background-color 40ms linear;
-   }
-   .post-content-image-ref-badge:focus {
-      background-color: var(--background);
    }
    .post-content-image-ref-badge small {
       margin-left: auto;
       margin-right: auto;
    }
-   .post-content-image-parent:hover .post-content-image-ref-badge {
+   .post-content-image-ref-badge:hover {
+      background-color: var(--light-fr);
       opacity: 1;
+   }
+   .post-content-image-ref-badge:focus {
+      background-color: var(--light-fr);
    }
 
    @media (max-width: 767px) {
@@ -71,7 +72,16 @@
    <p class="post-meta">
       <a href="<%= postTopicUrl %>" class="post-topic"><%= postTopic %></a>&nbsp;•&nbsp;<small><%= postPublishTime %></small>
    </p>
-   <div class="post-cover-image"></div>
+   <div class="post-cover-image post-content-image-parent">
+      <% if (postCoverImageRefName.length && postCoverImageRefUrl.length) { %>
+         <a 
+            href="<%= postCoverImageRefUrl %>" 
+            target="_blank" 
+            class="post-content-image-ref-badge">
+            <small><%= postCoverImageRefName %></small>
+         </a>
+      <% } %>
+   </div>
    <br />
    <section class="post-body">
       <%- postBody %>

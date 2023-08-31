@@ -47,7 +47,7 @@ async function handler(req: VercelRequest, res: VercelResponse) {
          postTitle: doc.title,
          pageKeywords: doc.tags,
          pageUrlEndpoint: `/${doc.slug}`,
-         pageCoverImage: getOpenGraphImageURL(doc.coverImagePath),
+         pageCoverImage: getOpenGraphImageURL(doc.coverImage.path),
          pageDesc: doc.desc,
          pageType: 'article',
          pageContent: 'post',
@@ -55,7 +55,9 @@ async function handler(req: VercelRequest, res: VercelResponse) {
          postTopicUrl: `/t/${doc.topic}`,
          postDesc: doc.desc,
          postPublishTime: formatTime(doc.createdAt),
-         postCoverImageUrl: getPostCoverImageURL(doc.coverImagePath),
+         postCoverImageUrl: getPostCoverImageURL(doc.coverImage.path),
+         postCoverImageRefName: doc.coverImage.refName,
+         postCoverImageRefUrl: doc.coverImage.refUrl,
          postBody,
       })
    )
