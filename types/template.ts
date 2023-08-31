@@ -39,6 +39,8 @@ export interface PostPageData extends PageData {
    postDesc: string
    postPublishTime: string
    postCoverImageUrl: string
+   postCoverImageRefName: string
+   postCoverImageRefUrl: string
    postBody: string
 }
 
