@@ -1,7 +1,7 @@
 import { join } from 'path'
 import { URL } from 'url'
 import { renderFile, Options } from 'ejs'
-import { HOST_URL, CONTACT_EMAIL } from '../config/env'
+import { ENV, HOST_URL, CONTACT_EMAIL } from '../config/env'
 import { LAYOUT_DIR, PAGE_DIR } from '../config'
 import { PageData } from '../types/template'
 import meta from '../public/data/meta.json'
@@ -31,6 +31,7 @@ export function renderTemplate<T>(file: string, data: T): Promise<string> {
 export function renderLayout<T extends PageData>(name: string, data: T): Promise<string> {
    const payload: Record<string, any> = { ...data }
 
+   payload.env = ENV
    payload.pageContent = data.pageContent
    payload.pageDesc = data.pageDesc || meta.defaultDescription
    payload.pageType = data.pageType || meta.openGraphType

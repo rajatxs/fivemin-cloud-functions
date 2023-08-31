@@ -32,6 +32,7 @@
    --background: #fff;
    --foreground: #000;
    --overlay: rgba(255, 255, 255, 0.9);
+   --overlay-dark: rgba(50, 50, 50, 0.8);
 
    --font-sans: 'Inter', 'Roboto', Arial;
    --font-mono: 'Menlo', 'Monaco', 'Lucida Console', Monospace;
@@ -81,7 +82,7 @@
 
       --background: #000;
       --foreground: #FFF;
-      --overlay: rgba(50, 50, 50, 0.8);
+      --overlay: var(--overlay-dark);
 
       --shadow-small: 0 5px 10px rgba(0, 0, 0, 0.5);
       --shadow-medium: 0 8px 30px rgba(0, 0, 0, 0.5);

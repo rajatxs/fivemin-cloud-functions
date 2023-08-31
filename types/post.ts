@@ -1,5 +1,12 @@
 import { ObjectId, Binary } from "mongodb"
 
+export interface PostCoverImage {
+   id: string
+   path: string
+   refName: string
+   refUrl: string
+}
+
 export interface PostDocument {
    _id: ObjectId
    title: string
@@ -13,6 +20,7 @@ export interface PostDocument {
    stars: number
    authorId: ObjectId
    public: boolean
+   coverImage: PostCoverImage
    createdAt: Date
    updatedAt: Date
 }
