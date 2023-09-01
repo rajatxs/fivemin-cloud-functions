@@ -1,45 +1,43 @@
-import MarkdownIt from 'markdown-it'
+import { CLOUDINARY_CLOUD_NAME } from '../config/env'
 
-var _md: MarkdownIt
+// @ts-ignore
+import type { Marked, MarkedExtension } from 'marked/index'
 
-function instance(): MarkdownIt {
-   if (!_md) {
-      _md = new MarkdownIt('default')
-   }
+const { marked }: { marked: Marked } = require('marked')
+const { baseUrl }: { baseUrl: MarkedExtension } = require('marked-base-url')
 
-   return _md
-}
+marked.use(baseUrl(`https://res.cloudinary.com/${CLOUDINARY_CLOUD_NAME}/image/upload/c_scale,h_600/`))
 
-instance().renderer.rules.image = function (tokens, idx, options, env, self) {
-   const token = tokens[idx]
-   const caption = token.content || ''
+marked.use({
+   renderer: {
+      image(href, title, text) {
+         const [caption = '', refName = '', refUrl = ''] = text
+            .split(';')
+            .map((_token) => _token.trim())
 
-   const [refName = '', refUrl = ''] = (token.attrGet('title') || '')
-      .split(',')
-      .map((_token) => _token.trim())
+         let html = `<img src="${href}" alt="${caption}" class="fm-post__image" width="100%" height="auto" />`
 
-   // remove 'title' attr
-   token.attrSet('alt', caption)
-   token.attrSet('title', caption)
-   token.attrSet('class', 'fm-post__image')
-   token.attrSet('width', '100%')
-   token.attrSet('height', 'auto')
+         if (caption.length) {
+            html += `<span class="fm-post__caption"><small>${caption}</small></span>`
+         }
 
-   return `
-<figure class="fm-post__image_figure">
-   ${self.renderToken(tokens, idx, options)}
-   <figcaption class="fm-post__image_caption">${caption}</figcaption>
-   <a href="${refUrl}" target="_blank" class="fm-post__image_ref">
-      <small>${refName}</small>
-   </a>
-</figure>
-`
-}
+         if (refName.length && refUrl.length) {
+            html += `<a href="${refUrl}" target="_blank" class="fm-post__image_ref"><small>${refName}</small></a>`
+         }
+         return html
+      },
+      paragraph(text) {
+         return `<p class="fm-post__paragraph">${text}</p>`
+      },
+   },
+})
 
 /**
  * Renders `content` with custom Markdown config
  * @param content - Text content
  */
-export function renderMarkdown(content: string): string {
-   return instance().render(content, {})
+export function renderMarkdown(content: string): Promise<string> {
+   return marked.parse(content, {
+      async: true,
+   })
 }
