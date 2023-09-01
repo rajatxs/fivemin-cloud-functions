@@ -35,7 +35,7 @@ async function handler(req: VercelRequest, res: VercelResponse) {
    }
 
    try {
-      postBody = renderMarkdown(doc.body.toString('utf8'))
+      postBody = await renderMarkdown(doc.body.toString('utf8'))
    } catch (error) {
       log.error('Failed to render post body', error)
       return serve500Page(res)
