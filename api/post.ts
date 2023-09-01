@@ -3,7 +3,8 @@ import { connectDatabase } from '../middlewares'
 import { getPostBySlug } from '../services/post'
 import { getTopicName } from '../services/topic'
 import { disconnect } from '../services/db'
-import { formatTime, renderMarkdown, getOpenGraphImageURL } from '../utils'
+import { renderMarkdown } from '../services/md'
+import { formatTime, getOpenGraphImageURL } from '../utils'
 import { servePageContent, serve404Page, serve500Page } from '../utils/http'
 import { getPostCoverImageURL } from '../utils/post'
 import { renderDefaultLayout } from '../utils/template'
@@ -34,7 +35,7 @@ async function handler(req: VercelRequest, res: VercelResponse) {
    }
 
    try {
-      postBody = renderMarkdown(doc.body.toString('utf8'))
+      postBody = await renderMarkdown(doc.body.toString('utf8'))
    } catch (error) {
       log.error('Failed to render post body', error)
       return serve500Page(res)

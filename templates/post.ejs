@@ -2,7 +2,7 @@
    .post-content {
       width: 700px;
    }
-   .post-cover-image {
+   .fm-post__cover_image {
       border-radius: 12px;
       height: 400px;
       background-position: center;
@@ -23,15 +23,16 @@
       white-space: break-spaces;
    }
 
-   .post-content-image-parent {
+   .fm-post__cover_image, .fm-post__paragraph {
       position: relative;
    }
-   .post-content-image-caption {
+   .fm-post__caption {
+      display: block;
       text-align: center;
       font-size: 90%;
       color: var(--accents-4);
    }
-   .post-content-image-ref-badge {
+   .fm-post__cover_image_ref, .fm-post__image_ref {
       display: inline-flex;
       position: absolute;
       min-width: 60px;
@@ -45,15 +46,15 @@
       opacity: 0.7;
       transition: opacity 120ms ease, background-color 40ms linear;
    }
-   .post-content-image-ref-badge small {
+   .fm-post__cover_image_ref small, .fm-post__image_ref small {
       margin-left: auto;
       margin-right: auto;
    }
-   .post-content-image-ref-badge:hover {
+   .fm-post__cover_image_ref:hover, .fm-post__image_ref:hover {
       background-color: var(--light-fr);
       opacity: 1;
    }
-   .post-content-image-ref-badge:focus {
+   .fm-post__cover_image_ref:focus, .fm-post__image_ref:focus {
       background-color: var(--light-fr);
    }
 
@@ -61,7 +62,7 @@
       .post-content {
          width: 90vw;
       }
-      .post-cover-image {
+      .fm-post__cover_image {
          height: 200px;
       }
    }
@@ -72,12 +73,12 @@
    <p class="post-meta">
       <a href="<%= postTopicUrl %>" class="post-topic"><%= postTopic %></a>&nbsp;•&nbsp;<small><%= postPublishTime %></small>
    </p>
-   <div class="post-cover-image post-content-image-parent">
+   <div class="fm-post__cover_image">
       <% if (postCoverImageRefName.length && postCoverImageRefUrl.length) { %>
          <a 
             href="<%= postCoverImageRefUrl %>" 
             target="_blank" 
-            class="post-content-image-ref-badge">
+            class="fm-post__cover_image_ref">
             <small><%= postCoverImageRefName %></small>
          </a>
       <% } %>
@@ -87,46 +88,3 @@
       <%- postBody %>
    </section>
 </main>
-
-<script>
-   ;(function renderImageCaptions() {
-      const postImages = document.querySelectorAll('.post-body img');
-
-      for (let _postImage of postImages) {
-         const alt = _postImage.getAttribute('alt');
-         const refName = _postImage.getAttribute('data-img-ref-name');
-         const refUrl = _postImage.getAttribute('data-img-ref-url');
-         const caption = document.createElement('p');
-
-         caption.textContent = alt;
-         caption.classList.add('post-content-image-caption');
-
-         _postImage.parentElement.classList.add('post-content-image-parent');
-         _postImage.parentNode.insertBefore(caption, _postImage.nextSibling);
-
-         if (refName || refUrl) {
-            const refBadge = document.createElement('a');
-            const refBadgeText = document.createElement('small');
-            let label;
-
-            refBadge.classList.add('post-content-image-ref-badge');
-            refBadge.setAttribute('target', '_blank');
-
-            if (refName) {
-               label = refName;
-            } else {
-               const _url = new URL(refUrl);
-               label = _url.hostname;
-            }
-
-            if (refUrl) {
-               refBadge.href = refUrl;
-            }
-
-            refBadgeText.textContent = label;
-            refBadge.appendChild(refBadgeText);
-            _postImage.parentNode.insertBefore(refBadge, caption.nextSibling);
-         }
-      }
-   }())
-</script>

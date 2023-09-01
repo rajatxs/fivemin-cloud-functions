@@ -1,6 +1,4 @@
-import MarkdownIt from 'markdown-it'
 import { CLOUDINARY_CLOUD_NAME } from '../config/env'
-import { getPostEmbeddedImageUrl } from './post'
 
 export function formatTime(time: Date) {
    const currentTime = new Date()
@@ -26,33 +24,6 @@ export function formatTime(time: Date) {
    } else {
       return `${month} ${time.getDate()}, ${time.getFullYear()}`
    }
-}
-
-export function renderMarkdown(mdContent: string): string {
-   const md = new MarkdownIt('default')
-
-   md.renderer.rules.image = (tokens, idx, options, env, self) => {
-      const token = tokens[idx]
-      const src = token.attrs[token.attrIndex('src')][1]
-      const [alt, refName, refUrl] = (token.content || '').split(';');
-      const url = getPostEmbeddedImageUrl(src)
-
-      token.attrSet('src', url)
-
-      if (alt) {
-         token.attrSet('alt', alt)
-      }
-
-      if (refName) {
-         token.attrSet('data-img-ref-name', refName)
-      }
-
-      if (refUrl) {
-         token.attrSet('data-img-ref-url', refUrl)
-      }
-      return self.renderToken(tokens, idx, options)
-   }
-   return md.render(mdContent, {})
 }
 
 export function truncateText(text: string, len: number) {
