@@ -40,6 +40,7 @@ export function renderLayout<T extends PageData>(name: string, data: T): Promise
    payload.pageUrl = new URL(data.pageUrlEndpoint || '', HOST_URL).href
    payload.contactEmail = CONTACT_EMAIL
    payload.openGraphDesc = data.openGraphDesc || payload.pageDesc
+   payload.autoHideNavbar = Boolean(data.autoHideNavbar)
 
    if (data.pageTitle.startsWith('Fivemin')) {
       payload.pageTitle = data.pageTitle

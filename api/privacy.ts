@@ -23,6 +23,7 @@ export default async function (req: VercelRequest, res: VercelResponse) {
          ],
          pageType: 'article',
          contactEmail: CONTACT_EMAIL,
+         autoHideNavbar: true,
       })
    )
 }
