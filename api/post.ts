@@ -60,6 +60,7 @@ async function handler(req: VercelRequest, res: VercelResponse) {
          postCoverImageRefName: doc.coverImage.refName,
          postCoverImageRefUrl: doc.coverImage.refUrl,
          postBody,
+         autoHideNavbar: true,
       })
    )
 

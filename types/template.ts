@@ -7,6 +7,7 @@ export interface PageData {
    pageUrlEndpoint?: string
    pageCoverImage?: string
    openGraphDesc?: string
+   autoHideNavbar?: boolean
 }
 
 export interface PartialPostViewData {
