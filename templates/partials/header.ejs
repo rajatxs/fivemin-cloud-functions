@@ -13,6 +13,11 @@
       z-index: 100;
       border-bottom: 1px solid var(--accents-2);
       background-color: var(--background);
+      transition: transform 340ms ease;
+   }
+
+   header.hidden {
+      transform: translateY(-100px);
    }
 
    header .app-title {
@@ -115,7 +120,7 @@
    }
 </style>
 
-<header>
+<header id="app-header">
    <div class="page-header-container">
       <h3 class="app-title">
          <a href="/" title="Fivemin"><span class="app-title__prefix">five</span><span class="app-title__suffix">min</span></a>
@@ -138,3 +143,24 @@
       </nav>
    </div>
 </header>
+
+<% if (autoHideNavbar) { %>
+   <script>
+      (function () {
+         const header = document.getElementById("app-header");
+         let current = 0, prev;
+
+         window.addEventListener('scroll', function(e) {
+            prev = window.scrollY;
+
+            if (current < prev && prev > 80) {
+               header.classList.add("hidden");
+            } else if (current > prev) {
+               header.classList.remove("hidden");
+            }
+
+            current = prev;
+         });
+      }());
+   </script>
+<% } %>
