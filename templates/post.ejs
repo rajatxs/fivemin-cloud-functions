@@ -2,6 +2,11 @@
    .post-content {
       width: 700px;
    }
+   .post-tag-links {
+      display: flex;
+      gap: var(--gap-half);
+      justify-content: center;
+   }
    .fm-post__cover_image {
       border-radius: 12px;
       height: 400px;
@@ -87,4 +92,14 @@
    <section class="post-body">
       <%- postBody %>
    </section>
+
+   <br />
+
+   <div class="post-tag-links">
+      <% for (const tag of postTags) { %>
+         <a href="<%= `/search?q=${encodeURI(tag)}` %>" class="post-tag-link app-button small adaptive">
+            <small><%= tag %></small>
+         </a>
+      <% } %>
+   </div>
 </main>
