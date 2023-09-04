@@ -55,6 +55,7 @@ async function handler(req: VercelRequest, res: VercelResponse) {
          postTopic: getTopicName(doc.topic),
          postTopicUrl: `/t/${doc.topic}`,
          postDesc: doc.desc,
+         postTags: doc.tags.sort((a, b) => a.length - b.length).slice(0, 3),
          postPublishTime: formatTime(doc.createdAt),
          postCoverImageUrl: getPostCoverImageURL(doc.coverImage.path),
          postCoverImageRefName: doc.coverImage.refName,

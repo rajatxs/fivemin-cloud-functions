@@ -408,6 +408,26 @@ button:disabled svg, .app-button[aria-disabled='true'] svg {
    fill: var(--accents-4);
 }
 
+button.small, .app-button.small {
+   min-width: 40px;
+   height: 38px;
+   font-size: 14px;
+   border-radius: 25px;
+}
+
+button.adaptive, .app-button.adaptive {
+   background-color: var(--accents-2);
+   color: var(--foreground);
+}
+button.adaptive svg, .app-button.adaptive svg {
+   fill: var(--foreground);
+}
+button.adaptive:hover, .app-button.adaptive:hover {
+   box-shadow: none;
+   background-color: var(--foreground);
+   color: var(--background);
+}
+
 button.outlined, .app-button.outlined {
    background-color: transparent;
    color: var(--foreground);

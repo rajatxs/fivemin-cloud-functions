@@ -38,6 +38,7 @@ export interface PostPageData extends PageData {
    postTopic: string
    postTopicUrl: string
    postDesc: string
+   postTags: string[]
    postPublishTime: string
    postCoverImageUrl: string
    postCoverImageRefName: string
