@@ -255,7 +255,8 @@ h6 {
    font-weight: 600;
 }
 hr {
-   border-color: var(--accents-2);
+   width: 100%;
+   border-color: var(--accents-3);
 }
 details {
    background-color: var(--accents-1);

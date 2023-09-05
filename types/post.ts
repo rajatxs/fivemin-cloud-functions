@@ -19,11 +19,18 @@ export interface PostDocument {
    authorId: ObjectId
    public: boolean
    coverImage: PostCoverImage
+   related: ObjectId[]
    createdAt: Date
    updatedAt: Date
 }
 
 export type PostDocumentMetadata = Omit<PostDocument, 'body'>
+
+export type PostRelatedDocument = Omit<PostDocument, 'tags'|'body'|'related'|'deleted'|'public'>
+
+export interface PostAggregatedDocument extends Omit<PostDocument, 'related'> {
+   relatedPosts: PostRelatedDocument[]
+}
 
 export interface PostSearchRecord {
    objectID: string

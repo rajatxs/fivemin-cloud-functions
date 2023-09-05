@@ -1,6 +1,8 @@
 <style>
    .post-content {
       width: 700px;
+      margin-left: auto;
+      margin-right: auto;
    }
    .post-tag-links {
       display: flex;
@@ -78,33 +80,43 @@
    }
 </style>
 
-<main class="post-content page-content-y-padding">
-   <h1 class="post-title"><%= postTitle %></h1>
-   <p class="post-meta">
-      <a href="<%= postTopicUrl %>" class="post-topic"><%= postTopic %></a>&nbsp;•&nbsp;<small><%= postPublishTime %></small>
-   </p>
-   <div class="fm-post__cover_image">
-      <% if (postCoverImageRefName.length && postCoverImageRefUrl.length) { %>
-         <a 
-            href="<%= postCoverImageRefUrl %>" 
-            target="_blank" 
-            class="fm-post__cover_image_ref">
-            <small><%= postCoverImageRefName %></small>
-         </a>
-      <% } %>
+<main class="page-content-y-padding">
+   <div class="post-content">
+      <h1 class="post-title"><%= postTitle %></h1>
+      <p class="post-meta">
+         <a href="<%= postTopicUrl %>" class="post-topic"><%= postTopic %></a>&nbsp;•&nbsp;<small><%= postPublishTime %></small>
+      </p>
+      <div class="fm-post__cover_image">
+         <% if (postCoverImageRefName.length && postCoverImageRefUrl.length) { %>
+            <a 
+               href="<%= postCoverImageRefUrl %>" 
+               target="_blank" 
+               class="fm-post__cover_image_ref">
+               <small><%= postCoverImageRefName %></small>
+            </a>
+         <% } %>
+      </div>
+      <br />
+      <section class="post-body">
+         <%- postBody %>
+      </section>
+   
+      <br />
+   
+      <div class="post-tag-links">
+         <% for (const tag of postTags) { %>
+            <a href="<%= `/search?q=${encodeURI(tag)}` %>" class="post-tag-link app-button small adaptive">
+               <small><%= tag %></small>
+            </a>
+         <% } %>
+      </div>
    </div>
-   <br />
-   <section class="post-body">
-      <%- postBody %>
-   </section>
 
-   <br />
-
-   <div class="post-tag-links">
-      <% for (const tag of postTags) { %>
-         <a href="<%= `/search?q=${encodeURI(tag)}` %>" class="post-tag-link app-button small adaptive">
-            <small><%= tag %></small>
-         </a>
-      <% } %>
-   </div>
+   <% if (relatedPosts.length > 0) { %>
+      <br />
+      <hr />
+      <br />
+   
+      <%- include(`partials/post-collection`, { posts: relatedPosts, showTopic: true }) %>
+   <% } %>
 </main>
