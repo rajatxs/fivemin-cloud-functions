@@ -2,9 +2,9 @@
    .partial-post-collection {
       display: grid;
       gap: 2rem;
-      padding-top: 12px;
-      padding-bottom: 12px;
-      grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+      grid-template-columns: 1fr 1fr;
+      padding-top: var(--gap-half);
+      padding-bottom: var(--gap-half);
    }
    .partial-post-view__item {
       text-decoration: none;
@@ -53,6 +53,10 @@
    }
 
    @media (max-width: 767px) {
+      .partial-post-collection {
+         gap: 1rem;
+         grid-template-columns: 1fr;
+      }
       .partial-post-view__item-thumb {
          height: 200px;
       }

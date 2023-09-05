@@ -48,8 +48,8 @@ export function renderLayout<T extends PageData>(name: string, data: T): Promise
       payload.pageTitle = `${data.pageTitle} - Fivemin`
    }
 
-   if (Array.isArray(data.pageKeywords)) {
-      payload.pageKeywords = meta.defaultKeyworkds.concat(data['pageKeywords'])
+   if (Array.isArray(data.pageKeywords) && data.pageKeywords.length) {
+      payload.pageKeywords = data.pageKeywords
    } else {
       payload.pageKeywords = meta.defaultKeyworkds
    }
