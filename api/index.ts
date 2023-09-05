@@ -47,7 +47,7 @@ async function handler(req: VercelRequest, res: VercelResponse) {
                postDesc: truncateText(_post.desc, 90),
                postTopic: getTopicName(_post.topic),
                postPublishTime: formatTime(_post.createdAt),
-               postCoverImageUrl: getPostCoverImageURL(_post.coverImagePath),
+               postCoverImageUrl: getPostCoverImageURL(_post.coverImage.path),
             }
          }),
          pageIndex,
