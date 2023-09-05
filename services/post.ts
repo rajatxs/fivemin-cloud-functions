@@ -1,13 +1,57 @@
 import { postCollection } from './db'
-import { PostDocument } from '../types/post'
-import type { PostDocumentMetadata } from '../types/post'
+import { PostDocumentMetadata, PostAggregatedDocument } from '../types/post'
 
 /**
  * Returns single `PostDocument` document by given `slug`
  * @param slug - Post slug
  */
-export function getPostBySlug(slug: string): Promise<PostDocument | null> {
-   return postCollection().findOne<PostDocument>({ slug, public: true, deleted: false })
+export async function getPostBySlug(
+   slug: string
+): Promise<PostAggregatedDocument | null> {
+   const res = await postCollection()
+      .aggregate<PostAggregatedDocument>([
+         {
+            $match: {
+               slug,
+               public: true,
+               deleted: false,
+            },
+         },
+         {
+            $lookup: {
+               from: 'posts',
+               localField: 'related',
+               foreignField: '_id',
+               as: 'relatedPosts',
+               pipeline: [
+                  {
+                     $match: {
+                        public: true,
+                        deleted: false,
+                     },
+                  },
+                  {
+                     $project: {
+                        tags: 0,
+                        body: 0,
+                        deleted: 0,
+                        public: 0,
+                        related: 0,
+                     },
+                  },
+               ],
+            },
+         },
+      ])
+      .toArray()
+
+   if (Array.isArray(res) && res.length > 0) {
+      return res[0]
+   } else {
+      return null
+   }
+
+   // return postCollection().findOne<PostDocument>({ slug, public: true, deleted: false })
 }
 
 /**
