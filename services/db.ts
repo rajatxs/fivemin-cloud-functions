@@ -11,10 +11,16 @@ export function db(): Db {
    return _client.db(DB_NAME)
 }
 
-/** Returns reference of `posts` collection */
-export function postCollection(): Collection {
+/** Returns reference of `publicPosts` collection */
+export function postsCollection(): Collection {
    // @ts-ignore
-   return _client.db(DB_NAME).collection('posts')
+   return _client.db(DB_NAME).collection('publicPosts')
+}
+
+/** Returns reference of `publicPostsMetadata` collection */
+export function postsMetadataCollection(): Collection {
+   // @ts-ignore
+   return _client.db(DB_NAME).collection('publicPostsMetadata')
 }
 
 /** Establish database connection */

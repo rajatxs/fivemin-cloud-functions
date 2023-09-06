@@ -1,57 +1,14 @@
-import { postCollection } from './db'
-import { PostDocumentMetadata, PostAggregatedDocument } from '../types/post'
+import { postsCollection, postsMetadataCollection } from './db'
+import type { PostDocumentMetadata, PostDocument } from '../types/post'
 
 /**
  * Returns single `PostDocument` document by given `slug`
  * @param slug - Post slug
  */
-export async function getPostBySlug(
+export function getPostBySlug(
    slug: string
-): Promise<PostAggregatedDocument | null> {
-   const res = await postCollection()
-      .aggregate<PostAggregatedDocument>([
-         {
-            $match: {
-               slug,
-               public: true,
-               deleted: false,
-            },
-         },
-         {
-            $lookup: {
-               from: 'posts',
-               localField: 'related',
-               foreignField: '_id',
-               as: 'relatedPosts',
-               pipeline: [
-                  {
-                     $match: {
-                        public: true,
-                        deleted: false,
-                     },
-                  },
-                  {
-                     $project: {
-                        tags: 0,
-                        body: 0,
-                        deleted: 0,
-                        public: 0,
-                        related: 0,
-                     },
-                  },
-               ],
-            },
-         },
-      ])
-      .toArray()
-
-   if (Array.isArray(res) && res.length > 0) {
-      return res[0]
-   } else {
-      return null
-   }
-
-   // return postCollection().findOne<PostDocument>({ slug, public: true, deleted: false })
+): Promise<PostDocument | null> {
+   return postsCollection().findOne<PostDocument>({ slug })
 }
 
 /**
@@ -59,21 +16,14 @@ export async function getPostBySlug(
  * @param limit - Number of posts
  * @param skip - Skip number of posts
  */
-export function getRecentPosts(limit: number = 6, skip: number = 0) {
-   return postCollection()
-      .find<PostDocumentMetadata>(
-         {
-            public: true,
-            deleted: false,
-         },
-         {
-            projection: {
-               body: false,
-            },
-            limit,
-            skip,
-         }
-      )
+export function getRecentPosts(
+   limit: number = 6,
+   skip: number = 0
+): Promise<PostDocumentMetadata[]> {
+   return postsMetadataCollection()
+      .find<PostDocumentMetadata>({})
+      .limit(limit)
+      .skip(skip)
       .sort({ createdAt: -1 })
       .toArray()
 }
@@ -88,18 +38,17 @@ export function getRecentPostsByTopic(
    limit: number = 6,
    skip: number = 0
 ): Promise<PostDocumentMetadata[]> {
-   return postCollection()
-      .find<PostDocumentMetadata>(
-         { public: true, deleted: false, topic },
-         { projection: { body: false }, limit, skip }
-      )
+   return postsMetadataCollection()
+      .find<PostDocumentMetadata>({ topic })
+      .limit(limit)
+      .skip(skip)
       .sort({ createdAt: -1 })
       .toArray()
 }
 
 /** Returns number of public posts */
 export function getPostCount(): Promise<number> {
-   return postCollection().countDocuments({ public: true, deleted: false })
+   return postsMetadataCollection().countDocuments()
 }
 
 /**
@@ -107,5 +56,5 @@ export function getPostCount(): Promise<number> {
  * @param topic - Topic Id
  */
 export function getPostCountByTopic(topic: string): Promise<number> {
-   return postCollection().countDocuments({ public: true, deleted: false, topic })
+   return postsMetadataCollection().countDocuments({ topic })
 }
