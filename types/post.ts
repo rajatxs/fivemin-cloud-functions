@@ -7,6 +7,8 @@ export interface PostCoverImage {
    refUrl: string
 }
 
+export type PostRelatedDocument = Omit<PostDocument, 'tags'|'body'|'related'|'deleted'|'public'>
+
 export interface PostDocument {
    _id: ObjectId
    title: string
@@ -19,18 +21,12 @@ export interface PostDocument {
    authorId: ObjectId
    public: boolean
    coverImage: PostCoverImage
-   related: ObjectId[]
+   relatedPosts: PostRelatedDocument[]
    createdAt: Date
    updatedAt: Date
 }
 
-export type PostDocumentMetadata = Omit<PostDocument, 'body'>
-
-export type PostRelatedDocument = Omit<PostDocument, 'tags'|'body'|'related'|'deleted'|'public'>
-
-export interface PostAggregatedDocument extends Omit<PostDocument, 'related'> {
-   relatedPosts: PostRelatedDocument[]
-}
+export type PostDocumentMetadata = Omit<PostDocument, 'body'|'related'|'deleted'|'public'>
 
 export interface PostSearchRecord {
    objectID: string

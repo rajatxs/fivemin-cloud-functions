@@ -9,7 +9,7 @@ import { servePageContent, serve404Page, serve500Page } from '../utils/http'
 import { getPostCoverImageURL } from '../utils/post'
 import { renderDefaultLayout } from '../utils/template'
 import log from '../utils/log'
-import type { PostAggregatedDocument } from '../types/post'
+import type { PostDocument } from '../types/post'
 import type { VercelRequest, VercelResponse } from '@vercel/node'
 import type { PostPageData } from '../types/template'
 
@@ -21,7 +21,7 @@ import type { PostPageData } from '../types/template'
  */
 async function handler(req: VercelRequest, res: VercelResponse) {
    const slug = String(req.query.slug)
-   let doc: PostAggregatedDocument, postBody: string
+   let doc: PostDocument, postBody: string
 
    try {
       doc = await getPostBySlug(slug)
