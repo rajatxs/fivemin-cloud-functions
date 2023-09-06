@@ -1,13 +1,14 @@
-import { postCollection } from './db'
-import { PostDocument } from '../types/post'
-import type { PostDocumentMetadata } from '../types/post'
+import { postsCollection, postsMetadataCollection } from './db'
+import type { PostDocumentMetadata, PostDocument } from '../types/post'
 
 /**
  * Returns single `PostDocument` document by given `slug`
  * @param slug - Post slug
  */
-export function getPostBySlug(slug: string): Promise<PostDocument | null> {
-   return postCollection().findOne<PostDocument>({ slug, public: true, deleted: false })
+export function getPostBySlug(
+   slug: string
+): Promise<PostDocument | null> {
+   return postsCollection().findOne<PostDocument>({ slug })
 }
 
 /**
@@ -15,21 +16,14 @@ export function getPostBySlug(slug: string): Promise<PostDocument | null> {
  * @param limit - Number of posts
  * @param skip - Skip number of posts
  */
-export function getRecentPosts(limit: number = 6, skip: number = 0) {
-   return postCollection()
-      .find<PostDocumentMetadata>(
-         {
-            public: true,
-            deleted: false,
-         },
-         {
-            projection: {
-               body: false,
-            },
-            limit,
-            skip,
-         }
-      )
+export function getRecentPosts(
+   limit: number = 6,
+   skip: number = 0
+): Promise<PostDocumentMetadata[]> {
+   return postsMetadataCollection()
+      .find<PostDocumentMetadata>({})
+      .limit(limit)
+      .skip(skip)
       .sort({ createdAt: -1 })
       .toArray()
 }
@@ -44,18 +38,17 @@ export function getRecentPostsByTopic(
    limit: number = 6,
    skip: number = 0
 ): Promise<PostDocumentMetadata[]> {
-   return postCollection()
-      .find<PostDocumentMetadata>(
-         { public: true, deleted: false, topic },
-         { projection: { body: false }, limit, skip }
-      )
+   return postsMetadataCollection()
+      .find<PostDocumentMetadata>({ topic })
+      .limit(limit)
+      .skip(skip)
       .sort({ createdAt: -1 })
       .toArray()
 }
 
 /** Returns number of public posts */
 export function getPostCount(): Promise<number> {
-   return postCollection().countDocuments({ public: true, deleted: false })
+   return postsMetadataCollection().countDocuments()
 }
 
 /**
@@ -63,5 +56,5 @@ export function getPostCount(): Promise<number> {
  * @param topic - Topic Id
  */
 export function getPostCountByTopic(topic: string): Promise<number> {
-   return postCollection().countDocuments({ public: true, deleted: false, topic })
+   return postsMetadataCollection().countDocuments({ topic })
 }

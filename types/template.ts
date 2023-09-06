@@ -1,3 +1,5 @@
+import type { IndexPagePostTemplateData } from './index'
+
 export interface PageData {
    pageTitle: string
    pageContent: string
@@ -44,6 +46,7 @@ export interface PostPageData extends PageData {
    postCoverImageRefName: string
    postCoverImageRefUrl: string
    postBody: string
+   relatedPosts: IndexPagePostTemplateData[]
 }
 
 export interface TopicsPageData extends PageData {

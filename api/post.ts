@@ -4,7 +4,7 @@ import { getPostBySlug } from '../services/post'
 import { getTopicName } from '../services/topic'
 import { disconnect } from '../services/db'
 import { renderMarkdown } from '../services/md'
-import { formatTime, getOpenGraphImageURL } from '../utils'
+import { formatTime, getOpenGraphImageURL, truncateText } from '../utils'
 import { servePageContent, serve404Page, serve500Page } from '../utils/http'
 import { getPostCoverImageURL } from '../utils/post'
 import { renderDefaultLayout } from '../utils/template'
@@ -61,6 +61,17 @@ async function handler(req: VercelRequest, res: VercelResponse) {
          postCoverImageRefName: doc.coverImage.refName,
          postCoverImageRefUrl: doc.coverImage.refUrl,
          postBody,
+         relatedPosts: doc.relatedPosts.map((_relPost, _index) => {
+            return {
+               postUrl: `/${_relPost.slug}`,
+               postIndex: _index + 1,
+               postTitle: _relPost.title,
+               postDesc: truncateText(_relPost.desc, 90),
+               postTopic: getTopicName(_relPost.topic),
+               postPublishTime: formatTime(_relPost.createdAt),
+               postCoverImageUrl: getPostCoverImageURL(_relPost.coverImage.path),
+            }
+         }),
          autoHideNavbar: true,
       })
    )
