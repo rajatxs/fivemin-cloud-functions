@@ -256,7 +256,10 @@ h6 {
 }
 hr {
    width: 100%;
-   border-color: var(--accents-3);
+   height: 1px;
+   clear: both;
+   border-width: 0;
+   background-color: var(--accents-2);
 }
 details {
    background-color: var(--accents-1);
