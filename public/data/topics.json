@@ -3,7 +3,7 @@
       "name": "Lifestyle",
       "thumbId": "c25decb56feccf32b56f3bbce1d0649e",
       "thumbPath": "fivemin-prod/topic-thumb/d6kqr2vxy7siuchz3ugj",
-      "public": true
+      "public": false
    },
    "food-and-cooking": {
       "name": "Food and Cooking",
@@ -57,7 +57,7 @@
       "name": "Entertainment",
       "thumbId": "5455004f1dc1f498d5a4c8ee9f00ecf9",
       "thumbPath": "fivemin-prod/topic-thumb/vubqex8sbphmqhgxyeb3",
-      "public": true
+      "public": false
    },
    "business": {
       "name": "Business",
@@ -69,7 +69,7 @@
       "name": "Travel",
       "thumbId": "9406a84d081a8e72bfba2451c6900872",
       "thumbPath": "fivemin-prod/topic-thumb/rjpwglx0iavcdhukkhuy",
-      "public": true
+      "public": false
    },
    "health": {
       "name": "Health",
@@ -81,7 +81,7 @@
       "name": "Social",
       "thumbId": "9fb66dab59f3e0ff79ca57f3c7e1fbd1",
       "thumbPath": "fivemin-prod/topic-thumb/ti3kpjhcd155t4h5toom",
-      "public": true
+      "public": false
    },
    "relationships": {
       "name": "Relationships",
@@ -93,6 +93,12 @@
       "name": "Science",
       "thumbId": "f41cd486d292306f036ab3b54cb9749d",
       "thumbPath": "fivemin-prod/topic-thumb/xtcbet9ywsfif7uiiayu",
+      "public": true
+   },
+   "programming": {
+      "name": "Programming",
+      "thumbId": "e7b77657550f169f0a6d6f679283b222",
+      "thumbPath": "fivemin-prod/topic-thumb/zmlt6ft5tyivzcfeejci",
       "public": true
    }
 }
