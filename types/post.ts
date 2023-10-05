@@ -1,4 +1,5 @@
 import { ObjectId, Binary } from "mongodb"
+import type { BlockDocument } from '@rxpm/fivemin-block-parser/lib/types'
 
 export interface PostCoverImage {
    id: string
@@ -9,6 +10,8 @@ export interface PostCoverImage {
 
 export type PostRelatedDocument = Omit<PostDocument, 'tags'|'body'|'related'|'deleted'|'public'>
 
+export type PostDocumentFormat = 'md'|'block'
+
 export interface PostDocument {
    _id: ObjectId
    title: string
@@ -16,10 +19,11 @@ export interface PostDocument {
    desc: string
    tags: string[]
    topic: string
-   body: Binary
+   body: Binary | BlockDocument
    stars: number
    authorId: ObjectId
    public: boolean
+   format: PostDocumentFormat
    coverImage: PostCoverImage
    relatedPosts: PostRelatedDocument[]
    createdAt: Date
