@@ -18,6 +18,7 @@
     "@vercel/node": "^2.15.7"
   },
   "dependencies": {
+    "@rxpm/fivemin-block-parser": "^0.0.2",
     "@rxpm/logger": "^2.0.2",
     "@rxpm/vsfm": "^1.1.0",
     "algoliasearch": "^4.19.1",
