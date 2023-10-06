@@ -1,6 +1,6 @@
 # Fivemin Webservice
 
-The repository contains a collection of serverless cloud functions designed to serve dynamic pages for Fivemin website.
+The repository contains a collection of serverless cloud functions designed to serve dynamic pages for [Fivemin website](https://www.fivemin.in).
 
 ## Requirements
 
@@ -36,6 +36,8 @@ npm install
 | ```FIVEMIN_MONGODB_DB_NAME``` | [MongoDB Database Name](https://www.mongodb.com) | Yes | - |
 | ```FIVEMIN_CLOUDINARY_ID``` | [Cloudinary Public ID](https://cloudinary.com) | Yes | - |
 | ```FIVEMIN_CONTACT_EMAIL``` | Contact email address | Yes | - |
+| ```FIVEMIN_ALGOLIA_APP_ID``` | [Algolia App ID](https://www.algolia.com) | Yes | - |
+| ```FIVEMIN_ALGOLIA_API_KEY``` | [Algolia API Key](https://www.algolia.com) | Yes | - |
 
 ## Usage
 
