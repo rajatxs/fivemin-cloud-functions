@@ -8,10 +8,13 @@ import { formatTime, getOpenGraphImageURL, truncateText } from '../utils'
 import { servePageContent, serve404Page, serve500Page } from '../utils/http'
 import { getPostCoverImageURL } from '../utils/post'
 import { renderDefaultLayout } from '../utils/template'
+import { parseBlockDocument } from '../utils/block-parser'
 import log from '../utils/log'
+import type { BlockDocument } from '@rxpm/fivemin-block-parser/lib/types'
 import type { PostDocument } from '../types/post'
 import type { VercelRequest, VercelResponse } from '@vercel/node'
 import type { PostPageData } from '../types/template'
+
 
 /**
  * Serves post page
@@ -35,7 +38,13 @@ async function handler(req: VercelRequest, res: VercelResponse) {
    }
 
    try {
-      postBody = await renderMarkdown(doc.body.toString('utf8'))
+      if (doc.format === 'md') {
+         postBody = await renderMarkdown(doc.body.toString('utf8'))
+      } else if (doc.format === 'block') {
+         postBody = parseBlockDocument(doc.body as BlockDocument)
+      } else {
+         postBody = ''
+      }
    } catch (error) {
       log.error('Failed to render post body', error)
       return serve500Page(res)
