@@ -31,6 +31,7 @@ npm install
 
 | Variable | Description | Required | Default |
 |----------|-------------|----------|---------|
+| ```FIVEMIN_ENV``` | Platform environment | No | `development` |
 | ```FIVEMIN_HOST_URL``` | Host URL | Yes | - |
 | ```FIVEMIN_MONGODB_CONN_URL``` | [MongoDB Connection URL](https://www.mongodb.com) | Yes | - |
 | ```FIVEMIN_MONGODB_DB_NAME``` | [MongoDB Database Name](https://www.mongodb.com) | Yes | - |
