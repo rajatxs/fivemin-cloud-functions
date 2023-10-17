@@ -77,9 +77,21 @@
 
    .content__code_block {
       padding: var(--gap-half) var(--gap);
-      background-color: var(--accents-2);
       border-radius: var(--radius);
       margin-bottom: 1rem;
+   }
+   .content__code_block pre.content__code {
+      font-family: var(--font-mono);
+   }
+
+   .content__code_block, code.inline-code {
+      border: 1px solid var(--accents-2);
+      background-color: var(--accents-1);
+   }
+
+   code.inline-code {
+      padding: 2px 4px;
+      border-radius: 4px;
    }
 
    .content__warn {
