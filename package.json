@@ -1,16 +1,24 @@
 {
-  "name": "@rxpm/fivemin-server",
-  "version": "1.4.0",
-  "description": "Official server of Fivemin",
+  "name": "@rxpm/fivemin",
+  "version": "1.4.1",
+  "description": "Fivemin serverless application",
   "keywords": [
     "fivemin",
-    "fivemin-server"
+    "fivemin-web",
+    "fivemin-core"
   ],
   "author": {
     "name": "Rajat Sharma",
     "email": "rxx256+npm@outlook.com",
     "url": "https://github.com/rajatxs"
   },
+  "repository": "https://github.com/rajatxs/fivemin-cloud-functions.git",
+  "readme": "https://github.com/rajatxs/fivemin-cloud-functions#readme",
+  "bugs": {
+    "email": "rxx256+npm@outlook.com",
+    "url": "https://github.com/rajatxs/fivemin-cloud-functions/issues"
+  },
+  "markdown": "github",
   "license": "ISC",
   "devDependencies": {
     "@types/ejs": "^3.1.2",
