@@ -76,10 +76,61 @@
    }
 
    .content__code_block {
-      padding: var(--gap-half) var(--gap);
-      background-color: var(--accents-2);
+      position: relative;
       border-radius: var(--radius);
       margin-bottom: 1rem;
+      overflow-x: auto;
+   }
+   .content__code_block pre.content__code {
+      margin: 0;
+      padding-top: var(--gap);
+      padding-bottom: var(--gap);
+      padding-left: var(--gap);
+      padding-right: 52pt;
+      font-family: var(--font-mono);
+      white-space: pre;
+      overflow-x: auto;
+   }
+
+   .content__code_block, code.inline-code {
+      border: 1px solid var(--accents-2);
+      background-color: var(--accents-1);
+   }
+
+   .content__code_block .content__btn_copy_code {
+      position: absolute;
+      top: 12pt;
+      right: 12pt;
+      width: auto;
+      min-width: auto;
+      height: 2rem;
+      min-height: auto;
+      padding: auto;
+      pointer-events: all;
+   }
+
+   .content__code_block .content__btn_copy_code .app-icon.clipboard-icon {
+      display: inline-block;
+   }
+   .content__code_block .content__btn_copy_code .app-icon.check-icon {
+      display: none;
+   }
+
+   .content__code_block .content__btn_copy_code.copied {
+      pointer-events: none;
+   }
+
+   .content__code_block .content__btn_copy_code.copied .app-icon.clipboard-icon {
+      display: none;
+   }
+
+   .content__code_block .content__btn_copy_code.copied .app-icon.check-icon {
+      display: inline-block;
+   }
+
+   code.inline-code {
+      padding: 2px 4px;
+      border-radius: 4px;
    }
 
    .content__warn {
@@ -102,6 +153,9 @@
       .fm-post__cover_image {
          height: 200px;
       }
+      .content__code_block pre.content__code {
+         font-size: 14px;
+      }
    }
 </style>
 
@@ -122,7 +176,7 @@
          <% } %>
       </div>
       <br />
-      <section class="post-body">
+      <section id="fm-post-body" class="post-body">
          <%- postBody %>
       </section>
    
@@ -145,3 +199,76 @@
       <%- include(`partials/post-collection`, { posts: relatedPosts, showTopic: true }) %>
    <% } %>
 </main>
+
+<script>
+function createClipboardIcon() {
+   const svgElem = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+   svgElem.setAttribute('xmlns', 'http://www.w3.org/2000/svg');
+   svgElem.setAttribute('class', 'app-icon clipboard-icon');
+   svgElem.setAttribute('viewBox', '0 0 24 24');
+
+   const pathElem = document.createElementNS('http://www.w3.org/2000/svg', 'path');
+   pathElem.setAttribute('d', 'M19 3h-2.25a1 1 0 0 0-1-1h-7.5a1 1 0 0 0-1 1H5c-1.103 0-2 .897-2 2v15c0 1.103.897 2 2 2h14c1.103 0 2-.897 2-2V5c0-1.103-.897-2-2-2zm0 17H5V5h2v2h10V5h2v15z');
+   svgElem.appendChild(pathElem);
+
+   return svgElem;
+}
+
+function createCheckIcon() {
+   const svgElem = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+   svgElem.setAttribute('xmlns', 'http://www.w3.org/2000/svg');
+   svgElem.setAttribute('class', 'app-icon check-icon');
+   svgElem.setAttribute('viewBox', '0 0 24 24');
+
+   const pathElem = document.createElementNS('http://www.w3.org/2000/svg', 'path');
+   pathElem.setAttribute('d', 'm10 15.586-3.293-3.293-1.414 1.414L10 18.414l9.707-9.707-1.414-1.414z');
+   svgElem.appendChild(pathElem);
+
+   return svgElem;
+}
+
+;(function () {
+   const postBodyRoot = document.getElementById('fm-post-body');
+
+   // Assigning the target attribute to each hyperlink
+   for (const href of postBodyRoot.getElementsByTagName('a')) {
+      if (!href.hasAttribute('target')) {
+         href.classList.add('content__href');
+         href.setAttribute('target', '_blank');
+      }
+   }
+
+   // Inserting a button for the clipboard write action within the code block
+   for (const codeBlock of postBodyRoot.getElementsByClassName('content__code_block')) {
+      const codeElem = codeBlock.querySelector('.content__code');
+      if (!codeElem) {
+         continue;
+      }
+
+      const copyBtn = document.createElement('button');
+      copyBtn.type = 'button';
+      copyBtn.title = 'Copy to Clipboard';
+      copyBtn.classList.add('content__btn_copy_code');
+      copyBtn.append(createClipboardIcon(), createCheckIcon());
+
+      copyBtn.addEventListener('click', async function() {
+         if (copyBtn.classList.contains('copied')) {
+            return;
+         }
+
+         try {
+            copyTextToClipboard(codeElem.textContent, function() {
+               copyBtn.classList.add('copied');
+
+               setTimeout(function() {
+                  copyBtn.classList.remove('copied');
+               }, 5000);
+            });
+         } catch (error) {
+            console.error(error);
+         }
+      });
+      codeBlock.appendChild(copyBtn);
+   }
+}());
+</script>
