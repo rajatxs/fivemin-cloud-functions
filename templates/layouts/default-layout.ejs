@@ -633,23 +633,24 @@
             function gtag(){dataLayer.push(arguments);}
             gtag('js', new Date());
             gtag('config', 'G-6R5SRYN9S4');
-
-            function copyTextToClipboard(text, callback) {
-               if (navigator.clipboard && navigator.clipboard.writeText) {
-                  const prom = navigator.clipboard.writeText(text);
-                  if (callback) { prom.then(callback); }
-               } else {
-                  const tempInput = document.createElement('input');
-                  tempInput.value = text;
-                  document.body.appendChild(tempInput);
-                  tempInput.select();
-                  document.execCommand('copy');
-                  document.body.removeChild(tempInput);
-                  if (callback) { callback(); }
-               }
-            }
          </script>
       <% } %>
+      <script>
+         function copyTextToClipboard(text, callback) {
+            if (navigator.clipboard && navigator.clipboard.writeText) {
+               const prom = navigator.clipboard.writeText(text);
+               if (callback) { prom.then(callback); }
+            } else {
+               const tempInput = document.createElement('input');
+               tempInput.value = text;
+               document.body.appendChild(tempInput);
+               tempInput.select();
+               document.execCommand('copy');
+               document.body.removeChild(tempInput);
+               if (callback) { callback(); }
+            }
+         }
+      </script>
    </head>
 
    <body>
