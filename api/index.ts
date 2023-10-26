@@ -20,7 +20,7 @@ import meta from '../public/data/meta.json'
  * @param res - Response
  */
 async function handler(req: VercelRequest, res: VercelResponse) {
-   const limit = 6
+   const limit = 12
 
    let posts: PostDocumentMetadata[]
    let pageIndex = Number(req.query.i || 0)

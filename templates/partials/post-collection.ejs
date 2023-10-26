@@ -63,6 +63,13 @@
          height: 200px;
       }
    }
+
+   /* Extra Large */
+   @media (min-width: 1200px) {
+      .partial-post-collection {
+         grid-template-columns: 1fr 1fr 1fr;
+      }
+   }
 </style>
 
 <% if (posts.length === 0) { %>

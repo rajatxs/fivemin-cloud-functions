@@ -6,12 +6,20 @@
       height: 400px;
    }
 
+   main .page-hero-text {
+      width: 60%;
+   }
+
    main .page-hero-text,
    main .page-hero-image {
       display: inline-flex;
       flex-direction: column;
       justify-content: center;
       height: inherit;
+   }
+
+   main .page-hero-image img {
+      max-height: 320px;
    }
 
    main .page-hero .page-hero-desc {
@@ -66,9 +74,13 @@
       border-radius: 50px;
    }
 
-   @media (max-width: 767px) {
+   @media (max-width: 576px) {
       main .page-hero {
          height: 350px;
+      }
+
+      main .page-hero-text {
+         width: 100%;
       }
 
       main .page-hero .page-hero-title {
@@ -86,6 +98,36 @@
 
       #quick-search-form {
          width: calc(100% - var(--gap-half));
+      }
+   }
+
+   /* Small to Medium */
+   @media (max-width: 992px) {
+      main .page-hero {
+         height: 430px;
+      }
+
+      main .page-hero-text {
+         width: 100%;
+      }
+
+      main .page-hero .page-hero-image {
+         display: none;
+      }
+   }
+
+   /* Large */
+   @media (min-width: 992px) {
+      main .page-hero {
+         height: 420px;
+      }
+
+      main .page-hero-text {
+         width: 60%;
+      }
+
+      main .page-hero .page-hero-image {
+         display: inline-flex;
       }
    }
 </style>
@@ -125,7 +167,7 @@
       <%- include(`partials/post-collection`, { showTopic: true }) %>
 
       <% if (posts.length > 0) { %>
-         <%- include(`partials/pagination-control`, { size: posts.length, maxSize: 6 }) %>
+         <%- include(`partials/pagination-control`, { size: posts.length, maxSize: 12 }) %>
       <% } %>
    </section>
 </main>
