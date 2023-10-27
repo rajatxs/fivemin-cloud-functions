@@ -35,7 +35,7 @@ async function handler(req: VercelRequest, res: VercelResponse) {
    servePageContent(
       res,
       await renderDefaultLayout<IndexPageData>({
-         pageTitle: 'Fivemin - Empowering Ideas',
+         pageTitle: 'Fivemin',
          pageContent: 'index',
          pageUrlEndpoint: '',
          openGraphDesc: meta.openGraphDescription,
