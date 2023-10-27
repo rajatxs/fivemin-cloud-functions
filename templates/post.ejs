@@ -1,6 +1,5 @@
 <style>
    .post-content {
-      width: 700px;
       margin-left: auto;
       margin-right: auto;
    }
@@ -143,9 +142,10 @@
       margin: 0;
    }
 
-   @media (max-width: 767px) {
+   /* X-Small */
+   @media (max-width: 576px) {
       .post-content {
-         width: 90vw;
+         width: 350px;
       }
       .post-tag-links {
          justify-content: flex-start;
@@ -155,6 +155,20 @@
       }
       .content__code_block pre.content__code {
          font-size: 14px;
+      }
+   }
+
+   /* Small */
+   @media (min-width: 576px) {
+      .post-content {
+         width: 500px;
+      }
+   }
+
+   /* Medium */
+   @media (min-width: 768px) {
+      .post-content {
+         width: 700px;
       }
    }
 </style>
