@@ -47,6 +47,14 @@
       padding-top: 1rem;
       line-height: 1.8rem;
    }
+   .partial-post-view__item-desc {
+      display: -webkit-box;
+      text-overflow: ellipsis;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+   }
+
    .partial-post-view__item:hover .partial-post-view__item-thumb {
       box-shadow: var(--shadow-medium);
    }
@@ -81,11 +89,12 @@
    <br />
 </div>
 <% } else { %>
-<div class="partial-post-collection">
+<div role="feed" class="partial-post-collection">
    <% for(let post of posts) { %>
       <a 
          href="<%= post.postUrl %>" 
          title="<%= post.postTitle %>" 
+         role="article"
          class="partial-post-view__item">
          <figure class="partial-post-view__item-thumb">
             <div 
@@ -94,7 +103,7 @@
             </div>
             <figcaption class="partial-post-view__item-thumb-text">
                <% if (showTopic) { %>
-               <strong>
+               <strong aria-label="Article about <%= post.postTopic %>">
                <%= post.postTopic %>
                </strong>
                <% } %>
@@ -107,7 +116,12 @@
          <h3 class="partial-post-view__item-title">
             <%= post.postTitle %>
          </h3>
-         <p class="partial-post-view__item-desc text-muted">
+         <p 
+            role="doc-subtitle" 
+            aria-live="polite" 
+            aria-relevant="additions text" 
+            aria-atomic="true"
+            class="partial-post-view__item-desc text-muted">
             <%= post.postDesc %>
          </p>
       </a>
