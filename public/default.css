@@ -406,12 +406,12 @@ button:hover, .app-button:hover {
 button:active, .app-button:active {
    transform: translateY(-5px);
 }
-button:disabled, .app-button[aria-disabled='true'] {
+button:disabled, .app-button[aria-disabled='true'], .app-button.disabled {
    background-color: var(--accents-2);
    color: var(--accents-4);
    pointer-events: none;
 }
-button:disabled svg, .app-button[aria-disabled='true'] svg {
+button:disabled svg, .app-button[aria-disabled='true'] svg, .app-button.disabled svg {
    fill: var(--accents-4);
 }
 
@@ -445,12 +445,12 @@ button.outlined, .app-button.outlined {
 button.outlined svg, .app-button.outlined svg {
    fill: var(--foreground);
 }
-button.outlined:disabled, .app-button.outlined[aria-disabled='true'] {
+button.outlined:disabled, .app-button.outlined[aria-disabled='true'], .app-button.disabled {
    border-color: var(--accents-2);
    color: var(--accents-4);
    pointer-events: none;
 }
-button.outlined:disabled svg, .app-button.outlined[aria-disabled='true'] svg {
+button.outlined:disabled svg, .app-button.outlined[aria-disabled='true'] svg, .app-button.disabled svg {
    fill: var(--accents-4);
 }
 button.outlined:hover, .app-button.outlined:hover {
