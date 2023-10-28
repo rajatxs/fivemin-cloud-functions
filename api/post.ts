@@ -4,7 +4,7 @@ import { getPostBySlug } from '../services/post'
 import { getTopicName } from '../services/topic'
 import { disconnect } from '../services/db'
 import { renderMarkdown } from '../services/md'
-import { formatTime, getOpenGraphImageURL, truncateText } from '../utils'
+import { formatTime, getOpenGraphImageURL, truncateText, getTimeFormat } from '../utils'
 import { servePageContent, serve404Page, serve500Page } from '../utils/http'
 import { getPostCoverImageURL } from '../utils/post'
 import { renderDefaultLayout } from '../utils/template'
@@ -66,6 +66,7 @@ async function handler(req: VercelRequest, res: VercelResponse) {
          postDesc: doc.desc,
          postTags: doc.tags.sort((a, b) => a.length - b.length).slice(0, 3),
          postPublishTime: formatTime(doc.createdAt),
+         postPublishTimeFormat: getTimeFormat(doc.createdAt),
          postCoverImageUrl: getPostCoverImageURL(doc.coverImage.path),
          postCoverImageRefName: doc.coverImage.refName,
          postCoverImageRefUrl: doc.coverImage.refUrl,
