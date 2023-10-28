@@ -81,13 +81,13 @@
       height: inherit;
    }
 
-   /* X-Small to Medium */
-   @media (max-width: 768px) {
+   /* Small */
+   @media (max-width: 576px) {
       header {
          height: 70px;
       }
       header .page-header-container {
-         width: 90vw;
+         width: 350px;
       }
       header .app-title {
          font-size: 2rem;
@@ -108,13 +108,13 @@
       }
    }
 
-   /* Medium */
-   @media (min-width: 768px) {
+   /* X-Small to Medium */
+   @media (min-width: 576px) {
       header {
          height: 100px;
       }
       header .page-header-container {
-         width: 700px;
+         width: 500px;
       }
       header .app-title {
          font-size: 3rem;
@@ -132,6 +132,13 @@
       }
       header .app-nav .app-nav-link.app-nav-link-rounded {
          width: 40px;
+      }
+   }
+
+   /* Medium */
+   @media (min-width: 768px) {
+      header .page-header-container {
+         width: 700px;
       }
    }
 
