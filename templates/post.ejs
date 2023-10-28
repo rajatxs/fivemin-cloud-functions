@@ -174,36 +174,53 @@
 </style>
 
 <main class="page-content-y-padding">
-   <div class="post-content">
-      <h1 class="post-title"><%= postTitle %></h1>
-      <p class="post-meta">
-         <a href="<%= postTopicUrl %>" class="post-topic"><%= postTopic %></a>&nbsp;•&nbsp;<small><%= postPublishTime %></small>
-      </p>
-      <div class="fm-post__cover_image">
+   <article class="post-content">
+      <header>
+         <h1 class="post-title"><%= postTitle %></h1>
+         <p class="post-meta">
+            <a 
+               href="<%= postTopicUrl %>" 
+               aria-label="<%= postTopic %> Topic" 
+               class="post-topic">
+               <%= postTopic %>
+            </a>
+            <span>&bull;</span>
+            <time datetime="<%= postPublishTimeFormat %>"><%= postPublishTime %></time>
+         </p>
+      </header>
+
+      <section class="fm-post__cover_image">
          <% if (postCoverImageRefName.length && postCoverImageRefUrl.length) { %>
             <a 
                href="<%= postCoverImageRefUrl %>" 
                target="_blank" 
+               aria-hidden="true"
+               tabindex="-1"
                class="fm-post__cover_image_ref">
                <small><%= postCoverImageRefName %></small>
             </a>
          <% } %>
-      </div>
+      </section>
+
       <br />
+
       <section id="fm-post-body" class="post-body">
          <%- postBody %>
       </section>
-   
-      <br />
-   
-      <div class="post-tag-links">
-         <% for (const tag of postTags) { %>
-            <a href="<%= `/search?q=${encodeURI(tag)}` %>" class="post-tag-link app-button small adaptive">
-               <small><%= tag %></small>
-            </a>
-         <% } %>
-      </div>
-   </div>
+   </article>
+
+   <br />
+
+   <nav class="post-tag-links">
+      <% for (const tag of postTags) { %>
+         <a 
+            href="<%= `/search?q=${encodeURI(tag)}` %>" 
+            aria-label="Search <%= tag %>"
+            class="post-tag-link app-button small adaptive">
+            <small><%= tag %></small>
+         </a>
+      <% } %>
+   </nav>
 
    <% if (relatedPosts.length > 0) { %>
       <br />
