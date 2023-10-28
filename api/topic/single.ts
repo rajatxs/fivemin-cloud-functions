@@ -13,7 +13,7 @@ import type { PostDocumentMetadata } from '../../types/post'
 import type { TopicPageData } from '../../types/template'
 
 async function handler(req: VercelRequest, res: VercelResponse) {
-   const limit = 6
+   const limit = 15
    const id = String(req.query.id)
    const topicName = getTopicName(id)
    let postCount: number
