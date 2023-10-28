@@ -1,5 +1,5 @@
 <style>
-   header {
+   #app-header {
       position: fixed;
       display: flex;
       left: 0;
@@ -15,11 +15,11 @@
       transition: transform 340ms ease;
    }
 
-   header.hidden {
+   #app-header.hidden {
       transform: translateY(-100px);
    }
 
-   header .app-title {
+   #app-header .app-title {
       display: flex;
       align-items: center;
       margin: 0;
@@ -27,22 +27,22 @@
       letter-spacing: -0.066875rem;
    }
 
-   header .app-title .app-title__prefix {
+   #app-header .app-title .app-title__prefix {
       color: var(--foreground);
    }
 
-   header .app-title .app-title__suffix {
+   #app-header .app-title .app-title__suffix {
       color: var(--accents-4);
    }
 
-   header .app-nav {
+   #app-header .app-nav {
       display: flex;
       flex-direction: row;
       align-items: center;
       height: inherit;
    }
 
-   header .app-nav .app-nav-link {
+   #app-header .app-nav .app-nav-link {
       display: inline-flex;
       justify-content: center;
       align-items: center;
@@ -56,25 +56,25 @@
       transition: border-color 200ms ease;
    }
 
-   header .app-nav .app-nav-link > .app-icon {
+   #app-header .app-nav .app-nav-link > .app-icon {
       fill: var(--foreground);
    }
 
-   header .app-nav .app-nav-link:hover {
+   #app-header .app-nav .app-nav-link:hover {
       border-color: var(--foreground);
    }
 
-   header .app-nav .app-nav-link:focus {
+   #app-header .app-nav .app-nav-link:focus {
       border-color: var(--foreground);
       background-color: var(--foreground);
       color: var(--background);
    }
 
-   header .app-nav .app-nav-link:focus > .app-icon {
+   #app-header .app-nav .app-nav-link:focus > .app-icon {
       fill: var(--background);
    }
 
-   header .page-header-container {
+   #app-header .page-header-container {
       display: flex;
       flex-direction: row;
       justify-content: space-between;
@@ -83,82 +83,82 @@
 
    /* Small */
    @media (max-width: 576px) {
-      header {
+      #app-header {
          height: 70px;
       }
-      header .page-header-container {
+      #app-header .page-header-container {
          width: 350px;
       }
-      header .app-title {
+      #app-header .app-title {
          font-size: 2rem;
       }
-      header .app-nav {
+      #app-header .app-nav {
          gap: var(--gap-quarter);
       }
-      header .app-nav .app-nav-link {
+      #app-header .app-nav .app-nav-link {
          width: 70px;
          height: 35px;
       }
-      header .app-nav .app-nav-link > .app-icon {
+      #app-header .app-nav .app-nav-link > .app-icon {
          width: 22px;
          height: 22px;
       }
-      header .app-nav .app-nav-link.app-nav-link-rounded {
+      #app-header .app-nav .app-nav-link.app-nav-link-rounded {
          width: 35px;
       }
    }
 
    /* X-Small to Medium */
    @media (min-width: 576px) {
-      header {
+      #app-header {
          height: 100px;
       }
-      header .page-header-container {
+      #app-header .page-header-container {
          width: 500px;
       }
-      header .app-title {
+      #app-header .app-title {
          font-size: 3rem;
       }
-      header .app-nav {
+      #app-header .app-nav {
          gap: 8px;
       }
-      header .app-nav .app-nav-link {
+      #app-header .app-nav .app-nav-link {
          width: 80px;
          height: 40px;
       }
-      header .app-nav .app-nav-link > .app-icon {
+      #app-header .app-nav .app-nav-link > .app-icon {
          width: 24px;
          height: 24px;
       }
-      header .app-nav .app-nav-link.app-nav-link-rounded {
+      #app-header .app-nav .app-nav-link.app-nav-link-rounded {
          width: 40px;
       }
    }
 
    /* Medium */
    @media (min-width: 768px) {
-      header .page-header-container {
+      #app-header .page-header-container {
          width: 700px;
       }
    }
 
    /* Large */
    @media (min-width: 992px) {
-      header .page-header-container {
+      #app-header .page-header-container {
          width: 900px;
       }
    }
    
    /* Extra Large */
    @media (min-width: 1200px) {
-      header .page-header-container {
+      #app-header .page-header-container {
          width: 1100px;
       }
    }
    
    /* Extra extra Large */
    @media (min-width: 1400px) {
-      header .page-header-container {
+      #app-header .page-header-container {
          width: 1300px;
       }
    }
