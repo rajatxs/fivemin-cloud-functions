@@ -26,6 +26,10 @@ export function formatTime(time: Date) {
    }
 }
 
+export function getTimeFormat(time: Date): string {
+   return `${time.getFullYear()}-${time.getMonth() + 1}-${time.getDate()}`
+}
+
 export function truncateText(text: string, len: number) {
    if (text.length > len) {
       return text.substring(0, len - 3) + '...'
