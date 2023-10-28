@@ -1,5 +1,5 @@
 <style>
-   footer {
+   #app-footer {
       display: flex;
       flex-direction: column;
       justify-content: center;
@@ -42,7 +42,7 @@
 
    /* X-small to Large */
    @media (max-width: 992px) {
-      footer .footer-container {
+      #app-footer .footer-container {
          flex-direction: column-reverse;
          justify-content: center;
          width: 350px;
@@ -52,7 +52,7 @@
 
    /* Large */
    @media (min-width: 992px) {
-      footer .footer-container {
+      #app-footer .footer-container {
          flex-direction: row;
          justify-content: space-between;
          width: 55vw;
@@ -61,7 +61,7 @@
    }
 </style>
 
-<footer>
+<footer id="app-footer">
    <div class="footer-container">
       <div aria-hidden="true" class="footer-view-column text-muted">&copy; 2023 Fivemin</div>
 
