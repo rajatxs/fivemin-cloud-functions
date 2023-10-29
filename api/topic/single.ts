@@ -3,7 +3,7 @@ import { connectDatabase } from '../../middlewares'
 import { disconnect } from '../../services/db'
 import { getPostCountByTopic, getRecentPostsByTopic } from '../../services/post'
 import { getTopicName } from '../../services/topic'
-import { formatTime, truncateText } from '../../utils'
+import { formatTime } from '../../utils'
 import { getPostCoverImageURL } from '../../utils/post'
 import { renderDefaultLayout } from '../../utils/template'
 import { servePageContent, serve500Page } from '../../utils/http'
@@ -45,7 +45,7 @@ async function handler(req: VercelRequest, res: VercelResponse) {
             postUrl: `/${_post.slug}`,
             postIndex: _index + 1,
             postTitle: _post.title,
-            postDesc: truncateText(_post.desc, 90),
+            postDesc: _post.desc,
             postTopic: getTopicName(_post.topic),
             postPublishTime: formatTime(_post.createdAt),
             postCoverImageUrl: getPostCoverImageURL(_post.coverImage.path),
