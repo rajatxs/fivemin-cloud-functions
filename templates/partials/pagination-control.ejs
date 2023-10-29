@@ -2,7 +2,8 @@
    <a 
       href="?i=<%= pageIndex - 1 %>" 
       aria-label="Previous page"
-      aria-hidden="<%= pageIndex > 0? 'false': 'true' %>"
+      aria-disabled="<%= pageIndex > 0? 'false': 'true' %>"
+      tabindex="<%= pageIndex > 0? '0': '-1' %>"
       class="app-button outlined <%= pageIndex > 0? 'active': 'disabled' %>">
       <svg 
          xmlns="http://www.w3.org/2000/svg" 
@@ -18,7 +19,8 @@
    <a 
       href="?i=<%= pageIndex + 1 %>" 
       aria-label="Next page"
-      aria-hidden="<%= size === maxSize? 'false': 'true' %>"
+      aria-disabled="<%= size === maxSize? 'false': 'true' %>"
+      tabindex="<%= size === maxSize? '0': '-1' %>"
       class="app-button <%= size === maxSize? 'active': 'disabled' %>">
       <span>Next</span>
       <svg 
