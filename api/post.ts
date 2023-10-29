@@ -76,7 +76,7 @@ async function handler(req: VercelRequest, res: VercelResponse) {
                postUrl: `/${_relPost.slug}`,
                postIndex: _index + 1,
                postTitle: _relPost.title,
-               postDesc: truncateText(_relPost.desc, 90),
+               postDesc: _relPost.desc,
                postTopic: getTopicName(_relPost.topic),
                postPublishTime: formatTime(_relPost.createdAt),
                postCoverImageUrl: getPostCoverImageURL(_relPost.coverImage.path),
