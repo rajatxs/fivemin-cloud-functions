@@ -89,12 +89,11 @@
    <br />
 </div>
 <% } else { %>
-<div role="feed" class="partial-post-collection">
+<div class="partial-post-collection">
    <% for(let post of posts) { %>
       <a 
          href="<%= post.postUrl %>" 
          title="<%= post.postTitle %>" 
-         role="article"
          class="partial-post-view__item">
          <figure class="partial-post-view__item-thumb">
             <div 
@@ -108,7 +107,7 @@
                </strong>
                <% } %>
                <small>
-                  <%= post.postPublishTime %>
+                  <time><%= post.postPublishTime %></time>
                </small>
             </figcaption>
          </figure>
