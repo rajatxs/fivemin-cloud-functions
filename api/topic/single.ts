@@ -3,7 +3,7 @@ import { connectDatabase } from '../../middlewares'
 import { disconnect } from '../../services/db'
 import { getPostCountByTopic, getRecentPostsByTopic } from '../../services/post'
 import { getTopicName } from '../../services/topic'
-import { formatTime, truncateText } from '../../utils'
+import { formatTime } from '../../utils'
 import { getPostCoverImageURL } from '../../utils/post'
 import { renderDefaultLayout } from '../../utils/template'
 import { servePageContent, serve500Page } from '../../utils/http'
@@ -13,7 +13,7 @@ import type { PostDocumentMetadata } from '../../types/post'
 import type { TopicPageData } from '../../types/template'
 
 async function handler(req: VercelRequest, res: VercelResponse) {
-   const limit = 6
+   const limit = 15
    const id = String(req.query.id)
    const topicName = getTopicName(id)
    let postCount: number
@@ -45,7 +45,7 @@ async function handler(req: VercelRequest, res: VercelResponse) {
             postUrl: `/${_post.slug}`,
             postIndex: _index + 1,
             postTitle: _post.title,
-            postDesc: truncateText(_post.desc, 90),
+            postDesc: _post.desc,
             postTopic: getTopicName(_post.topic),
             postPublishTime: formatTime(_post.createdAt),
             postCoverImageUrl: getPostCoverImageURL(_post.coverImage.path),

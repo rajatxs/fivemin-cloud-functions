@@ -3,7 +3,7 @@ import { getTopicName } from '../services/topic'
 import { disconnect } from '../services/db'
 import { connectDatabase } from '../middlewares'
 import { compose } from '@rxpm/vsfm'
-import { formatTime, truncateText } from '../utils'
+import { formatTime } from '../utils'
 import { servePageContent, serve500Page } from '../utils/http'
 import { renderDefaultLayout } from '../utils/template'
 import { getPostCoverImageURL } from '../utils/post'
@@ -20,7 +20,7 @@ import meta from '../public/data/meta.json'
  * @param res - Response
  */
 async function handler(req: VercelRequest, res: VercelResponse) {
-   const limit = 6
+   const limit = 12
 
    let posts: PostDocumentMetadata[]
    let pageIndex = Number(req.query.i || 0)
@@ -35,7 +35,7 @@ async function handler(req: VercelRequest, res: VercelResponse) {
    servePageContent(
       res,
       await renderDefaultLayout<IndexPageData>({
-         pageTitle: 'Fivemin - Empowering Ideas',
+         pageTitle: 'Fivemin',
          pageContent: 'index',
          pageUrlEndpoint: '',
          openGraphDesc: meta.openGraphDescription,
@@ -44,7 +44,7 @@ async function handler(req: VercelRequest, res: VercelResponse) {
                postUrl: `/${_post.slug}`,
                postIndex: _index + 1,
                postTitle: _post.title,
-               postDesc: truncateText(_post.desc, 90),
+               postDesc: _post.desc,
                postTopic: getTopicName(_post.topic),
                postPublishTime: formatTime(_post.createdAt),
                postCoverImageUrl: getPostCoverImageURL(_post.coverImage.path),

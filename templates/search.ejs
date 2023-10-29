@@ -94,7 +94,8 @@
          <input 
             type="search" 
             id="input-query" 
-            placeholder="Search Fivemin..."
+            aria-label="Search input"
+            placeholder="Search Fivemin"
             value="<%= searchQuery %>" />
       </label>
       <div hidden>
@@ -113,7 +114,12 @@
 
    <% if (searchQuery.length === 0 && posts.length === 0) { %>
       <div id="search-preview">
-         <a href="https://www.algolia.com" target="_blank" title="Search by Algolia">
+         <a 
+            href="https://www.algolia.com" 
+            target="_blank" 
+            aria-hidden="true"
+            tabindex="-1"
+            title="Search by Algolia">
             <img 
                class="algolia-brand-image" 
                src="/images/algolia-search.svg" 

@@ -1,5 +1,5 @@
 <style>
-   header {
+   #app-header {
       position: fixed;
       display: flex;
       left: 0;
@@ -9,46 +9,41 @@
       align-items: center;
       justify-content: center;
       width: 100%;
-      height: 100px;
       z-index: 100;
       border-bottom: 1px solid var(--accents-2);
       background-color: var(--background);
       transition: transform 340ms ease;
    }
 
-   header.hidden {
+   #app-header.hidden {
       transform: translateY(-100px);
    }
 
-   header .app-title {
+   #app-header .app-title {
       display: flex;
       align-items: center;
       margin: 0;
-      font-size: 3rem;
       font-weight: 500;
       letter-spacing: -0.066875rem;
    }
 
-   header .app-title .app-title__prefix {
+   #app-header .app-title .app-title__prefix {
       color: var(--foreground);
    }
 
-   header .app-title .app-title__suffix {
+   #app-header .app-title .app-title__suffix {
       color: var(--accents-4);
    }
 
-   header .app-nav {
+   #app-header .app-nav {
       display: flex;
       flex-direction: row;
       align-items: center;
-      gap: 8px;
       height: inherit;
    }
 
-   header .app-nav .app-nav-link {
+   #app-header .app-nav .app-nav-link {
       display: inline-flex;
-      width: 80px;
-      height: 40px;
       justify-content: center;
       align-items: center;
       text-decoration: none;
@@ -61,61 +56,110 @@
       transition: border-color 200ms ease;
    }
 
-   header .app-nav .app-nav-link.app-nav-link-rounded {
-      width: 40px;
-   }
-
-   header .app-nav .app-nav-link > .app-icon {
-      width: 24px;
-      height: 24px;
+   #app-header .app-nav .app-nav-link > .app-icon {
       fill: var(--foreground);
    }
 
-   header .app-nav .app-nav-link:hover {
+   #app-header .app-nav .app-nav-link:hover {
       border-color: var(--foreground);
    }
 
-   header .app-nav .app-nav-link:focus {
+   #app-header .app-nav .app-nav-link:focus {
       border-color: var(--foreground);
       background-color: var(--foreground);
       color: var(--background);
    }
 
-   header .app-nav .app-nav-link:focus > .app-icon {
+   #app-header .app-nav .app-nav-link:focus > .app-icon {
       fill: var(--background);
    }
 
-   header .page-header-container {
+   #app-header .page-header-container {
       display: flex;
       flex-direction: row;
       justify-content: space-between;
-      width: 65vw;
       height: inherit;
    }
 
-   @media (max-width: 767px) {
-      header {
+   /* Small */
+   @media (max-width: 576px) {
+      #app-header {
          height: 70px;
       }
-      header .page-header-container {
-         width: 90vw;
+      #app-header .page-header-container {
+         width: 350px;
       }
-      header .app-title {
+      #app-header .app-title {
          font-size: 2rem;
       }
-      header .app-nav {
+      #app-header .app-nav {
          gap: var(--gap-quarter);
       }
-      header .app-nav .app-nav-link {
+      #app-header .app-nav .app-nav-link {
          width: 70px;
          height: 35px;
       }
-      header .app-nav .app-nav-link > .app-icon {
+      #app-header .app-nav .app-nav-link > .app-icon {
          width: 22px;
          height: 22px;
       }
-      header .app-nav .app-nav-link.app-nav-link-rounded {
+      #app-header .app-nav .app-nav-link.app-nav-link-rounded {
          width: 35px;
+      }
+   }
+
+   /* X-Small to Medium */
+   @media (min-width: 576px) {
+      #app-header {
+         height: 100px;
+      }
+      #app-header .page-header-container {
+         width: 500px;
+      }
+      #app-header .app-title {
+         font-size: 3rem;
+      }
+      #app-header .app-nav {
+         gap: 8px;
+      }
+      #app-header .app-nav .app-nav-link {
+         width: 80px;
+         height: 40px;
+      }
+      #app-header .app-nav .app-nav-link > .app-icon {
+         width: 24px;
+         height: 24px;
+      }
+      #app-header .app-nav .app-nav-link.app-nav-link-rounded {
+         width: 40px;
+      }
+   }
+
+   /* Medium */
+   @media (min-width: 768px) {
+      #app-header .page-header-container {
+         width: 700px;
+      }
+   }
+
+   /* Large */
+   @media (min-width: 992px) {
+      #app-header .page-header-container {
+         width: 900px;
+      }
+   }
+   
+   /* Extra Large */
+   @media (min-width: 1200px) {
+      #app-header .page-header-container {
+         width: 1100px;
+      }
+   }
+   
+   /* Extra extra Large */
+   @media (min-width: 1400px) {
+      #app-header .page-header-container {
+         width: 1300px;
       }
    }
 </style>
@@ -123,7 +167,12 @@
 <header id="app-header">
    <div class="page-header-container">
       <h3 class="app-title">
-         <a href="/" title="Fivemin"><span class="app-title__prefix">five</span><span class="app-title__suffix">min</span></a>
+         <a 
+            href="/" 
+            aria-label="Fivemin Homepage" 
+            title="Fivemin">
+            <span class="app-title__prefix">five</span><span class="app-title__suffix">min</span>
+         </a>
       </h3>
       <nav class="app-nav">
          <% if (pageUrlEndpoint !== '/t') { %>
@@ -131,7 +180,12 @@
          <% } %>
 
          <% if (pageUrlEndpoint !== '/search') { %>
-            <a href="/search" class="app-nav-link app-nav-link-rounded">
+            <a 
+               href="/search" 
+               aria-label="Search" 
+               role="link" 
+               title="Search"
+               class="app-nav-link app-nav-link-rounded">
                <svg 
                   xmlns="http://www.w3.org/2000/svg" 
                   class="app-icon search-icon"
