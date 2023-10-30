@@ -1,5 +1,5 @@
 {
-   "defaultDescription": "Fivemin is the go-to resource for in-depth, up-to-date information on a wide range of topics, from the latest news and events to obscure historical facts and scientific discoveries. With its engaging and informative articles, Fivemin is the perfect place to learn something new or brush up on your knowledge. Visit Fivemin today and see for yourself!",
+   "defaultDescription": "Fivemin is the go-to source for simplified insights on Programming, Tech, Science, Finance, and Business. Quick guides for the curious mind.",
    "defaultKeyworkds": [
       "Fivemin",
       "Fivmin",
@@ -10,12 +10,11 @@
       "Blogger",
       "Blogging Website",
       "Tips",
-      "History",
       "Science",
       "Finance",
       "Technology"
    ],
-   "openGraphDescription": "Fivemin is the go-to resource for in-depth, up-to-date information on a wide range of topics.",
+   "openGraphDescription": "Fivemin is the go-to resource for simplified, up-to-date information on a wide range of topics.",
    "openGraphType": "website",
    "openGraphImage": "/open-graph-thumb.png"
 }
