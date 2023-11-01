@@ -81,21 +81,40 @@
       border-radius: 50px;
    }
 
-   .social-platform-buttons {
+   main .social-platform-buttons {
       display: flex;
       gap: var(--gap-half);
    }
 
-   .button__instagram,
-   .button__x {
+   main .social-button {
       gap: var(--gap-half);
+      color: var(--background);
    }
 
-   .button__instagram {
+   main .social-button svg {
+      fill: var(--background);
+   }
+
+   main .button__instagram {
       background-image: linear-gradient(45deg, #405de6, #5851db, #833ab4, #c13584, #e1306c, #fd1d1d);
    }
-   .button__x {
+   main .button__x {
       background-image: linear-gradient(135deg, #707070, #010101);
+   }
+
+   @media (prefers-color-scheme: dark) {
+      main .social-button {
+         color: var(--foreground);
+      }
+
+      main .social-button svg {
+        fill: var(--foreground);
+      }
+
+      main .button__x {
+         background-image: linear-gradient(135deg, var(--accents-3), var(--accents-2));
+         background-color: var(--accents-2);
+      }
    }
 
    @media (max-width: 576px) {
@@ -298,7 +317,7 @@
             href="https://www.instagram.com/fivemin.in" 
             target="_blank" 
             title="Instagram"
-            class="app-button button__instagram">
+            class="app-button social-button button__instagram">
             <svg 
                role="img"
                viewBox="0 0 24 24" 
@@ -312,7 +331,7 @@
             href="https://twitter.com/fivemin_in" 
             target="_blank" 
             title="X"
-            class="app-button button__x">
+            class="app-button social-button button__x">
             <svg 
                role="img" 
                viewBox="0 0 24 24" 
