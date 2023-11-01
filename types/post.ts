@@ -43,3 +43,10 @@ export interface PostSearchRecord {
    createdAt: string
    updatedAt: string
 }
+
+export interface PostFeedData {
+   popular: PostDocumentMetadata[]
+   technology: PostDocumentMetadata[]
+   science: PostDocumentMetadata[]
+   programming: PostDocumentMetadata[]
+}
