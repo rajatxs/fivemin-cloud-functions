@@ -31,7 +31,10 @@ export interface PartialTopicViewData {
 }
 
 export interface IndexPageData extends PageData {
-   posts: PartialPostViewData[]
+   popularPosts: PartialPostViewData[]
+   technologyPosts: PartialPostViewData[]
+   sciencePosts: PartialPostViewData[]
+   programmingPosts: PartialPostViewData[]
    pageIndex: number
 }
 
