@@ -89,8 +89,6 @@
    .button__instagram,
    .button__x {
       gap: var(--gap-half);
-      min-width: 140px;
-      min-height: 50px;
    }
 
    .button__instagram {
@@ -125,6 +123,11 @@
       #quick-search-form {
          width: calc(100% - var(--gap-half));
       }
+
+      main .page-subscribe-cta {
+         padding-top: 2rem;
+         padding-bottom: 3rem;
+      }
    }
 
    /* Small to Medium */
@@ -139,6 +142,18 @@
 
       main .page-hero .page-hero-image {
          display: none;
+      }
+
+      main .page-subscribe-cta {
+         padding-top: 3rem;
+         padding-bottom: 3.5rem;
+      }
+
+      main .button__instagram,
+      main .button__x {
+         gap: var(--gap-half);
+         min-width: 120px;
+         min-height: 50px;
       }
    }
 
@@ -158,6 +173,18 @@
 
       main .page-hero .page-hero-image {
          display: inline-flex;
+      }
+
+      main .page-subscribe-cta {
+         padding-top: 5rem;
+         padding-bottom: 6rem;
+      }
+      
+      main .button__instagram,
+      main .button__x {
+         gap: var(--gap-half);
+         min-width: 140px;
+         min-height: 50px;
       }
    }
 </style>
@@ -261,8 +288,6 @@
    </section>
 
    <hr />
-   <br />
-   <br />
 
    <section class="page-subscribe-cta">
       <h2>Follow us for the latest updates!</h2>
@@ -298,11 +323,6 @@
          </a>
       </div>
    </section>
-
-   <br />
-   <br />
-   <br />
-   <br />
 </main>
 
 <script>
