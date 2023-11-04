@@ -39,6 +39,7 @@ export interface IndexPageData extends PageData {
 }
 
 export interface PostPageData extends PageData {
+   postId: string
    postTitle: string
    postTopic: string
    postTopicUrl: string
@@ -50,6 +51,7 @@ export interface PostPageData extends PageData {
    postCoverImageRefName: string
    postCoverImageRefUrl: string
    postBody: string
+   postLicense: string
    relatedPosts: IndexPagePostTemplateData[]
 }
 
