@@ -25,6 +25,7 @@ export interface PostDocument {
    public: boolean
    format: PostDocumentFormat
    coverImage: PostCoverImage
+   license: string
    relatedPosts: PostRelatedDocument[]
    createdAt: Date
    updatedAt: Date
