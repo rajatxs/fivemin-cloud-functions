@@ -3,6 +3,15 @@
       margin-left: auto;
       margin-right: auto;
    }
+   .post-meta {
+      position: relative;
+   }
+   .post__show-more-opt-button {
+      position: absolute;
+      right: 8px;
+      min-width: 8px;
+      height: 24px;
+   }
    .post-tag-links {
       display: flex;
       gap: var(--gap-half);
@@ -186,6 +195,17 @@
             </a>
             <span>&bull;</span>
             <time datetime="<%= postPublishTimeFormat %>"><%= postPublishTime %></time>
+
+            <!-- More option button -->
+            <button 
+               type="button" 
+               title="More options" 
+               id="btnShowOptionView" 
+               class="post__show-more-opt-button adaptive">
+               <svg role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                  <path d="M12 10c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm6 0c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zM6 10c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2z"></path>
+               </svg>
+            </button>
          </p>
       </header>
 
@@ -231,6 +251,118 @@
    <% } %>
 </main>
 
+<style>
+#postOptionView {
+   padding: 0;
+   width: 320px;
+   border: none;
+   border-radius: var(--radius);
+   background-color: var(--background);
+   color: var(--foreground);
+}
+#postOptionView::backdrop {
+   background-color: rgba(50, 50, 50, 0.6);
+}
+.post-opt-view__header {
+   padding: var(--gap-half) var(--gap);
+   background-color: var(--accents-1);
+}
+.post-opt-view__menu {
+   display: flex;
+   flex-direction: column;
+   padding: var(--gap-quarter) var(--gap-half);
+   border-top: 1px solid var(--accents-2);
+   border-bottom: 1px solid var(--accents-2);
+}
+.post-opt-view__menu-item {
+   display: flex;
+   gap: var(--gap-quarter);
+   color: inherit;
+   padding: var(--gap-half);
+   border-radius: var(--radius);
+   transition: background-color 120ms ease;
+}
+.post-opt-view__menu-item svg {
+   width: 24px;
+   height: 24px;
+   fill: var(--foreground);
+}
+.post-opt-view__menu-item:hover {
+   background-color: var(--accents-2);
+}
+.post-opt-view__footer {
+   display: flex;
+   justify-content: flex-end;
+   padding: var(--gap-half);
+}
+.post-opt-view__footer .dialog-close-button {
+   width: 100%;
+   border-radius: var(--radius);
+}
+@media (prefers-color-scheme: dark) {
+   #postOptionView {
+      background-color: var(--accents-1);
+   }
+   #postOptionView::backdrop {
+      background-color: rgba(0, 0, 0, 0.8);
+   }
+}
+</style>
+
+<dialog id="postOptionView">
+   <header class="post-opt-view__header">
+      <div><small><strong>Article ID</strong>:&nbsp;<span class="text-muted"><%= postId %></span></small></div>
+      <div>
+         <small>
+            <strong>License</strong>:&nbsp;
+            <% if (postLicense === 'CC-BY-4.0') { %>
+               <a 
+                  href="https://creativecommons.org/licenses/by/4.0" 
+                  target="_blank" 
+                  aria-hidden="true" 
+                  tabindex="-1">
+                  Creative Commons Attribution (CC BY) 4.0
+               </a>
+            <% } else if (postLicense === 'CC-BY-NC-4.0') { %>
+               <a 
+                  href="https://creativecommons.org/licenses/by-nc/4.0" 
+                  target="_blank" 
+                  aria-hidden="true" 
+                  tabindex="-1">
+                  Creative Commons Attribution - NonCommercial (CC BY-NC) 4.0
+               </a>
+            <% } else { %>
+               <span class="text-muted"><%= postLicense %></span>
+            <% } %>
+         </small>
+      </div>
+   </header>
+   <nav class="post-opt-view__menu">
+      <a href="mailto:<%= contactEmail %>?subject=Feedback%20for%20Article%20ID%20<%= postId %>" class="post-opt-view__menu-item">
+         <svg role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+            <path d="M16 2H8C4.691 2 2 4.691 2 8v12a1 1 0 0 0 1 1h13c3.309 0 6-2.691 6-6V8c0-3.309-2.691-6-6-6zm4 13c0 2.206-1.794 4-4 4H4V8c0-2.206 1.794-4 4-4h8c2.206 0 4 1.794 4 4v7z"></path>
+            <circle cx="9.5" cy="11.5" r="1.5"></circle>
+            <circle cx="14.5" cy="11.5" r="1.5"></circle>
+         </svg>
+         <span>Feedback</span>
+      </a>
+      <a href="mailto:<%= contactEmail %>?subject=Report%20for%20Article%20ID%20<%= postId %>" class="post-opt-view__menu-item">
+         <svg role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+            <path d="M19 4H6V2H4v18H3v2h4v-2H6v-5h13a1 1 0 0 0 1-1V5a1 1 0 0 0-1-1zm-1 9H6V6h12v7z"></path>
+         </svg>
+         <span>Report</span>
+      </a>
+   </nav>
+   <footer class="post-opt-view__footer">
+      <button 
+         type="button" 
+         id="btnCloseOptionView" 
+         class="dialog-close-button small">
+         Close
+      </button>
+   </footer>
+</dialog>
+
 <script>
 function createClipboardIcon() {
    const svgElem = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
@@ -260,6 +392,16 @@ function createCheckIcon() {
 
 ;(function () {
    const postBodyRoot = document.getElementById('fm-post-body');
+   const btnShowOptionView = document.getElementById('btnShowOptionView');
+   const btnCloseOptionView = document.getElementById('btnCloseOptionView');
+
+   btnShowOptionView.addEventListener('click', function() {
+      document.getElementById('postOptionView').showModal();
+   });
+
+   btnCloseOptionView.addEventListener('click', function() {
+      document.getElementById('postOptionView').close();
+   });
 
    // Assigning the target attribute to each hyperlink
    for (const href of postBodyRoot.getElementsByTagName('a')) {

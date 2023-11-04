@@ -434,6 +434,9 @@ button.adaptive:hover, .app-button.adaptive:hover {
    background-color: var(--foreground);
    color: var(--background);
 }
+button.adaptive:hover svg, .app-button.adaptive:hover svg {
+   fill: var(--background);
+}
 
 button.outlined, .app-button.outlined {
    background-color: transparent;

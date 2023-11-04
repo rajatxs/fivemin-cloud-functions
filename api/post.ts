@@ -61,6 +61,7 @@ async function handler(req: VercelRequest, res: VercelResponse) {
          pageDesc: doc.desc,
          pageType: 'article',
          pageContent: 'post',
+         postId: doc._id.toString(),
          postTopic: getTopicName(doc.topic),
          postTopicUrl: `/t/${doc.topic}`,
          postDesc: doc.desc,
@@ -71,6 +72,7 @@ async function handler(req: VercelRequest, res: VercelResponse) {
          postCoverImageRefName: doc.coverImage.refName,
          postCoverImageRefUrl: doc.coverImage.refUrl,
          postBody,
+         postLicense: doc.license,
          relatedPosts: doc.relatedPosts.map((_relPost, _index) => {
             return {
                postUrl: `/${_relPost.slug}`,
