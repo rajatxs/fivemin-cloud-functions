@@ -1,64 +1,58 @@
 <style>
+#app-footer {
+   display: flex;
+   flex-direction: column;
+   justify-content: center;
+   align-items: center;
+   width: 100%;
+   min-height: 240px;
+   border-top: 1px solid var(--accents-2);
+}
+#app-footer .footer-container {
+   display: flex;
+   align-items: center;
+   flex-direction: column-reverse;
+   width: 80%;
+   max-width: 1000px;
+}
+#app-footer .footer-view-column {
+   padding-top: 1rem;
+   padding-bottom: 1rem;
+}
+#app-footer .footer-nav-links {
+   display: flex;
+   flex-direction: row;
+   gap: var(--gap);
+}
+#app-footer .footer-nav-link:hover {
+   color: var(--foreground);
+}
+#app-footer .footer-nav-link:focus {
+   color: var(--primary);
+}
+#app-footer .footer-social-icon {
+   width: 22px;
+   height: 22px;
+   fill: var(--accents-5);
+   transition: fill 120ms linear;
+}
+#app-footer .footer-social-link:hover .footer-social-icon {
+   fill: var(--foreground);
+}
+#app-footer .footer-social-link:focus .footer-social-icon {
+   fill: var(--primary);
+}
+
+/* Large */
+@media (min-width: 992px) {
    #app-footer {
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      width: 100%;
-      align-items: center;
-      border-top: 1px solid var(--accents-2);
+      min-height: 160px;
    }
-   .footer-container {
-      display: flex;
-      align-items: center;
-   }
-   .footer-view-column {
-      padding-top: 1rem;
-      padding-bottom: 1rem;
-   }
-   .footer-nav-links {
-      display: flex;
+   #app-footer .footer-container {
       flex-direction: row;
-      gap: var(--gap);
+      justify-content: space-between;
    }
-   .footer-nav-link:hover {
-      color: var(--foreground);
-   }
-   .footer-nav-link:focus {
-      color: var(--primary);
-   }
-
-   .footer-social-icon {
-      width: 22px;
-      height: 22px;
-      fill: var(--accents-5);
-      transition: fill 120ms linear;
-   }
-   .footer-social-link:hover .footer-social-icon {
-      fill: var(--foreground);
-   }
-   .footer-social-link:focus .footer-social-icon {
-      fill: var(--primary);
-   }
-
-   /* X-small to Large */
-   @media (max-width: 992px) {
-      #app-footer .footer-container {
-         flex-direction: column-reverse;
-         justify-content: center;
-         width: 350px;
-         min-height: 240px;
-      }
-   }
-
-   /* Large */
-   @media (min-width: 992px) {
-      #app-footer .footer-container {
-         flex-direction: row;
-         justify-content: space-between;
-         width: 55vw;
-         min-height: 160px;
-      }
-   }
+}
 </style>
 
 <footer id="app-footer">

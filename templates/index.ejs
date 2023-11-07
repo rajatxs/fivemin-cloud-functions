@@ -3,11 +3,13 @@
       display: flex;
       flex-direction: row;
       justify-content: space-between;
-      height: 400px;
+      min-height: clamp(380px, 17vw, 420px);
    }
-
    main .page-hero-text {
       width: 60%;
+   }
+   main .page-hero-image {
+      width: 40%;
    }
 
    main .page-hero-text,
@@ -23,7 +25,8 @@
    }
 
    main .page-hero .page-hero-desc {
-      font-size: 1.3rem;
+      max-width: 85%;
+      font-size: clamp(16px, 3vw, 22px);
       font-weight: 500;
    }
 
@@ -44,7 +47,7 @@
 
    #quick-search-form {
       display: flex;
-      width: 360px;
+      max-width: 360px;
       padding: var(--gap-quarter);
       flex-direction: row;
       justify-content: space-between;
@@ -120,13 +123,25 @@
       }
    }
 
-   @media (max-width: 576px) {
+   @media (max-width: 992px) {
       main .page-hero {
-         height: 350px;
+         padding-top: var(--gap);
+         padding-bottom: var(--gap);
       }
-
+      main .page-hero .page-hero-image {
+         display: none;
+      }
       main .page-hero-text {
          width: 100%;
+      }
+      main .page-hero .page-hero-desc {
+         max-width: 100%;
+      }
+   }
+
+   /* @media (max-width: 576px) {
+      main .page-hero {
+         height: 350px;
       }
 
       main .page-hero .page-hero-title {
@@ -136,10 +151,6 @@
 
       main .page-hero .page-hero-desc {
          font-size: 1rem;
-      }
-
-      main .page-hero .page-hero-image {
-         display: none;
       }
 
       #quick-search-form {
@@ -154,10 +165,10 @@
       main .social-platform-buttons {
          flex-direction: column;
       }
-   }
+   } */
 
    /* Small to Medium */
-   @media (max-width: 992px) {
+   /* @media (max-width: 992px) {
       main .page-hero {
          height: 430px;
       }
@@ -180,10 +191,10 @@
          min-width: 120px;
          min-height: 50px;
       }
-   }
+   } */
 
    /* Large */
-   @media (min-width: 992px) {
+   /* @media (min-width: 992px) {
       main .page-hero {
          height: 420px;
       }
@@ -210,7 +221,7 @@
          min-width: 140px;
          min-height: 50px;
       }
-   }
+   } */
 </style>
 
 <main>
