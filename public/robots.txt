@@ -1,0 +1,15 @@
+User-agent: *
+Disallow: /data/
+Disallow: /search?q=*
+Disallow: /search/?q=*
+
+Sitemap: https://www.fivemin.in/sitemap.xml
+
+User-Agent: GPTBot
+Disallow: /
+
+User-agent: ChatGPT-User
+Disallow: /
+
+User-agent: ia_archiver
+Disallow: /
