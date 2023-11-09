@@ -10,7 +10,7 @@ export interface PostCoverImage {
 
 export type PostRelatedDocument = Omit<PostDocument, 'tags'|'body'|'related'|'deleted'|'public'>
 
-export type PostDocumentFormat = 'md'|'block'
+export type PostDocumentFormat = 'block'
 
 export interface PostDocument {
    _id: ObjectId
