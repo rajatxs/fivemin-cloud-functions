@@ -3,8 +3,7 @@ import { connectDatabase } from '../middlewares'
 import { getPostBySlug } from '../services/post'
 import { getTopicName } from '../services/topic'
 import { disconnect } from '../services/db'
-import { renderMarkdown } from '../services/md'
-import { formatTime, getOpenGraphImageURL, truncateText, getTimeFormat } from '../utils'
+import { formatTime, getOpenGraphImageURL, getTimeFormat } from '../utils'
 import { servePageContent, serve404Page, serve500Page } from '../utils/http'
 import { getPostCoverImageURL } from '../utils/post'
 import { renderDefaultLayout } from '../utils/template'
@@ -38,9 +37,7 @@ async function handler(req: VercelRequest, res: VercelResponse) {
    }
 
    try {
-      if (doc.format === 'md') {
-         postBody = await renderMarkdown(doc.body.toString('utf8'))
-      } else if (doc.format === 'block') {
+      if (doc.format === 'block') {
          postBody = parseBlockDocument(doc.body as BlockDocument)
       } else {
          postBody = ''

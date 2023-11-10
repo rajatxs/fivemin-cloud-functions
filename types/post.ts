@@ -10,8 +10,6 @@ export interface PostCoverImage {
 
 export type PostRelatedDocument = Omit<PostDocument, 'tags'|'body'|'related'|'deleted'|'public'>
 
-export type PostDocumentFormat = 'md'|'block'
-
 export interface PostDocument {
    _id: ObjectId
    title: string
@@ -19,11 +17,11 @@ export interface PostDocument {
    desc: string
    tags: string[]
    topic: string
-   body: Binary | BlockDocument
+   body: BlockDocument
    stars: number
    authorId: ObjectId
    public: boolean
-   format: PostDocumentFormat
+   format: string
    coverImage: PostCoverImage
    license: string
    relatedPosts: PostRelatedDocument[]

@@ -1,225 +1,154 @@
 <style>
-   main .page-hero {
-      display: flex;
-      flex-direction: row;
-      justify-content: space-between;
-      height: 400px;
-   }
+#formQuickSearch {
+   display: flex;
+   max-width: 360px;
+   padding: var(--gap-quarter);
+   flex-direction: row;
+   justify-content: space-between;
+   align-items: center;
+   border-width: 2px;
+   border-style: solid;
+   border-color: var(--accents-2);
+   border-radius: 50px;
+   transition: border-color 120ms ease;
+}
+#formQuickSearch.focused {
+   border-color: var(--foreground);
+}
+#inputQuickSearch {
+   height: 100%;
+   width: 100%;
+   border-radius: inherit;
+   border: none;
+   font-family: inherit;
+   font-size: 16px;
+   font-weight: 500;
+   background-color: transparent;
+   padding-left: var(--gap-half);
+   padding-right: var(--gap-half);
+   -webkit-tap-highlight-color: transparent;
+}
+#inputQuickSearch::placeholder {
+   color: var(--accents-5);
+}
+#btnQuickSearch {
+   min-width: clamp(60px, 20vw, 80px);
+   border-radius: 50px;
+}
 
-   main .page-hero-text {
-      width: 60%;
-   }
+.page-hero {
+   display: flex;
+   flex-direction: row;
+   justify-content: space-between;
+   min-height: clamp(380px, 28vw, 540px);
+}
+.page-hero__text {
+   width: 60%;
+}
+.page-hero__image {
+   width: 40%;
+}
+.page-hero__text,
+.page-hero__image {
+   display: inline-flex;
+   flex-direction: column;
+   justify-content: center;
+   height: inherit;
+}
+.page-hero__image img {
+   max-height: 320px;
+}
+.page-hero .page-hero__desc {
+   max-width: 85%;
+   font-size: clamp(1rem, 3vw, 1.2rem);
+   font-weight: 500;
+}
+.post-feed__group_header {
+   display: flex;
+   flex-direction: row;
+   justify-content: space-between;
+   align-items: center;
+}
+.post-feed__more_posts_link svg {
+   width: 20px;
+   height: 20px;
+}
+.page-feed__social-connect {
+   padding-top: 4rem;
+   padding-bottom: 4.5rem;
+}
+.social-button__group {
+   display: flex;
+   gap: var(--gap-half);
+}
+.social-button {
+   min-width: 120px;
+   min-height: 50px;
+   gap: var(--gap-half);
+   color: var(--background);
+}
+.social-button svg {
+   fill: var(--background);
+}
+.social-button__instagram {
+   background-image: linear-gradient(45deg, #405de6, #5851db, #833ab4, #c13584, #e1306c, #fd1d1d);
+}
+.social-button__x {
+   background-image: linear-gradient(135deg, #707070, #010101);
+}
+.social-button__facebook {
+   background-image: linear-gradient(135deg, #78acff, #0866FF);
+}
 
-   main .page-hero-text,
-   main .page-hero-image {
-      display: inline-flex;
-      flex-direction: column;
-      justify-content: center;
-      height: inherit;
+@media (prefers-color-scheme: dark) {
+   .social-button {
+      color: var(--foreground);
    }
-
-   main .page-hero-image img {
-      max-height: 320px;
-   }
-
-   main .page-hero .page-hero-desc {
-      font-size: 1.3rem;
-      font-weight: 500;
-   }
-
-   main .page-posts-collection {
-      display: grid;
-      gap: 2rem;
-      padding-top: 12px;
-      padding-bottom: 12px;
-      grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
-   }
-
-   main .page-post-feed-section-header {
-      display: flex;
-      flex-direction: row;
-      justify-content: space-between;
-      align-items: center;
-   }
-
-   #quick-search-form {
-      display: flex;
-      width: 360px;
-      padding: var(--gap-quarter);
-      flex-direction: row;
-      justify-content: space-between;
-      align-items: center;
-      border-width: 2px;
-      border-style: solid;
-      border-color: var(--accents-2);
-      border-radius: 50px;
-      transition: border-color 120ms ease;
-   }
-
-   #quick-search-form.focused {
-      border-color: var(--foreground);
-   }
-
-   #quick-search-input {
-      height: 100%;
-      width: 100%;
-      border-radius: inherit;
-      border: none;
-      font-family: inherit;
-      font-size: 16px;
-      font-weight: 500;
-      background-color: transparent;
-      padding-left: var(--gap-half);
-      padding-right: var(--gap-half);
-      -webkit-tap-highlight-color: transparent;
-   }
-   #quick-search-input::placeholder {
-      color: var(--accents-5);
-   }
-
-   #quick-search-button {
-      border-radius: 50px;
-   }
-
-   main .social-platform-buttons {
-      display: flex;
-      gap: var(--gap-half);
-   }
-
-   main .social-button {
-      gap: var(--gap-half);
-      color: var(--background);
-   }
-
-   main .social-button svg {
-      fill: var(--background);
-   }
-
-   main .button__instagram {
-      background-image: linear-gradient(45deg, #405de6, #5851db, #833ab4, #c13584, #e1306c, #fd1d1d);
-   }
-   main .button__x {
-      background-image: linear-gradient(135deg, #707070, #010101);
-   }
-   main .button__facebook {
-      background-image: linear-gradient(135deg, #78acff, #0866FF);
-   }
-
-   @media (prefers-color-scheme: dark) {
-      main .social-button {
-         color: var(--foreground);
-      }
-
-      main .social-button svg {
+   .social-button svg {
         fill: var(--foreground);
-      }
-
-      main .button__x {
-         background-image: linear-gradient(135deg, var(--accents-3), var(--accents-2));
-         background-color: var(--accents-2);
-      }
    }
-
-   @media (max-width: 576px) {
-      main .page-hero {
-         height: 350px;
-      }
-
-      main .page-hero-text {
-         width: 100%;
-      }
-
-      main .page-hero .page-hero-title {
-         font-size: 2.1rem;
-         line-height: 4rem;
-      }
-
-      main .page-hero .page-hero-desc {
-         font-size: 1rem;
-      }
-
-      main .page-hero .page-hero-image {
-         display: none;
-      }
-
-      #quick-search-form {
-         width: calc(100% - var(--gap-half));
-      }
-
-      main .page-subscribe-cta {
-         padding-top: 2rem;
-         padding-bottom: 3rem;
-      }
-
-      main .social-platform-buttons {
-         flex-direction: column;
-      }
+   .social-button__x {
+      background-image: linear-gradient(135deg, var(--accents-3), var(--accents-2));
+      background-color: var(--accents-2);
    }
+}
 
-   /* Small to Medium */
-   @media (max-width: 992px) {
-      main .page-hero {
-         height: 430px;
-      }
-
-      main .page-hero-text {
-         width: 100%;
-      }
-
-      main .page-hero .page-hero-image {
-         display: none;
-      }
-
-      main .page-subscribe-cta {
-         padding-top: 3rem;
-         padding-bottom: 3.5rem;
-      }
-
-      main .social-button {
-         gap: var(--gap-half);
-         min-width: 120px;
-         min-height: 50px;
-      }
+@media (max-width: 576px) {
+   .post-feed__more_posts_link.app-button {
+      min-width: 20px;
+      min-height: 20px;
    }
-
-   /* Large */
-   @media (min-width: 992px) {
-      main .page-hero {
-         height: 420px;
-      }
-
-      main .page-hero-text {
-         width: 60%;
-      }
-
-      main .page-hero .page-hero-desc {
-         max-width: 85%;
-      }
-
-      main .page-hero .page-hero-image {
-         display: inline-flex;
-      }
-
-      main .page-subscribe-cta {
-         padding-top: 5rem;
-         padding-bottom: 6rem;
-      }
-      
-      main .social-button {
-         gap: var(--gap-half);
-         min-width: 140px;
-         min-height: 50px;
-      }
+   .page-feed__social-connect {
+      padding-top: 3rem;
+      padding-bottom: 3.5rem;
    }
+   .social-button__group {
+      flex-direction: column;
+   }
+}
+
+@media (max-width: 992px) {
+   .page-hero {
+      padding-top: var(--gap);
+      padding-bottom: var(--gap);
+   }
+   .page-hero .page-hero__image {
+      display: none;
+   }
+   .page-hero__text {
+      width: 100%;
+   }
+}
 </style>
 
 <main>
    <section class="page-hero">
-      <div class="page-hero-text">
-         <h1 class="page-hero-title">Explore. Learn. Grow</h1>
-         <p class="page-hero-desc text-muted">Rapidly grasp tech, science, and more with our concise insights, empowering your knowledge and understanding effortlessly.</p>
+      <div class="page-hero__text">
+         <h1 class="page-hero__title">Explore. Learn. Grow</h1>
+         <p class="page-hero__desc text-muted">Quickly grasp tech, science, and more with our concise insights, empowering your understanding effortlessly.</p>
+         <br />
          <form 
-            id="quick-search-form" 
+            id="formQuickSearch" 
             name="search" 
             method="get" 
             action="/search" 
@@ -228,25 +157,25 @@
                aria-hidden="true" 
                type="text" 
                name="q" 
-               id="quick-search-input-encoded" 
+               id="inputQuickSearchEncoded" 
                readonly 
                hidden />
 
             <input
                aria-label="Search input"
-               id="quick-search-input" 
+               id="inputQuickSearch" 
                type="text" 
                placeholder="Search Fivemin" />
 
             <button 
                aria-label="Search" 
-               id="quick-search-button" 
+               id="btnQuickSearch" 
                type="submit">
                Search
             </button>
          </form>
       </div>
-      <div class="page-hero-image">
+      <div class="page-hero__image">
          <img 
             src="/images/hero.svg" 
             alt="Explore" 
@@ -259,21 +188,24 @@
    <br />
 
    <section class="page-recent-posts">
-      <h2 class="page-recent-posts-title">Most Popular</h2>
+      <h2 class="post-feed__group_title">Most Popular</h2>
       <%- include(`partials/post-collection`, { posts: popularPosts, showTopic: true }) %>
    </section>
 
    <br />
 
-   <section class="page-post-feed-section">
-      <div class="page-post-feed-section-header">
-         <h2 class="page-recent-posts-title">Technology</h2>
+   <section class="post-feed__group">
+      <div class="post-feed__group_header">
+         <h2 class="post-feed__group_title">Technology</h2>
 
          <a 
             href="/t/technology" 
-            aria-label="View all technology posts" 
-            class="app-button outlined">
-            View all
+            title="View more technology posts"
+            aria-label="View more technology posts" 
+            class="post-feed__more_posts_link app-button adaptive small">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+               <path d="m11.293 17.293 1.414 1.414L19.414 12l-6.707-6.707-1.414 1.414L15.586 11H6v2h9.586z"></path>
+            </svg>
          </a>
       </div>
       <%- include(`partials/post-collection`, { posts: technologyPosts, showTopic: true }) %>
@@ -281,15 +213,18 @@
 
    <br />
 
-   <section class="page-post-feed-section">
-      <div class="page-post-feed-section-header">
-         <h2 class="page-recent-posts-title">Science</h2>
+   <section class="post-feed__group">
+      <div class="post-feed__group_header">
+         <h2 class="post-feed__group_title">Science</h2>
 
          <a 
             href="/t/science" 
-            aria-label="View all science posts" 
-            class="app-button outlined">
-            View all
+            title="View more science posts"
+            aria-label="View more science posts" 
+            class="post-feed__more_posts_link app-button adaptive small">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+               <path d="m11.293 17.293 1.414 1.414L19.414 12l-6.707-6.707-1.414 1.414L15.586 11H6v2h9.586z"></path>
+            </svg>
          </a>
       </div>
       <%- include(`partials/post-collection`, { posts: sciencePosts, showTopic: true }) %>
@@ -297,15 +232,18 @@
 
    <br />
 
-   <section class="page-post-feed-section">
-      <div class="page-post-feed-section-header">
-         <h2 class="page-recent-posts-title">Programming</h2>
+   <section class="post-feed__group">
+      <div class="post-feed__group_header">
+         <h2 class="post-feed__group_title">Programming</h2>
 
          <a 
             href="/t/programming" 
-            aria-label="View all programming posts" 
-            class="app-button outlined">
-            View all
+            title="View more programming posts"
+            aria-label="View more programming posts" 
+            class="post-feed__more_posts_link app-button adaptive small">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+               <path d="m11.293 17.293 1.414 1.414L19.414 12l-6.707-6.707-1.414 1.414L15.586 11H6v2h9.586z"></path>
+            </svg>
          </a>
       </div>
       <%- include(`partials/post-collection`, { posts: programmingPosts, showTopic: true }) %>
@@ -313,17 +251,17 @@
 
    <hr />
 
-   <section class="page-subscribe-cta">
+   <section class="page-feed__social-connect">
       <h2>Follow us for the latest updates!</h2>
       <p>Stay Connected! Follow us for the latest updates and insights on our social media channels.</p>
       <br />
-      <div class="social-platform-buttons">
+      <div class="social-button__group">
          <a 
             href="https://www.instagram.com/fivemin.in" 
             target="_blank" 
             id="socialReferenceInstagram"
             title="Instagram"
-            class="app-button social-button button__instagram">
+            class="app-button social-button social-button__instagram">
             <svg 
                role="img"
                viewBox="0 0 24 24" 
@@ -338,7 +276,7 @@
             target="_blank" 
             id="socialReferenceFacebook"
             title="Facebook"
-            class="app-button social-button button__facebook">
+            class="app-button social-button social-button__facebook">
             <svg 
                role="img" 
                viewBox="0 0 24 24" 
@@ -353,7 +291,7 @@
             target="_blank" 
             id="socialReferenceX"
             title="X"
-            class="app-button social-button button__x">
+            class="app-button social-button social-button__x">
             <svg 
                role="img" 
                viewBox="0 0 24 24" 
@@ -368,15 +306,15 @@
 
 <script>
    function quickSearch(event) {
-      let query = document.getElementById('quick-search-input').value;
+      let query = document.getElementById('inputQuickSearch').value;
       query = query.trim();
       event.target.q.value = encodeURI(query);
       return true;
    }
 
    window.onload = function() {
-      const qsi = document.getElementById('quick-search-input');
-      const qsf = document.getElementById('quick-search-form');
+      const qsi = document.getElementById('inputQuickSearch');
+      const qsf = document.getElementById('formQuickSearch');
 
       qsi.onfocus = function() {
          qsf.classList.add('focused');

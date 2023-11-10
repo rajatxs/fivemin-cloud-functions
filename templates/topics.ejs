@@ -1,67 +1,92 @@
 <style>
-   main .page-topics-collection {
-      display: grid;
-      gap: 2rem;
-      padding-top: 12px;
-      padding-bottom: 12px;
-      grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+.topics-page__collection {
+   display: grid;
+   gap: 2rem;
+   padding-top: var(--gap-half);
+   padding-bottom: var(--gap-half);
+   grid-template-columns: 1fr 1fr;
+}
+.topics-page__item {
+   text-decoration: none;
+   color: inherit;
+}
+.topics-page__thumb {
+   margin: 0;
+   width: 100%;
+   height: 300px;
+   position: relative;
+   border-radius: 12px;
+   transition: box-shadow 120ms ease;
+}
+.topics-page__thumb-image {
+   width: inherit;
+   height: inherit;
+   background-position: center;
+   background-size: cover;
+   background-repeat: no-repeat;
+   border-radius: inherit;
+}
+.topics-page__thumb-text {
+   position: absolute;
+   display: flex;
+   flex-direction: row;
+   justify-content: space-between;
+   align-items: center;
+   bottom: 0;
+   left: 0;
+   right: 0;
+   height: 80px;
+   padding-left: 1.5rem;
+   padding-right: 1.5rem;
+   border-bottom-left-radius: inherit;
+   border-bottom-right-radius: inherit;
+   border-top-left-radius: 0;
+   border-top-right-radius: 0;
+   background-color: var(--overlay);
+   transition: height 250ms ease, border-top-left-radius 150ms linear, border-top-right-radius 150ms linear;
+}
+.topics-page__item:hover .topics-page__thumb,
+.topics-page__item:focus .topics-page__thumb {
+   box-shadow: var(--shadow-medium);
+}
+.topics-page__item:hover .topics-page__thumb-text {
+   border-top-left-radius: inherit;
+   border-top-right-radius: inherit;
+   height: 300px;
+}
+.topics-page__item:focus .topics-page__thumb-text {
+   text-decoration: underline;
+}
+.topics-page__thumb-text h3 {
+   margin: 0;
+}
+
+@media (max-width: 767px) {
+   .topics-page__collection {
+      gap: 1rem;
+      grid-template-columns: 1fr;
    }
-   main .page-topic-item {
-      text-decoration: none;
-      color: inherit;
+   .topics-page__thumb {
+      height: 200px;
    }
-   main .page-topic-thumb {
-      margin: 0;
-      width: 100%;
-      height: 300px;
-      position: relative;
-      border-radius: 12px;
-      transition: box-shadow 120ms ease;
+   .topics-page__thumb-text {
+      height: 50px;
    }
-   main .page-topic-thumb-image {
-      width: inherit;
-      height: inherit;
-      background-position: center;
-      background-size: cover;
-      background-repeat: no-repeat;
-      border-radius: inherit;
+   .topics-page__item:hover .topics-page__thumb-text {
+      height: 200px;
    }
-   main .page-topic-thumb-text {
-      position: absolute;
-      display: flex;
-      flex-direction: row;
-      justify-content: space-between;
-      align-items: center;
-      bottom: 0;
-      left: 0;
-      right: 0;
-      height: 80px;
-      padding-left: 1.5rem;
-      padding-right: 1.5rem;
-      border-bottom-left-radius: inherit;
-      border-bottom-right-radius: inherit;
-      border-top-left-radius: 0;
-      border-top-right-radius: 0;
-      background-color: var(--overlay);
-      transition: height 250ms ease, border-top-left-radius 150ms linear, border-top-right-radius 150ms linear;
+}
+
+@media (min-width: 1200px) {
+   .topics-page__collection {
+      grid-template-columns: 1fr 1fr 1fr;
    }
-   main .page-topic-item:hover .page-topic-thumb,
-   main .page-topic-item:focus .page-topic-thumb {
-      box-shadow: var(--shadow-medium);
-   }
-   main .page-topic-item:hover .page-topic-thumb-text {
-      border-top-left-radius: inherit;
-      border-top-right-radius: inherit;
-      height: 300px;
-   }
-   main .page-topic-item:focus .page-topic-thumb-text {
-      text-decoration: underline;
-   }
+}
 </style>
 
-<main class="page-topics page-content-y-padding">
-   <div class="page-topics-heading">
-      <h2 class="page-title">Topics</h2>
+<main class="topics-page page-content-y-padding">
+   <div class="topics-page__heading">
+      <h2 class="topics-page__title">Topics</h2>
       <p><%= postCount %> Posts</p>
    </div>
 
@@ -70,19 +95,19 @@
          <p>No Topics</p>
       </div>
    <% } else { %>
-   <div class="page-topics-collection">
+   <div class="topics-page__collection">
       <% for(let topic of topics) { %>
          <a 
             href="<%= topic.topicUrl %>" 
             title="<%= topic.topicName %>" 
-            class="page-topic-item"
+            class="topics-page__item"
             data-topic-id="<%= topic.topicId %>">
-            <figure class="page-topic-thumb">
+            <figure class="topics-page__thumb">
                <div 
-                  class="page-topic-thumb-image" 
+                  class="topics-page__thumb-image" 
                   style="background-image: url('<%= topic.topicThumbUrl %>');">
                </div>
-               <figcaption class="page-topic-thumb-text">
+               <figcaption class="topics-page__thumb-text">
                   <h3><%= topic.topicName %></h3>
                </figcaption>
             </figure>
