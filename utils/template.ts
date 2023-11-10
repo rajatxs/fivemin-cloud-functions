@@ -1,9 +1,10 @@
 import { join } from 'path'
 import { URL } from 'url'
 import { renderFile, Options } from 'ejs'
+import { formatTime, getTimeFormat } from './index'
 import { ENV, HOST_URL, CONTACT_EMAIL } from '../config/env'
 import { LAYOUT_DIR, PAGE_DIR } from '../config'
-import { PageData } from '../types/template'
+import type { PageData, TimeInfo } from '../types/template'
 import meta from '../public/data/meta.json'
 
 const defaultOptions: Options = {
@@ -12,6 +13,18 @@ const defaultOptions: Options = {
          filename: join(PAGE_DIR, `${_file}.ejs`),
       }
    },
+}
+
+/**
+ * Returns `TimeInfo` from `time`
+ * @param time
+ */
+export function getTimeInfo(time: Date): TimeInfo {
+   return {
+      value: time,
+      format: getTimeFormat(time),
+      readable: formatTime(time),
+   }
 }
 
 /**
