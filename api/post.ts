@@ -6,14 +6,13 @@ import { disconnect } from '../services/db'
 import { formatTime, getOpenGraphImageURL, getTimeFormat } from '../utils'
 import { servePageContent, serve404Page, serve500Page } from '../utils/http'
 import { getPostCoverImageURL } from '../utils/post'
-import { renderDefaultLayout } from '../utils/template'
+import { renderDefaultLayout, getTimeInfo } from '../utils/template'
 import { parseBlockDocument } from '../utils/block-parser'
 import log from '../utils/log'
 import type { BlockDocument } from '@rxpm/fivemin-block-parser/lib/types'
 import type { PostDocument } from '../types/post'
 import type { VercelRequest, VercelResponse } from '@vercel/node'
 import type { PostPageData } from '../types/template'
-
 
 /**
  * Serves post page
@@ -63,8 +62,8 @@ async function handler(req: VercelRequest, res: VercelResponse) {
          postTopicUrl: `/t/${doc.topic}`,
          postDesc: doc.desc,
          postTags: doc.tags.sort((a, b) => a.length - b.length).slice(0, 3),
-         postPublishTime: formatTime(doc.createdAt),
-         postPublishTimeFormat: getTimeFormat(doc.createdAt),
+         postPublishTime: getTimeInfo(doc.createdAt),
+         postLastUpdateTime: getTimeInfo(doc.updatedAt),
          postCoverImageUrl: getPostCoverImageURL(doc.coverImage.path),
          postCoverImageRefName: doc.coverImage.refName,
          postCoverImageRefUrl: doc.coverImage.refUrl,
