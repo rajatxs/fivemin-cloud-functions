@@ -1,5 +1,11 @@
 import type { IndexPagePostTemplateData } from './index'
 
+export interface TimeInfo {
+   value: Date
+   format: string
+   readable: string
+}
+
 export interface PageData {
    pageTitle: string
    pageContent: string
@@ -45,8 +51,8 @@ export interface PostPageData extends PageData {
    postTopicUrl: string
    postDesc: string
    postTags: string[]
-   postPublishTime: string
-   postPublishTimeFormat: string
+   postPublishTime: TimeInfo
+   postLastUpdateTime: TimeInfo
    postCoverImageUrl: string
    postCoverImageRefName: string
    postCoverImageRefUrl: string
