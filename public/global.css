@@ -1,3 +1,17 @@
+/* --- Utility classes --- */
+.util__acrylic-background {
+   background-color: rgba(251, 251, 253, 0.8);
+   backdrop-filter: saturate(180%) blur(20px);
+   -webkit-backdrop-filter: saturate(180%) blur(20px);
+}
+
+@media (prefers-color-scheme: dark) {
+   .util__acrylic-background {
+      background-color: rgba(22, 22, 23, .8);
+   }
+}
+
+/* --- Partial global styles --- */
 .partial-post-collection {
    display: grid;
    gap: 2rem;
