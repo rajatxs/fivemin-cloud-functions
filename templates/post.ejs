@@ -161,7 +161,7 @@
                <%= postTopic %>
             </a>
             <span>&bull;</span>
-            <time datetime="<%= postPublishTimeFormat %>"><%= postPublishTime %></time>
+            <time datetime="<%= postPublishTime.format %>"><%= postPublishTime.readable %></time>
 
             <!-- More option button -->
             <button 
@@ -283,6 +283,7 @@
 <dialog id="dialogPostOptionView">
    <header class="post-opt-view__header">
       <div><small><strong>Article ID</strong>:&nbsp;<span class="text-muted"><%= postId %></span></small></div>
+      <div><small><strong>Last updated</strong>:&nbsp;<time datetime="<%= postLastUpdateTime.format %>" class="text-muted"><%= postLastUpdateTime.readable %></time></small></div>
       <div>
          <small>
             <strong>License</strong>:&nbsp;
